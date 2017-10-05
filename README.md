@@ -25,11 +25,11 @@ Plan spotkań MIM UW:
 
 ### Wizualizacja
 
-2017-12-15 W: Gramatyka grafiki A, L: 
-2017-12-22 W: Gramatyka grafiki B, L: 
-2018-01-12 W: Grafika interaktywna - rCharts, L: Projekt 3/1
-2018-01-19 W: Coś ciekawego, L: 
-2018-01-26 W: Projekt 3/2, L: 
+* 2017-12-15 W: Gramatyka grafiki A, L: 
+* 2017-12-22 W: Gramatyka grafiki B, L: 
+* 2018-01-12 W: Grafika interaktywna - rCharts, L: Projekt 3/1
+* 2018-01-19 W: Coś ciekawego, L: 
+* 2018-01-26 W: Projekt 3/2, L: 
 
 
 Materiały
@@ -44,7 +44,7 @@ Projekt 1
 
 Celem projektu jest opracowanie raportu dotyczącego 15-latków z krajów biorących udział w badaniu PISA.
 
-Raport powinien składać się ze strony tytułowej, spisu treści i ___ jednostronicowych podsumowań uczniów z różnych krajów (jedna strona na kraj).
+Raport powinien składać się ze strony tytułowej, spisu treści i 65 jednostronicowych podsumowań uczniów z różnych krajów (jedna strona na kraj).
 
 Treść jednostronicowego podsumowania jest dowolna, może to być tabela, wykres, opis, lub zbiór tabel, wykresów i opisów.
 
