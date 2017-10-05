@@ -9,7 +9,7 @@ Plan spotkań MIM UW:
 
 ### Praca z danymi
 
-* 2017-10-06 W: Higiena pracy z R i RStudio, knitr, L: 
+* 2017-10-06 W: Higiena pracy z R i RStudio, knitr, L: [Lab](materialy/Lab01.Rmd)
 * 2017-10-13 W: Przetwarzanie potokowe, dplyr, tidyr, L: 
 * 2017-10-20 W: Instrukcje sterujące, pętle, funkcje, archivist, L: Projekt 1/1
 * 2017-10-27 W: Czytanie danych z baz danych, Internetu, L: 
