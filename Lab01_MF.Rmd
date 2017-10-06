@@ -1,0 +1,33 @@
+---
+title: "Laboratorium 1"
+author: "Micha� Futrega"
+date: "06/10/2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+load("C:/Users/mf359257/Desktop/R_lab/student2012.rda")
+prop <- prop.table(table(student2012$CNT, student2012$ST28Q01), 1)
+barplot(prop.table(table(student2012$CNT, student2012$ST28Q01), 1)["Poland",])
+sort(prop[,1], decreasing=TRUE)
+pl_ger <- prop.table(table(student2012$CNT, student2012$ST28Q01), 1)[c("Poland", "Germany"), ]
+pl_ger
+
+
+sort(tapply(student2012$PV1MATH, student2012$CNT , mean), decreasing = TRUE)
+
+```
+
+## Do zrobienia
+
+1. Pobierz plik https://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda
+2. Wybierz ciekawą zmienną (patrz opis http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf)
+3. Przygotuj raport w knitrze przedstawiający rozkład wybranej zmiennej dla różnych krajów
+4. Umieść w raporcie wykres, tabelę, kod R, krótki opis z formatowaniem.
+
+Ściągawka knitra i markdowna
+
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
