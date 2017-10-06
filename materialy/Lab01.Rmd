@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## TODO
+## Do zrobienia
 
 1. Pobierz plik https://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda
 2. Wybierz ciekawą zmienną (patrz opis http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf)
