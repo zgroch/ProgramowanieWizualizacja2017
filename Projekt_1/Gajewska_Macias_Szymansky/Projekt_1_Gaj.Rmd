@@ -1,0 +1,82 @@
+---
+title: "Gaj_Mac_Szym"
+author: "Agnieszka Gajewska"
+date: "20 października 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+ 
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(sqldf)
+
+
+```
+```
+
+## R Markdown
+
+```{r}
+
+```{r cars}
+load("C:/Users/Aga/Downloads/student2012.rda")
+
+
+kraje = unique(student2012["CNT"])
+
+kkraje<-kraje[,1]
+
+z<-as.vector(kkraje)
+ 
+
+```
+
+
+
+```{r}
+funkcja_bar<-function(wektor){
+  
+  for (kraj in wektor){
+    
+    a <- subset(student2012, student2012["CNT"] == kraj) #Z tego można zrobić łatwo osobną funkcję, która będzie nam zwracała tabele dla poszczególnych krajów
+    
+    a<-select(a,ST20Q01)
+    a<-na.omit(a)
+    tabela=prop.table(table(a$ST20Q01))
+    
+    barplot(tabela,main=kraj,col=c("blue","red"))
+    
+  
+  }
+  
+}
+alb=c("Vietnam")
+funkcja_bar(z)
+```
+
+##A tu jakieś inne próby (ale to już jest Wasza działka)
+
+```{r}
+funkcjagg2<-function(wektor){
+  
+  for (kraj in wektor){
+    
+    a <- subset(student2012, student2012["CNT"] == kraj)
+    
+    a<-select(a,ST20Q01,ST37Q01,ST55Q02)
+    
+    a<-na.omit(a)
+    
+    g <- ggplot(a, aes(ST55Q02))
+
+    print(g + geom_bar(aes(fill= ST20Q01)))
+  }}
+kr=c("United Arab Emirates")
+funkcjagg2(kr)
+```
+
+
