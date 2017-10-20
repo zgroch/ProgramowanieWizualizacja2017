@@ -1,0 +1,109 @@
+---
+title: "Laboratorium 2"
+author: "Bazyli Szymañski"
+date: "13/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library("dplyr")
+library("tidyr")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+Poni¿sze operacje wykonaj na bazie zbioru danych auta2012 z pakietu PogromcyDanych.
+
+* Która Marka wystêpuje najczêœciej w zbiorze danych auta2012?
+
+
+
+```{r zadanie1, include=FALSE}
+
+#zad1
+
+auta2012 %>%
+  group_by(Marka)%>%
+  summarise(n=n()) -> marki
+
+head(arrange(marki,desc(n)),1)
+
+```
+* Spoœród aut marki Toyota, który model wystêpuje najczêœciej.
+```{r zadanie2, include=FALSE}
+#zad2
+
+auta2012 %>%
+  filter(.,Marka=="Toyota") %>%
+  group_by(Model)%>%
+  summarise(n=n())%>%
+  arrange(.,desc(n))%>%
+  head()
+```
+
+* SprawdŸ ile jest aut z silnikiem diesla wyprodukowanych w 2007 roku?
+```{r zadanie3, include=FALSE}
+#zad3
+
+auta2012 %>%
+  filter(.,Rok.produkcji=="2007",Rodzaj.paliwa=="olej napedowy (diesel)") %>%
+  summarise(n=n()) -> dizle
+
+cat("Liczba diesli",dizle[1,1])
+```
+
+
+* Jakiego koloru auta maj¹ najmniejszy medianowy przebieg?
+```{r zadanie4, include=FALSE}
+#zad4
+auta2012 %>%
+  group_by(Kolor) %>%
+  summarise(medCena=median(Cena.w.PLN)) %>%
+  arrange(.,medCena) %>%
+  head()
+```
+
+* Gdy ograniczyæ siê tylko do aut wyprodukowanych w 2007, która Marka wystêpuje najczêœciej w zbiorze danych auta2012?
+```{r zadanie5, include=FALSE}
+#zad5
+auta2012 %>%
+  filter(.,Rok.produkcji=="2007") %>%
+  group_by(Marka) %>%
+  summarise(n=n()) %>%
+  arrange(.,desc(n))
+```
+* Spoœród aut marki Toyota, który model najbardziej straci³ na cenie pomiêdzy rokiem produkcji 2007 a 2008.
+```{r zadanie6, include=FALSE}
+#zad6
+auta2012 %>%
+  filter(.,Marka=="Toyota",Rok.produkcji=="2007"|Rok.produkcji=="2008") %>%
+  select(.,Model,Rok.produkcji,Cena.w.PLN) %>%
+  group_by(Model,Rok.produkcji) %>%
+  summarise(.,srCena=mean(Cena.w.PLN)) %>%
+  spread(Rok.produkcji,srCena) %>%
+  mutate(.,roznica=`2008`-`2007`) %>%
+  arrange(.,desc(roznica))
+```
+
+* Spoœród aut z silnikiem diesla wyprodukowanych w 2007 roku która marka jest najdro¿sza?
+```{r zadanie7, include=FALSE}
+#zad7
+auta2012 %>%
+  filter(.,Rok.produkcji=="2007",Rodzaj.paliwa=="olej napedowy (diesel)") %>%
+  group_by(Marka) %>%
+  filter(n()>20) %>%
+  summarise(.,srCena=mean(Cena.w.PLN)) %>%
+  arrange(.,desc(srCena))
+```
+
+* Ile jest aut z klimatyzacj¹?
+```{r zadanie8, include=FALSE}
+#zad8
+auta2012 %>%
+  filter(.,grepl("klimatyzacja",Wyposazenie.dodatkowe)) %>%
+  nrow()
+```
+
+
+
