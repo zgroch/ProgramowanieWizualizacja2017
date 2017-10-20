@@ -1,0 +1,118 @@
+---
+title: "Laboratorium 2"
+author: "Tutaj wpisz swoje dane"
+date: "13/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+```{r eval=FALSE}
+install.packages("PogromcyDanych")
+library(PogromcyDanych)
+```
+
+Poniższe operacje wykonaj na bazie zbioru danych auta2012 z pakietu PogromcyDanych.
+
+```{r}
+auta <- auta2012
+```
+* Która Marka występuje najczęściej w zbiorze danych auta2012?
+
+```{r}
+auta %>%
+  group_by(Marka) %>%
+  summarise(Ilosc=n())
+```
+
+
+* Spośród aut marki Toyota, który model występuje najczęściej.
+
+```{r}
+auta %>%
+  filter(Marka == "Toyota") %>%
+  group_by(Model) %>%
+  summarise(ilosc = n()) %>%
+  arrange(desc(ilosc)) %>%
+  head(1)
+  
+  #as.data.frame() -> tt
+  #cat("Ta marka to:", as.character(tt[1,1]))
+```
+
+
+* Sprawdź ile jest aut z silnikiem diesla wyprodukowanych w 2007 roku?
+```{r}
+auta %>%
+  filter(Rodzaj.paliwa == "olej napedowy (diesel)", Rok.produkcji == 2007) %>%
+  nrow()
+```
+
+
+* Jakiego koloru auta mają najmniejszy medianowy przebieg?
+```{r}
+auta %>%
+  group_by(Kolor) %>%
+  summarise(Przebieg.mediana=median(Przebieg.w.km, na.rm=TRUE)) %>%
+  arrange(Przebieg.mediana) %>%
+  head(1) #%>%
+  #select(-Przebieg.mediana)
+  
+```
+
+
+* Gdy ograniczyć się tylko do aut wyprodukowanych w 2007, która Marka występuje najczęściej w zbiorze danych auta2012?
+
+```{r}
+auta %>%
+  filter(Rok.produkcji == 2007) %>%
+  group_by(Marka) %>%
+  summarise(ilosc=n()) %>%
+  arrange(desc(ilosc)) %>%
+  head(1)
+```
+
+
+* Spośród aut marki Toyota, który model najbardziej stracił na cenie pomiędzy rokiem produkcji 2007 a 2008.
+```{r}
+#install.packages("tidyr")
+#library("tidyr")
+auta %>%
+  filter(Marka == "Toyota", Rok.produkcji %in% c(2007,2008)) %>%
+  group_by(Model, Rok.produkcji) %>%
+  select(Cena.w.PLN,Model,Rok.produkcji) %>%
+  summarise(srednia.cena=mean(Cena.w.PLN)) %>%
+  spread(Rok.produkcji,srednia.cena) %>%
+  summarise(roznica=`2007`-`2008`) %>%
+  arrange(desc(roznica)) %>%
+  head(1)
+  
+  
+```
+
+
+* Spośród aut z silnikiem diesla wyprodukowanych w 2007 roku która marka jest najdroższa?
+
+```{r}
+auta %>%
+  filter(Rodzaj.paliwa == "olej napedowy (diesel)", Rok.produkcji == 2007) %>%
+  group_by(Marka) %>%
+  summarise(srednia.cena=mean(Cena.w.PLN)) %>%
+  arrange(desc(srednia.cena)) %>%
+  head(1)
+```
+
+* Ile jest aut z klimatyzacją?
+
+```{r}
+auta %>%
+  filter(grepl(pattern="klimatyzacja",.$Wyposazenie.dodatkowe)) %>%
+  summarise(ilosc=n())
+
+  
+```
+
