@@ -2,81 +2,96 @@
 title: "Gaj_Mac_Szym"
 author: "Agnieszka Gajewska"
 date: "20 października 2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
- 
-library(ggplot2)
-library(magrittr)
-library(dplyr)
-library(sqldf)
-
-
-```
-```
-
-## R Markdown
-
-```{r}
-
-```{r cars}
-load("C:/Users/Aga/Downloads/student2012.rda")
-
-
-kraje = unique(student2012["CNT"])
-
-kkraje<-kraje[,1]
-
-z<-as.vector(kkraje)
- 
-
-```
-
-
-
-```{r}
-funkcja_bar<-function(wektor){
-  
-  for (kraj in wektor){
-    
-    a <- subset(student2012, student2012["CNT"] == kraj) #Z tego można zrobić łatwo osobną funkcję, która będzie nam zwracała tabele dla poszczególnych krajów
-    
-    a<-select(a,ST20Q01)
-    a<-na.omit(a)
-    tabela=prop.table(table(a$ST20Q01))
-    
-    barplot(tabela,main=kraj,col=c("blue","red"))
-    
-  
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+setup_dependencies <- function(){
+  if (!require(devtools)) {
+    install.packages("devtools")
+    require(devtools)
   }
+  if (!require(ggplot2)) {
+    install.packages("ggplot2")
+    require(ggplot2)
+  }
+  if (!require(magrittr)) {
+    install.packages("magrittr")
+    require(magrittr)
+  }
+  if (!require(dplyr)) {
+    install.packages("dplyr")
+    require(dplyr)
+  }
+  if (!require(sqldf)) {
+    install.packages("sqldf")
+    require(sqldf)
+  }
+  if (!require(devtools)) {
+    install.packages("devtools")
+    require(devtools)
+  }
+  if (!require("PISA2012lite")) {
+    devtools::install_github("pbiecek/PISA2012lite")
+    library("PISA2012lite")
+  }
+  student2012 <- PISA2012lite::student2012
+}
+
+prep_df <-function(data)  { 
+  temp <- data.frame(names = as.character("a"), variable = 0, value = 0)
+  temp$names <- c("b")
+  for(col in names(data)){
+    tbl <- table(data[col])
+    i <- 0
+    for(lev in names(tbl)){
+      i <- i + 1
+      temp <- rbind(temp, c(as.character(col), i, tbl[lev]))
+    }
+  }
+  temp <- temp[-1,]
+  temp
+}
+
+display_element_reasons <- function(country, data, args){
+  data <- data[data[args[["countries"]]] == country,]
+  foreigners <- data[data[args[["foreigner"]]] == args[['foreigner_opt']],]
+  locals <- data[data[args[["foreigner"]]] == args[['local_opt']],]
+  foreigners <- foreigners[args[['reasons']]]
+  locals <- locals[args[['reasons']]]
+  remove(data)
+  temp <- prep_df(locals)
+  ggplot(temp, aes(variable, value)) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") 
+}
+
+print_page = function(country, data, args){
+
+cat("abcd\n\\clearpage\n")
   
 }
-alb=c("Vietnam")
-funkcja_bar(z)
+
 ```
 
-##A tu jakieś inne próby (ale to już jest Wasza działka)
 
-```{r}
-funkcjagg2<-function(wektor){
-  
-  for (kraj in wektor){
-    
-    a <- subset(student2012, student2012["CNT"] == kraj)
-    
-    a<-select(a,ST20Q01,ST37Q01,ST55Q02)
-    
-    a<-na.omit(a)
-    
-    g <- ggplot(a, aes(ST55Q02))
+```{r, results="asis"}
+setup_dependencies()
+args <- list()
+args['countries'] <- "CNT"
+args[['reasons']] <- c("ST13Q01", "ST08Q01")
+args['foreigner'] <- "ST20Q01"
+args[['foreigner_opt']] <- "Other country"
+args[['local_opt']] <- "Country of test" # Assert it
 
-    print(g + geom_bar(aes(fill= ST20Q01)))
-  }}
-kr=c("United Arab Emirates")
-funkcjagg2(kr)
+countries = unique(student2012[args[['countries']]])[,1]
+countries<-sort(as.vector(countries))
+
+
+for(country in countries){
+  print_page(country, student2012, args)
+}
+
 ```
-
 
