@@ -1,0 +1,23 @@
+---
+title: "Laboratorium 4"
+author: "Tutaj wpisz swoje dane"
+date: "27/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* Pod adresem http://biecek.pl/R/dane/daneO.csv kryje się plik tekstowy, tabelaryczny. Odczytaj dane bezpośrednio z tego linku, a następnie wyświetl podsumowanie dla kolumny Wiek. Przydać się może funkcja `read.table`.
+
+* Znajdź w Banku Danych Lokalnych GUS https://bdl.stat.gov.pl/BDL/ raport 'Bezrobotni zarejestrowani wg płci i typu'. Wyeksportuj dane w pliku Excela w podziale na płeć w latach 1998-2016. Wczytaj dane Excelowe do R i narysuj wykres przedstawiający zmianę bezrobocia.  Przydać się może funkcja `read.xlsx{openxlsx}`.
+
+* Na stronie projektu Gutenberg http://www.gutenberg.org/ znajdź opowiadanie 'Alice’s Adventures in Wonderland'. Wczytaj do R. Policz częstości występowania poszczególnych słów. Spróbuj ograniczyć zbiór słów tylko do tych pisanych z dużej litery. Które postacie pojawiają się najczęściej w opowiadaniu?
+
+* Połącz się z bazą postgresową z danymi z sejmu (dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl"). Wyznacz tabelę z klubami w wierszach a rodzajem głosu w kolumnach (za/przeciw/wstrzymal sie/nieobecny). Wartości tabeli powinny opisywać ile razy poseł z danego klubu głosował w dany sposób. Z którego klubu posłowie są najczęściej nieobecni?
+Przydać się może pakiet `dplyr`.
+
+
