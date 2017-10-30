@@ -41,6 +41,20 @@ setup_dependencies <- function(){
   student2012 <- PISA2012lite::student2012
 }
 
+plot_results_foreigners_vs_locals <- function(country, data, args){
+data %>%
+  filter(data[args[['countries']]]==country) %>%
+  select(args[['foreigner']],"PV1MATH") %>%
+  na.omit(.) %>%
+  group_by(ST20Q01) %>%
+  summarise(meResult=mean(PV1MATH),n=n()) -> results
+
+q <- ggplot(data=results,aes(x=ST20Q01,y=meResult)) + geom_bar(stat="identity",width=0.5,fill="steelblue") + 
+geom_text(aes(label=round(meResult,digits=1)), vjust=1.6, color="white", size=4) +
+labs(title="Math results by country of birth", xlab='Country of birth')
+print(q)
+}
+
 transform_question_names <- function(curr_name, args){
   args[['proper_names']][match(curr_name, args[['reasons']])]
 }
@@ -90,13 +104,13 @@ display_element_reasons <- function(country, data, args){
   temp$where_from <- as.factor(temp$where_from)
   temp$variable <- as.factor(temp$variable)
   
-  footnote <- "footnote"
-  
-  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE) + theme(legend.position = "bottom")
+
+  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE)
   print(q)
 }
 
 print_page = function(country, data, args){
+plot_results_foreigners_vs_locals(country,data,args)
 display_element_reasons(country,data,args)
 cat("abcd\n\\clearpage\n")
 }
