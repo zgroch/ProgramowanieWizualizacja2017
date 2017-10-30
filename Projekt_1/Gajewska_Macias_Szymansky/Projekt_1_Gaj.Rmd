@@ -41,6 +41,10 @@ setup_dependencies <- function(){
   student2012 <- PISA2012lite::student2012
 }
 
+transform_question_names <- function(curr_name, args){
+  args[['proper_names']][match(curr_name, args[['reasons']])]
+}
+
 prep_df <-function(data)  { 
   temp <- data.frame(names = as.character("a"), variable = 0, value = 0)
   temp$names <- c("b")
@@ -53,7 +57,20 @@ prep_df <-function(data)  {
     }
   }
   temp <- temp[-1,]
-  temp
+  temp[,2] <- as.integer(temp[,2])
+  temp[,3] <- as.integer(temp[,3])
+  temp2 <- temp
+  
+  for(i in 1:dim(temp)[1]){
+    row <- temp[i,]
+    name <- row$names
+    sum_for_name <- sum(temp[temp$names==name,]$value)
+    temp2[i,3] <- temp[i,3]/sum_for_name
+  }
+  temp2$names <- sapply(temp2$names,transform_question_names, args)
+  temp2$names <- as.factor(temp2$names)
+  
+  temp2
 }
 
 display_element_reasons <- function(country, data, args){
@@ -63,14 +80,25 @@ display_element_reasons <- function(country, data, args){
   foreigners <- foreigners[args[['reasons']]]
   locals <- locals[args[['reasons']]]
   remove(data)
-  temp <- prep_df(locals)
-  ggplot(temp, aes(variable, value)) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") 
+  
+  locs <- prep_df(locals)
+  foreigns <- prep_df(foreigners)
+  locs$where_from = args[["local_opt"]]
+  foreigns$where_from = args[["foreigner_opt"]]
+  temp <- rbind(locs,foreigns)
+  
+  temp$where_from <- as.factor(temp$where_from)
+  temp$variable <- as.factor(temp$variable)
+  
+  footnote <- "footnote"
+  
+  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE) + theme(legend.position = "bottom")
+  print(q)
 }
 
 print_page = function(country, data, args){
-
+display_element_reasons(country,data,args)
 cat("abcd\n\\clearpage\n")
-  
 }
 
 ```
@@ -81,6 +109,7 @@ setup_dependencies()
 args <- list()
 args['countries'] <- "CNT"
 args[['reasons']] <- c("ST13Q01", "ST08Q01")
+args[['proper_names']] <- c("prop_name1", "prop_name2")
 args['foreigner'] <- "ST20Q01"
 args[['foreigner_opt']] <- "Other country"
 args[['local_opt']] <- "Country of test" # Assert it
