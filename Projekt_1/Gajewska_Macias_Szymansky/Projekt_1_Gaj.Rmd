@@ -106,7 +106,7 @@ display_element_reasons <- function(country, data, args){
   temp$variable <- as.factor(temp$variable)
   
 
-  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE)
+  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE)+scale_fill_brewer(palette="BuPu")
   print(q)
 }
 
