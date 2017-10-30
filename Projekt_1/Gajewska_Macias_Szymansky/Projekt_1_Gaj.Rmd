@@ -3,11 +3,12 @@ title: "Gaj_Mac_Szym"
 author: "Agnieszka Gajewska"
 date: "20 października 2017"
 output:
-  pdf_document: default
-  html_document: default
+  pdf_document:
+      toc: true
+      number_sections: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, results="asis", include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 setup_dependencies <- function(){
   if (!require(devtools)) {
@@ -110,15 +111,16 @@ display_element_reasons <- function(country, data, args){
 }
 
 print_page = function(country, data, args){
+cat("##", country,"\n")
 plot_results_foreigners_vs_locals(country,data,args)
 display_element_reasons(country,data,args)
-cat("abcd\n\\clearpage\n")
+cat("\n\\clearpage\n")
 }
 
 ```
 
 
-```{r, results="asis"}
+```{r, results="asis", echo=FALSE}
 setup_dependencies()
 args <- list()
 args['countries'] <- "CNT"
@@ -131,7 +133,7 @@ args[['local_opt']] <- "Country of test" # Assert it
 countries = unique(student2012[args[['countries']]])[,1]
 countries<-sort(as.vector(countries))
 
-
+cat("\n\\clearpage\n")
 for(country in countries){
   print_page(country, student2012, args)
 }
