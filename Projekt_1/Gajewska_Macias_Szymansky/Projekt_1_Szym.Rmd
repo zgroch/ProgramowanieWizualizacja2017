@@ -1,0 +1,36 @@
+---
+title: "Projekt_1_Szym"
+author: "Bazyli Szymański"
+date: "25 10 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+ 
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(sqldf)
+
+
+```
+
+Oczywiście poniżej PV1MATH powinno być jakimś mathresults z wcześniejszego przypisania. 
+
+```{r}
+student2012 %>%
+  filter(countries==country) %>%
+  select(foreigner,PV1MATH) %>%
+  na.omit(.) %>%
+  group_by(foreigner) %>%
+  summarise(meResult=mean(PV1MATH),n=n()) -> results
+
+ggplot(data=results,aes(x=foreigner,y=meResult)) + geom_bar(stat="identity",width=0.5,fill="steelblue") + 
+geom_text(aes(label=round(meResult,digits=1)), vjust=1.6, color="white", size=4) +
+labs(title="Math results by country of birth")
+```
+
+
