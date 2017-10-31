@@ -110,10 +110,22 @@ display_element_reasons <- function(country, data, args){
   print(q)
 }
 
+
+show_reasons_levels<-function(data,args){
+  k<-data[args[['reasons']][1]]
+  w<-data[args[['reasons']][2]]
+  l<-unique(k)
+  m<-unique(w)
+  k<-levels(l[[1]])
+  w<-levels(m[[1]])
+  cat('Reason 1 levels:',k,'\n','Reason 2 levels:', w)
+}
+
 print_page = function(country, data, args){
 cat("##", country,"\n")
 plot_results_foreigners_vs_locals(country,data,args)
 display_element_reasons(country,data,args)
+show_reasons_levels(data,args)
 cat("\n\\clearpage\n")
 }
 
