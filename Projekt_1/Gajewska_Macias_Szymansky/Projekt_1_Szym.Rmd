@@ -21,16 +21,20 @@ library(sqldf)
 Oczywiście poniżej PV1MATH powinno być jakimś mathresults z wcześniejszego przypisania. 
 
 ```{r}
-student2012 %>%
-  filter(countries==country) %>%
-  select(foreigner,PV1MATH) %>%
+plot_results_foreigners_vs_locals <- function(country, data, args){
+data %>%
+  filter(data[args[['countries']]]==country) %>%
+  select(args[['foreigner']],"PV1MATH") %>%
   na.omit(.) %>%
-  group_by(foreigner) %>%
+  group_by(ST20Q01) %>%
   summarise(meResult=mean(PV1MATH),n=n()) -> results
 
-ggplot(data=results,aes(x=foreigner,y=meResult)) + geom_bar(stat="identity",width=0.5,fill="steelblue") + 
+ggplot(data=results,aes(x=ST20Q01,y=meResult)) + geom_bar(stat="identity",width=0.5,fill="steelblue") + 
 geom_text(aes(label=round(meResult,digits=1)), vjust=1.6, color="white", size=4) +
-labs(title="Math results by country of birth")
+labs(title="Math results by country of birth", xlab='Country of birth')
+}
+
+
 ```
 
 

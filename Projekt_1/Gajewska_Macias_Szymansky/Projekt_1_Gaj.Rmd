@@ -60,6 +60,7 @@ transform_question_names <- function(curr_name, args){
   args[['proper_names']][match(curr_name, args[['reasons']])]
 }
 
+
 prep_df <-function(data)  { 
   temp <- data.frame(names = as.character("a"), variable = 0, value = 0)
   temp$names <- c("b")
@@ -84,12 +85,20 @@ prep_df <-function(data)  {
   }
   temp2$names <- sapply(temp2$names,transform_question_names, args)
   temp2$names <- as.factor(temp2$names)
-  
   temp2
+}
+
+prep_correlation <- function(data, args){
+  ce <- list()
+  data <- data[data[ ,args[['foreigner']]] == args[['foreigner_opt']], ]
+  for(reason in args[['reasons']]){
+    ce[[reason]] <- cor(data[,args[['math_score']]], as.numeric(data[,reason]), use="complete.obs")
+  }
 }
 
 display_element_reasons <- function(country, data, args){
   data <- data[data[args[["countries"]]] == country,]
+  correlations <- prep_correlation(data,args)
   foreigners <- data[data[args[["foreigner"]]] == args[['foreigner_opt']],]
   locals <- data[data[args[["foreigner"]]] == args[['local_opt']],]
   foreigners <- foreigners[args[['reasons']]]
@@ -110,11 +119,11 @@ display_element_reasons <- function(country, data, args){
   print(q)
 }
 
-print_page = function(country, data, args){
-cat("##", country,"\n")
-plot_results_foreigners_vs_locals(country,data,args)
-display_element_reasons(country,data,args)
-cat("\n\\clearpage\n")
+print_page <- function(country, data, args){
+  cat("##", country,"\n")
+  plot_results_foreigners_vs_locals(country,data,args)
+  display_element_reasons(country,data,args)
+  cat("\n\\clearpage\n")
 }
 
 ```
@@ -129,7 +138,8 @@ args[['proper_names']] <- c("prop_name1", "prop_name2")
 args['foreigner'] <- "ST20Q01"
 args[['foreigner_opt']] <- "Other country"
 args[['local_opt']] <- "Country of test" # Assert it
-
+args[['math_score']] <- "PV1MATH"
+  
 countries = unique(student2012[args[['countries']]])[,1]
 countries<-sort(as.vector(countries))
 
