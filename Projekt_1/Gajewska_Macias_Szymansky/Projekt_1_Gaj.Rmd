@@ -121,6 +121,20 @@ show_reasons_levels<-function(data,args){
   cat('Reason 1 levels:',k,'\n','Reason 2 levels:', w)
 }
 
+title_page<-function(){
+ 
+  plot(1:20, 1:20, type="n", xlim=c(0, 7*254), ylim=c(0, 9.5*254), xlab="", ylab="", lwd=2, xaxt="n", yaxt="n");
+
+  text(7*254/2, 2000, "Mathematical competence:", cex=2, adj=0.5);
+  text(7*254/2, 1600, "a comparison between ", cex=2, adj=0.5);
+  text(7*254/2, 1200, "local residents and immigrants", cex=2, adj=0.5);
+  text(7*254/2, 500, "This report shows differences in math results between local residents \n and immigrants. The first plot displays said differences and the second \n one aims to explain them by examining each group's background. ")
+  text(7*254/2, 8, "Agnieszka Gajewska, Mateusz Macias, Bazyli Szymański");
+  
+  
+}
+
+
 print_page = function(country, data, args){
 cat("##", country,"\n")
 plot_results_foreigners_vs_locals(country,data,args)
@@ -145,6 +159,8 @@ args[['local_opt']] <- "Country of test" # Assert it
 countries = unique(student2012[args[['countries']]])[,1]
 countries<-sort(as.vector(countries))
 
+cat("\n\\clearpage\n")
+title_page()
 cat("\n\\clearpage\n")
 for(country in countries){
   print_page(country, student2012, args)
