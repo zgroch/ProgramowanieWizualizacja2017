@@ -1,0 +1,82 @@
+---
+title: "Gaj_Mac_Szym"
+author: "Agnieszka Gajewska"
+date: "20 października 2017"
+output: 
+ pdf_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(sqldf)
+library(scales)
+library(ggrepel)
+library(forcats)
+library(scales)
+```
+
+```{r, echo=FALSE}
+load("C:/Users/Aga/Downloads/student2012.rda")
+```
+
+```{r,echo=FALSE}
+args <- list()
+args['countries'] <- "CNT"
+args[['reasons']] <- c("ST13Q01","ST08Q01")#, "ST08Q01"
+args[['proper_names']] <- c("prop_name1", "prop_name2")
+args['foreigner'] <- "ST20Q01"
+args[['foreigner_opt']] <- "Other country"
+args[['local_opt']] <- "Country of test"
+```
+
+
+```{r,echo=FALSE}
+countries = unique(student2012[args[['countries']]])[,1]
+countries<-sort(as.vector(countries))
+
+```
+
+
+
+
+```{r,echo=FALSE}
+title_page<-function(){
+ 
+  plot(1:20, 1:20, type="n", xlim=c(0, 7*254), ylim=c(0, 20*254), xlab="", ylab="", lwd=2, xaxt="n", yaxt="n");
+
+  text(7*254/2, 4500, "Mathematical competence:", cex=2, adj=0.5);
+  text(7*254/2, 3550, "a comparison between ", cex=2, adj=0.5);
+  text(7*254/2, 2550, "local residents and immigrants", cex=2, adj=0.5);
+  text(7*254/2, 1000, "This report shows differences in math results between local residents \n and immigrants. The first plot displays said differences and the second \n one aims to explain them by examining each group's background. ")
+  text(7*254/2, 8, "Agnieszka Gajewska, Mateusz Macias, Bazyli Szymański");
+  
+  
+}
+title_page()
+
+```
+
+
+
+
+```{r,echo=FALSE, results='asis'}
+b<-function( data, args){
+a<-'##'
+title_page()
+
+for(country in countries){
+  cat("#", country, "\n") 
+  
+  
+  cat("\n")
+}
+}
+b(student2012,args)
+```
+
