@@ -1,6 +1,6 @@
 ---
-title: "Gaj_Mac_Szym"
-author: "Agnieszka Gajewska"
+title: "Locals vs. Imigrants. Difference in education levels"
+author: "Mateusz Macias Agnieszka Gajewska Bazyli Szymański"
 date: "20 października 2017"
 output:
   pdf_document:
@@ -10,6 +10,8 @@ output:
 
 ```{r setup, results="asis", include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+# The function for loading all necessary libraries. It installs them if missing.
 setup_dependencies <- function(){
   if (!require(devtools)) {
     install.packages("devtools")
@@ -42,6 +44,7 @@ setup_dependencies <- function(){
   student2012 <- PISA2012lite::student2012
 }
 
+# The function that generates and plots a comparision of math results (PV1MATH) of locals and imigrants for specified country
 plot_results_foreigners_vs_locals <- function(country, data, args){
 data %>%
   filter(data[args[['countries']]]==country) %>%
@@ -56,11 +59,13 @@ labs(title="Math results by country of birth", xlab='Country of birth')
 print(q)
 }
 
+# The function that takes codename from pisa report and returns a respective name in human language. 
 transform_question_names <- function(curr_name, args){
   args[['proper_names']][match(curr_name, args[['reasons']])]
 }
 
-
+# The function that takes as argument a dataframe describing students of one country in terms of several features.
+# Then it prepares a table with statistics that can then be plotted.
 prep_df <-function(data)  { 
   temp <- data.frame(names = as.character("a"), variable = 0, value = 0)
   temp$names <- c("b")
@@ -88,17 +93,9 @@ prep_df <-function(data)  {
   temp2
 }
 
-prep_correlation <- function(data, args){
-  ce <- list()
-  data <- data[data[ ,args[['foreigner']]] == args[['foreigner_opt']], ]
-  for(reason in args[['reasons']]){
-    ce[[reason]] <- cor(data[,args[['math_score']]], as.numeric(data[,reason]), use="complete.obs")
-  }
-}
-
+# Function which plots social features other than score in PV1MATH.
 display_element_reasons <- function(country, data, args){
   data <- data[data[args[["countries"]]] == country,]
-  correlations <- prep_correlation(data,args)
   foreigners <- data[data[args[["foreigner"]]] == args[['foreigner_opt']],]
   locals <- data[data[args[["foreigner"]]] == args[['local_opt']],]
   foreigners <- foreigners[args[['reasons']]]
@@ -119,58 +116,45 @@ display_element_reasons <- function(country, data, args){
   print(q)
 }
 
-show_reasons_levels<-function(data,args){
-  k<-data[args[['reasons']][1]]
-  w<-data[args[['reasons']][2]]
-  l<-unique(k)
-  m<-unique(w)
-  k<-levels(l[[1]])
-  w<-levels(m[[1]])
-  cat('Reason 1 levels:',k,'\n','Reason 2 levels:', w)
-}
-
-title_page<-function(){
- 
-  plot(1:20, 1:20, type="n", xlim=c(0, 7*254), ylim=c(0, 9.5*254), xlab="", ylab="", lwd=2, xaxt="n", yaxt="n");
-
-  text(7*254/2, 2000, "Mathematical competence:", cex=2, adj=0.5);
-  text(7*254/2, 1600, "a comparison between ", cex=2, adj=0.5);
-  text(7*254/2, 1200, "local residents and immigrants", cex=2, adj=0.5);
-  text(7*254/2, 500, "This report shows differences in math results between local residents \n and immigrants. The first plot displays said differences and the second \n one aims to explain them by examining each group's background. ")
-  text(7*254/2, 8, "Agnieszka Gajewska, Mateusz Macias, Bazyli Szymański");
-  cat("\n\\clearpage\n")
-  
-}
-
-
-print_page = function(country, data, args){
+# Prints a page for a country.
+print_page <- function(country, data, args){
 cat("#", country,"\n")
 plot_results_foreigners_vs_locals(country,data,args)
 display_element_reasons(country,data,args)
-#show_reasons_levels(data,args)
-cat("\n\\clearpage\n")
+cat("\n\n")
 }
 
 ```
 
 
-```{r, results="asis", echo=FALSE}
+# Introduction
+ This report shows differences in math results between local residents and immigrants. It consists of a series of separate, one page reports - one for each country. For every country we can see two plots aiming to show some differences between the two groups. First plot at each page shows the difference in results of locals and imigrants in terms of mathematical skills. The metric used to compare those results is PV1MATH from PISA test. The other plot shows comparision of the two groups in terms of other social features. The features were chosen based of what authors of the reports thought would be relevant to explain the possible difference of results in mathematics.
+In partcular:
+
+- Father's education
+  The level of education of parents (here father) might be highly related to educational effect of a child. This trend is usually independent of nationality. Thus we would like to show education profile of locals vs. foreigners. The levels of consequtive pols in plots: <ISCED level 3A>, <ISCED level 3B, 3C>, <ISCED level 2>,  <ISCED level 1>,  He did not complete <ISCED level 1> 
+
+- Father's job:
+  Similarly to the previous one. We suppose that parent's job might have high effect on the educational success of children. It is due to the patterns going from parents to children and amount of money availabble to a familly. The levels of consequtive pols in plots:
+  Working full-time <for pay>, Working part-time <for pay>, Not working, but looking for a job, Other (e.g. home duties, retired).
+  
+- Being late to school:
+  Coming to school without being late might be extremely important for education of children. Thus we would like to compare punctuality of locals and imigrants. The levels of consequtive pols in plots:
+  None, One or two times, Three or four times, Five or more times
+```{r, results="asis", echo=FALSE, fig.height=4}
 setup_dependencies()
 args <- list()
 args['countries'] <- "CNT"
-args[['reasons']] <- c("ST13Q01", "ST08Q01")
-args[['proper_names']] <- c("prop_name1", "prop_name2")
+args[['reasons']] <- c("ST17Q01", "ST19Q01", "ST08Q01")
+args[['proper_names']] <- c("Father's education", "Father's Job", "Late for school")
 args['foreigner'] <- "ST20Q01"
 args[['foreigner_opt']] <- "Other country"
 args[['local_opt']] <- "Country of test" # Assert it
 args[['math_score']] <- "PV1MATH"
-  
+
 countries = unique(student2012[args[['countries']]])[,1]
 countries<-sort(as.vector(countries))
 
-cat("\n\\clearpage\n")
-title_page()
-cat("\n\\clearpage\n")
 for(country in countries){
   print_page(country, student2012, args)
 }
