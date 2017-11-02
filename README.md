@@ -89,7 +89,47 @@ Dobre rozwiązanie powinno:
 Projekt 2
 ---------
 
+Celem projektu jest przygotowanie pakietu, realizującego określoną funkcjonalność, w tym przypadku definiowanie i rysowanie fraktala metodą IFS.
 
+Drugi projekt realizujemy w zespołach. Zespoły muszą być inne niż w projekcie 1. 
+
+W ramach tej fazy należy:
+
+Przygotować pakiet, tworzący i rysujący system funkcji iterowanych (https://pl.wikipedia.org/wiki/IFS_(geometria_fraktalna), https://en.wikipedia.org/wiki/Iterated_function_system), czyli fraktale IFS. 
+
+Pakiet powinien zawierać dwie funkcje:
+* funkcja createIFS(), która przyjmuje pewną (w wersji min = 3, w wersji max - dowolną) listę funkcji (kontrakcji, ale to nie istotne). Można założyć, że funkcje, które ktoś poda jako argument będą przyjmowały jako argument werktor dwuelementowy i będą zwracały wektor dwuelementowy. Przykładowa funkcja:
+
+```
+kontrakcja1 <- function(x) {
+	c(1 + x[1]/2, 1 + x[2]/2)
+}
+```
+
+* funkcja createIFS() jako wynik powinna zwracać obiekt klasy S3 o nazwie IFS
+
+* dla obiektów klasy IFS należy przygotować generyczną, przeciążoną funkcję plot(), która będzie rysowała złożenie funkcji do zadanej głębokości (np. = 8).
+
+
+Pakiet każdego zespołu powinien nazywać się IFS______, gdzie ______ to dowolne wybrane przez zespół słowo, słowa lub liczba (jeżeli słowo, to musi być cenzuralne i najlepiej bez polskich znaczków). Każdy zespół musi mieć pakiet o innej nazwie.
+Pakiet powinien być przygotowany zgodnie z regułami sztuki, funkcje i zbiory danych mają dokumentację, pakiet ma opis i zależności oraz unit testy. Funkcja test() i check() przechodzi bez błędów.
+Do pakietu dołączony jest skrypt knitr ilustrujący wykonanie pakietu.
+
+### Kryteria oceny projektu 2:
+
+W tej fazie oceniane będą dwa kryteria:
+
+A. Elastyczność pakietu.
+
+Premiowane będą pakiety, których funkcja createIFS() zadziała na różnej liczby funkcji, które pozwolą na narysowanie różnych ciekawych fraktali.
+
+Wersja przyzwoite minimum, to narysowanie trójkąta Sierpińskiego, wersja maximum to kilka interesujących fraktali.
+
+B. Inżynierska jakość kodu.
+
+Premiowane będą pakiety, których funkcje będą udokumentowane. Których zbiory danych będą udokumentowane. Który będzie posiadał odpowiednio dużo testów jednostkowych (testthat). Który będzie wyposażony w ilustracje (vigniette) pokazującą jak korzystać z funkcji pakietu.
+
+*Uwaga* dla osób nie czujących sie zbyt pewnie z matematyką. Kontrakcji nie należy się bać bo to trudne słowo opisujące prosty byt. W razie jakicholwiek problemów dotyczących projektu proszę o kontakt.
 
 Projekt 3
 ---------
