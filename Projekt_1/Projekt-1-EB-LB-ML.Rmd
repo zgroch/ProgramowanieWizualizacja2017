@@ -1,0 +1,143 @@
+---
+title: "Education of parents vs pupils' confidence in solving mathematical problems. (PISA-2012)"
+author: "Ewelina Bednarz & £ukasz Bo¿yk & Magdalena Lipiec"
+date: "Latest update: November 3, 2017"
+output: 
+  pdf_document: 
+    includes:
+      in_header: makra.sty
+    number_sections: true
+    keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\thispagestyle{empty}
+
+The project is aimed to show, how the level of **education of parents** is related to **abilities of their children**.
+
+In order to do that, we analysed data from **PISA 2012**. PISA --- The Programme for International Student Assessment --- is a worldwide study by the Organisation for Economic Co-operation and Development (OECD) in member and non-member nations of 15-year-old school pupils' scholastic performance on mathematics, science, and reading.
+
+Our hypothesis is that *children of more educated parents deal better with mathematics than children of less educated parents.*
+
+In PISA's questionnaire there were questions about academic degree of pupils' parents. Among anwers there were different levels of ISCED (International Standard Classification of Education). We grouped them into three groups:
+
+* first \textcolor{red}{(1)}: not completed ISCED level 1, ISCED level 1, ISCED level 2
+
+* second \textcolor{yellow}{(2)}: ISCED level 3A, ISCED level 3B, ISCED level 3C, ISCED level 4
+
+* third \textcolor{green}{(3)}: ISCED level 5A, ISCED level 5B, ISCED level 6
+
+Then we assumed that *"parents' education level"* equals **maximum** from academic degree of father and mother. 
+
+In order to check how advanced in mathematics are pupils, we looked at their anwears for the following questions (**Q30** from the questionnaire) of how confident do they feel about having to deal with the following tasks: 
+
+1) Using a train timetable to work out how long it would take to get from one place to another.
+
+2) Calculating how much cheaper a TV would be after a 30% discount. 
+
+3) Calculating how many square metres of tiles you need to cover a floor.
+
+4) Understanding graphs presented in newspapers.
+
+5) Solving an equation like 3x+5=17. 
+
+6) Finding the actual distance between two places on a map with a 1:10,000 scale. 
+
+7) Solving an equation like 2(x+3)=(x+3)(x-3).
+
+8) Calculating the petrol consumption rate of a car.
+
+Possible answers were: *very confident, confident, not very confident, not at all confident.*
+
+Following sheets sum up if our hypothesis happen to be correct for different countries for collected data. 
+
+**Plot reading.** Each plot represents answers to the aforementioned questions in respective countries, showing the share of answers of pupils of certain *"parents' education level"*: \textcolor{red}{(1)}, \textcolor{yellow}{(2)}, or \textcolor{green}{(3)} in all answers. The width of each bar is proportional to the share of pupils who gave the respective answer in the questionnaire (the thicker the bar is, the more popular is the answer).
+
+\vfill\eject
+
+\begin{multicols}{3}
+
+\tableofcontents
+
+\end{multicols}
+
+\vfill\eject
+
+```{r, results='asis', cache=TRUE, echo=FALSE, warning=FALSE, message=FALSE, fig.width=3.25, fig.height=1.5}
+
+### PACKAGES
+
+# Data upload, SOURCES
+
+library(PISA2012lite)
+
+library(tidyr)
+library(knitr)
+library(dplyr)
+library(reshape2)
+library(countrycode)
+library(ggplot2)
+
+source("./functions.R")
+
+
+#createLocalRepo("arepo", default = TRUE)
+
+#DATA
+
+pisa <- Extract.Data(student2012,c("CNT","ST13Q01","ST14Q01","ST14Q02","ST14Q03","ST14Q04",
+                              "ST17Q01","ST18Q01","ST18Q02","ST18Q03","ST18Q04",
+                              "ST37Q01","ST37Q02","ST37Q03","ST37Q04",    
+                              "ST37Q05","ST37Q06","ST37Q07","ST37Q08"))
+
+pisa %>% 
+  mutate(is3.mother=(ST13Q01=="<ISCED level 3A> "|ST13Q01=="<ISCED level 3B, 3C> "),
+         is4.mother=(Yes.to.True(ST14Q04)),
+         is5.mother=(Yes.to.True(ST14Q03)|Yes.to.True(ST14Q02)),
+         is6.mother=(Yes.to.True(ST14Q01)),
+         is3.father=(ST17Q01=="<ISCED level 3A> "|ST17Q01=="<ISCED level 3B, 3C> "),
+         is4.father=(Yes.to.True(ST18Q04)),
+         is5.father=(Yes.to.True(ST18Q03)|Yes.to.True(ST18Q02)),
+         is6.father=(Yes.to.True(ST18Q01))) %>%
+  select(-c(ST13Q01:ST18Q04)) %>%
+  mutate(Father.Education.Level=Parent.Education.Level(is3.father,is4.father,is5.father,is6.father),
+         Mother.Education.Level=Parent.Education.Level(is3.mother,is4.mother,is5.mother,is6.mother)) %>%
+  select(-c(is3.mother:is6.father)) %>%
+  mutate(Education.Level=
+           Father.Education.Level*(Father.Education.Level>=Mother.Education.Level)+
+           Mother.Education.Level*(Mother.Education.Level>Father.Education.Level)) -> pisa
+
+### MAIN LOOP --- RAPORT GENERATING
+
+Questions <- c("ST37Q01","ST37Q02","ST37Q03","ST37Q04",
+               "ST37Q05","ST37Q06","ST37Q07","ST37Q08")
+
+COUNTRIES <- unique(droplevels(as.factor(pisa$CNT)))
+
+for (i in COUNTRIES){
+
+  Enter() 
+  cat("#", i, "\n")       # HEADER 
+  Enter()
+
+  for (j in 1:8) {
+  plot <- Plot.Question(i,j)
+ # saveToLocalRepo(plot)
+  print(plot)
+  Enter()
+  }
+
+  cat("\\bigskip\\hrule\\bigskip")
+  
+  Enter()
+  cat("~\\hfill")
+  print(Plot.Summary(i))
+  cat("\\hfill ~")
+  Enter()
+  
+  Newpage()
+}
+```
