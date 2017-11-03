@@ -1,0 +1,163 @@
+---
+title: "Locals vs. Imigrants. Difference in education levels"
+author: "Mateusz Macias Agnieszka Gajewska Bazyli Szymański"
+date: "20 października 2017"
+output:
+  pdf_document:
+      toc: true
+      number_sections: true
+---
+
+```{r setup, results="asis", include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+# The function for loading all necessary libraries. It installs them if missing.
+setup_dependencies <- function(){
+  if (!require(devtools)) {
+    install.packages("devtools")
+    require(devtools)
+  }
+  if (!require(ggplot2)) {
+    install.packages("ggplot2")
+    require(ggplot2)
+  }
+  if (!require(magrittr)) {
+    install.packages("magrittr")
+    require(magrittr)
+  }
+  if (!require(dplyr)) {
+    install.packages("dplyr")
+    require(dplyr)
+  }
+  if (!require(sqldf)) {
+    install.packages("sqldf")
+    require(sqldf)
+  }
+  if (!require(devtools)) {
+    install.packages("devtools")
+    require(devtools)
+  }
+  if (!require("PISA2012lite")) {
+    devtools::install_github("pbiecek/PISA2012lite")
+    library("PISA2012lite")
+  }
+  student2012 <- PISA2012lite::student2012
+}
+
+# The function that generates and plots a comparision of math results (PV1MATH) of locals and imigrants for specified country
+plot_results_foreigners_vs_locals <- function(country, data, args){
+data %>%
+  filter(data[args[['countries']]]==country) %>%
+  select(args[['foreigner']],"PV1MATH") %>%
+  na.omit(.) %>%
+  group_by(ST20Q01) %>%
+  summarise(meResult=mean(PV1MATH),n=n()) -> results
+
+q <- ggplot(data=results,aes(x=ST20Q01,y=meResult)) + geom_bar(stat="identity",width=0.5,fill="steelblue") + 
+geom_text(aes(label=round(meResult,digits=1)), vjust=1.6, color="white", size=4) +
+labs(title="Math results by country of birth", xlab='Country of birth')
+print(q)
+}
+
+# The function that takes codename from pisa report and returns a respective name in human language. 
+transform_question_names <- function(curr_name, args){
+  args[['proper_names']][match(curr_name, args[['reasons']])]
+}
+
+# The function that takes as argument a dataframe describing students of one country in terms of several features.
+# Then it prepares a table with statistics that can then be plotted.
+prep_df <-function(data)  { 
+  temp <- data.frame(names = as.character("a"), variable = 0, value = 0)
+  temp$names <- c("b")
+  for(col in names(data)){
+    tbl <- table(data[col])
+    i <- 0
+    for(lev in names(tbl)){
+      i <- i + 1
+      temp <- rbind(temp, c(as.character(col), i, tbl[lev]))
+    }
+  }
+  temp <- temp[-1,]
+  temp[,2] <- as.integer(temp[,2])
+  temp[,3] <- as.integer(temp[,3])
+  temp2 <- temp
+  
+  for(i in 1:dim(temp)[1]){
+    row <- temp[i,]
+    name <- row$names
+    sum_for_name <- sum(temp[temp$names==name,]$value)
+    temp2[i,3] <- temp[i,3]/sum_for_name
+  }
+  temp2$names <- sapply(temp2$names,transform_question_names, args)
+  temp2$names <- as.factor(temp2$names)
+  temp2
+}
+
+# Function which plots social features other than score in PV1MATH.
+display_element_reasons <- function(country, data, args){
+  data <- data[data[args[["countries"]]] == country,]
+  foreigners <- data[data[args[["foreigner"]]] == args[['foreigner_opt']],]
+  locals <- data[data[args[["foreigner"]]] == args[['local_opt']],]
+  foreigners <- foreigners[args[['reasons']]]
+  locals <- locals[args[['reasons']]]
+  remove(data)
+  
+  locs <- prep_df(locals)
+  foreigns <- prep_df(foreigners)
+  locs$where_from = args[["local_opt"]]
+  foreigns$where_from = args[["foreigner_opt"]]
+  temp <- rbind(locs,foreigns)
+  
+  temp$where_from <- as.factor(temp$where_from)
+  temp$variable <- as.factor(temp$variable)
+  
+
+  q <- ggplot(temp, aes(x = where_from, y = value),guide=FALSE) + facet_wrap(~names) + geom_bar(aes(fill = variable), position = "dodge", stat="identity") + guides(fill=FALSE, variable=FALSE)+scale_fill_brewer(palette="BuPu")
+  print(q)
+}
+
+# Prints a page for a country.
+print_page <- function(country, data, args){
+cat("#", country,"\n")
+plot_results_foreigners_vs_locals(country,data,args)
+display_element_reasons(country,data,args)
+cat("\n\n")
+}
+
+```
+
+
+# Introduction
+ This report shows differences in math results between local residents and immigrants. It consists of a series of separate, one page reports - one for each country. For every country we can see two plots aiming to show some differences between the two groups. First plot at each page shows the difference in results of locals and imigrants in terms of mathematical skills. The metric used to compare those results is PV1MATH from PISA test. The other plot shows comparision of the two groups in terms of other social features. The features were chosen based of what authors of the reports thought would be relevant to explain the possible difference of results in mathematics.
+In partcular:
+
+- Father's education
+  The level of education of parents (here father) might be highly related to educational effect of a child. This trend is usually independent of nationality. Thus we would like to show education profile of locals vs. foreigners. The levels of consequtive pols in plots: <ISCED level 3A>, <ISCED level 3B, 3C>, <ISCED level 2>,  <ISCED level 1>,  He did not complete <ISCED level 1> 
+
+- Father's job:
+  Similarly to the previous one. We suppose that parent's job might have high effect on the educational success of children. It is due to the patterns going from parents to children and amount of money availabble to a familly. The levels of consequtive pols in plots:
+  Working full-time <for pay>, Working part-time <for pay>, Not working, but looking for a job, Other (e.g. home duties, retired).
+  
+- Being late to school:
+  Coming to school without being late might be extremely important for education of children. Thus we would like to compare punctuality of locals and imigrants. The levels of consequtive pols in plots:
+  None, One or two times, Three or four times, Five or more times
+```{r, results="asis", echo=FALSE, fig.height=4}
+setup_dependencies()
+args <- list()
+args['countries'] <- "CNT"
+args[['reasons']] <- c("ST17Q01", "ST19Q01", "ST08Q01")
+args[['proper_names']] <- c("Father's education", "Father's Job", "Late for school")
+args['foreigner'] <- "ST20Q01"
+args[['foreigner_opt']] <- "Other country"
+args[['local_opt']] <- "Country of test" # Assert it
+args[['math_score']] <- "PV1MATH"
+
+countries = unique(student2012[args[['countries']]])[,1]
+countries<-sort(as.vector(countries))
+
+for(country in countries){
+  print_page(country, student2012, args)
+}
+
+```
+

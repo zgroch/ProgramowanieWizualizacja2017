@@ -1,0 +1,101 @@
+---
+title: "PISA2012 wstępny szkic analizy"
+output: 
+  pdf_document: 
+    fig_caption: yes
+---
+```{r potrzebne paczki, echo=FALSE}
+library("knitr")
+library("dplyr")
+library("data.table")
+```
+
+ 
+```{r zdefiniowanie ścieżki, echo=FALSE}
+setwd("C:/Users/Grzegorz/Downloads")
+load("student2012.rda")
+
+pisa <- select(student2012, CNT, ST93Q01:ST94Q14, ST57Q01, ST49Q01:ST49Q09, ST96Q01:ST96Q05)
+#tworzę podgrupę dla kraju
+Pl.pisa <- subset(pisa, pisa$CNT == "Poland")
+```
+
+```{r pytanie o telefon tabela}
+Pl.pisa %>% 
+  select(ST96Q01:ST96Q05) -> pytania
+
+odpowiedzi <- c("definitely do this", "probably do this", "probably not do this", "definitely not do this")
+podpunkty <- c("I press every button possible to find out what is wrong.",
+                              "I think about what might have caused the problem and what I can do to solve it.",
+                              "I read the manual.",
+                             "I ask a friend for help.")
+
+tabelka.sumujaca <- matrix(rep(1:16), nrow=4, ncol = 4)
+
+#pętla zliczająca sumy
+for (i in 1:4){
+  for (j in 1:4){
+    tabelka.sumujaca[i,j] = sum(pytania[,j] == odpowiedzi[i], na.rm = TRUE)
+  }
+}
+
+#wyrażenie w procentach
+tabelka.sumujaca <- prop.table(tabelka.sumujaca, margin = 2)
+
+tabelka.sumujaca <- as.data.frame(tabelka.sumujaca)
+
+rownames(tabelka.sumujaca) = odpowiedzi
+
+colnames(tabelka.sumujaca)= podpunkty
+
+#wyświetlenie tabeli
+kable(tabelka.sumujaca)
+```
+
+```{r wykres pytania o telefon}
+library(graphics)
+
+kolory =c("gray63", "gold2", "gold3", "gold4")
+
+par(xpd = TRUE)
+tabelka.sumujaca <- as.matrix(tabelka.sumujaca)
+barplot(tabelka.sumujaca, main = "Question about the mobile phone", 
+        names.arg = c("I press every button possible \n to find out what is wrong.",
+                              "I think about what might have caused the problem and what I can do to solve it.",
+                              "I read the manual.",
+                             "I ask a friend for help."),
+        col = kolory,
+        horiz = TRUE,
+        las = 1,
+        legend.text = TRUE, 
+        xpd = TRUE)
+        #args.legend = list("topleft", odpowiedzi, fill = kolory)
+#nie działa legenda i te napisy z boku
+
+      
+```
+
+
+Tutaj wychodzi fajna sprawa, że ci, którzy by przeczytali instrukcję najwięcej czasu poświęcają na prace domowe. Co by miało sens, bo to pewnie ci bardziej cierpliwi etc.
+```{r prace domowe i telefon}
+srednia <- vector(length = 4)
+srednia <- as.data.frame(srednia)
+odpowiedzi <- c("definitely do this", "probably do this", "probably not do this", "definitely not do this")
+
+
+for (i in 1:4){
+  for (j in c("ST96Q01", "ST96Q02", "ST96Q03", "ST96Q05")){
+    Pl.pisa %>% 
+    filter(Pl.pisa[[j]] == odpowiedzi[i]) %>% 
+    na.omit %>% 
+    summarise(mean(ST57Q01)) -> tmp
+  srednia[i, j] = tmp[1,]
+  }
+}
+srednia <- select(srednia, -srednia)
+colnames(srednia) = podpunkty
+rownames(srednia) = odpowiedzi
+kable(srednia, caption = "Mean number of hours spent on homework (per week)")
+```
+
+
