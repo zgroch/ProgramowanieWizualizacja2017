@@ -1,0 +1,31 @@
+---
+title: "Laboratorium 1"
+author: "Bazyli Szymañski"
+date: "06/10/2017"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+load("C:/Users/bs320374/Desktop/R/student2012.rda")
+knitr::opts_chunk$set(echo = TRUE)
+prop.table(table(student2012$CNT,student2012$ST20Q01),1)
+#bede wybieral kolumne
+proporcje <- prop.table(table(student2012$CNT,student2012$ST20Q01),1)
+#sort(proporcje[,1])
+proporcje[c("Poland","Germany"),1]
+wynikimat<-tapply(student2012$PV1MATH,student2012$CNT,mean)
+sort(wynikimat)
+```
+
+## Do zrobienia
+
+1. Pobierz plik https://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda
+2. Wybierz ciekaw¹ zmienn¹ (patrz opis http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf)
+3. Przygotuj raport w knitrze przedstawiaj¹cy rozk³ad wybranej zmiennej dla ró¿nych krajów
+4. Umieœæ w raporcie wykres, tabelê, kod R, krótki opis z formatowaniem.
+
+Œci¹gawka knitra i markdowna
+
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+

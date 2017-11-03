@@ -1,0 +1,43 @@
+---
+title: "Laboratorium 1"
+author: "Malgorzata Pawlak"
+date: "06/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+1. Pobierz plik https://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda
+2. Wybierz ciekaw?? zmienn?? (patrz opis http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf)
+3. Przygotuj raport w knitrze przedstawiaj??cy rozk??ad wybranej zmiennej dla r????nych kraj??w
+4. Umie???? w raporcie wykres, tabel??, kod R, kr??tki opis z formatowaniem.
+
+??ci??gawka knitra i markdowna
+
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+
+## moje
+```{r}
+load("/Users/Gosia/Documents/UNI/wizualizacja w R/student2012.rmd")
+
+language <- table(student2012$ST25Q01)
+
+barplot(language)
+
+panstwa_language <- table(student2012$CNT, student2012$ST25Q01)
+panstwa_language
+
+proporcje_language <- prop.table(panstwa_language)
+proporcje_language
+proporcje_language_1 <- prop.table(panstwa_language, 1)
+proporcje_language_1
+
+mean(student2012$PV1MATH)
+
+math_skills <- tapply(student2012$PV1MATH, student2012$CNT, mean)
+sort(math_skills)
