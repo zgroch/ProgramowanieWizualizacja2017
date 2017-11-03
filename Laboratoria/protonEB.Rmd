@@ -1,0 +1,63 @@
+---
+title: "proton"
+author: "ewelina"
+date: "3 listopada 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+BetaBit::proton()
+```
+
+
+```{r}
+a<- BetaBit::employees %>%
+  filter(surname=="Insecure")
+  
+BetaBit::proton(action = "login", login="johnins")
+```
+
+```{r}
+a<- BetaBit::top1000passwords 
+  
+for (i in a) {
+  BetaBit::proton(action = "login", login="johnins", password=i)
+  print(i)
+}
+```
+```{r}
+a<- BetaBit::top1000passwords 
+
+BetaBit::proton(action = "login", login="johnins", password="q1w2e3r4t5")
+
+
+```
+
+```{r}
+a<- BetaBit::employees %>%
+  filter(surname=="Pietraszko")
+
+a<- BetaBit::logs %>%
+  group_by(login, host) %>%
+  summarise(n=n()) %>%
+  filter(login=="slap")
+  
+BetaBit::proton(action = "server", host="194.29.178.16")
+```
+" "
+
+```{r}
+a<- BetaBit::bash_history 
+b<- !grepl(' ',a)
+unique(a[b])
+
+```
+
+```{r}
+BetaBit::proton(action = "login", login="slap", password="DHbb7QXppuHnaXGN")
+```
