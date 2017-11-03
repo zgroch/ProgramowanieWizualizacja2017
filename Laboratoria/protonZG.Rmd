@@ -1,0 +1,62 @@
+---
+title: "Laboratorium 5"
+author: "Zofia Grochulska"
+date: "3/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* Zainstaluj pakiet BetaBit [z CRAN](https://cran.rstudio.com/web/packages/BetaBit/index.html)
+```{r}
+install.packages("BetaBit")
+library("BetaBit")
+proton()
+```
+```{r}
+#library(dplyr)
+head(employees)
+employees %>% 
+  filter(name == "John", surname == "Insecure") -> tmp
+(tmp$login)
+proton(action = "login", login = tmp$login)
+
+```
+```{r}
+for (i in seq_along(top1000passwords)){
+  proton(action = "login", login = tmp$login, password = top1000passwords[i])
+}
+```
+```{r}
+head(logs)
+employees %>% 
+  filter(surname == "Pietraszko") -> pietraszko
+ten.login <- pietraszko$login
+
+logs %>% 
+  filter(login == ten.login) %>% 
+  group_by(host) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) -> hosty
+problem3 <- as.character(hosty$host[1]) 
+#nie działało bo to było w tej opcje tibble
+
+proton(action = "server", host=problem3)
+```
+```{r}
+head(bash_history, 10)
+?grep
+bash_history_split <- strsplit(bash_history, " ")
+tab <- NULL
+#tablica z pierwszymi elementami każdego elementu listy
+for (i in 1:length(bash_history_split)) {
+  tab[i] <- bash_history_split[[i]][1]
+}
+unique(tab)
+
+proton(action = "login", login = ten.login, password = "DHbb7QXppuHnaXGN")
+```
