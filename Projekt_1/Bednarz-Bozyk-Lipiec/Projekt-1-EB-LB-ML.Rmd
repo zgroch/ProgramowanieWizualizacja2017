@@ -1,6 +1,6 @@
 ---
 title: "Education of parents vs pupils' confidence in solving mathematical problems. (PISA-2012)"
-author: "Ewelina Bednarz & £ukasz Bo¿yk & Magdalena Lipiec"
+author: "Ewelina Bednarz & Â£ukasz BoÂ¿yk & Magdalena Lipiec"
 date: "Latest update: November 3, 2017"
 output: 
   pdf_document: 
