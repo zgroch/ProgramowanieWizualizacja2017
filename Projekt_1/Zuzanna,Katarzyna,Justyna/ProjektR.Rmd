@@ -1,0 +1,229 @@
+---
+title: "Do we really learn maths at school?"
+author: "Zuzanna Baran, Katarzyna Piskala, Justyna Zagorowicz"
+classoption: landscape
+output:
+  pdf_document:
+    fig_caption: yes
+    fig_width: 11
+    fig_height: 8
+    #number_sections: yes
+    toc: yes
+    #toc_depth: 2
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyhead[CO,CE]{Do we really learn maths at school?}
+abstract: 'The report presents the distribution of students'' responses to the question:
+  ''How many hours do you typically spend per week attending out-of-school-time lessons
+  in mathematics?'' for each country. In addition, it illustrates the dependence of
+  the average result of mathematical part on the number of hours spent on additional
+  maths classes.'
+---
+
+```{r setup, include=FALSE}
+library(PISA2012lite)
+library(knitr)
+library(plyr)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(tidyr)
+library(ggpubr)
+library(gridExtra)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+pisa <- PISA2012lite::student2012
+```
+
+```{r message=FALSE, warning=FALSE, results="asis", fig.align   = 'center'}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+
+filterCountry<-function(country){
+  if (country == "Summary") {
+    data <- pisa%>%
+       select(CNT, STIDSTD, ST04Q01, ST55Q02, PV1MATH)
+  } else {
+    data <-pisa %>%
+      select(CNT, STIDSTD, ST04Q01, ST55Q02, PV1MATH)%>%
+      filter(CNT==country)
+  }
+  data
+}
+  
+sumBySex<-function(country){
+  data<-filterCountry(country) 
+  data<-data %>%
+    filter(ST55Q02!="<NA>") %>%
+    group_by(ST04Q01,ST55Q02) %>%
+    dplyr::summarise(num_of_student=n())
+  data
+}
+
+meanBySex<-function(country){
+  data<-filterCountry(country)
+  data%>%
+    filter(ST55Q02!="<NA>", PV1MATH!="<NA>") %>%
+    group_by(ST04Q01,ST55Q02) %>%
+    dplyr::summarise(mean=mean(PV1MATH))
+}
+
+addGenderPercents <- function(data, sex){
+  data_out <- filter(data, ST04Q01==sex)
+  data_out$percent <- prop.table(data_out$num_of_student)
+  data_out
+}
+
+changeNames<-function(data){
+  data$hours <- mapvalues(data$ST55Q02, c(
+    "I do not attend <out-of-school time lessons> in this subject",
+    "Less than 2 hours a week",
+    "2 or more but less than 4 hours a week",
+    "4 or more but less than 6 hours a week",
+    "6 or more hours a week"),
+    c(
+      "0",
+      "(0,2)",
+      "[2,4)",
+      "[4, 6)",
+      "more")
+  )
+  data
+}
+
+changeNamesResults<-function(data){
+  data$Extra_Classes <- mapvalues(data$ST55Q02, c(
+    "I do not attend <out-of-school time lessons> in this subject",
+    "Less than 2 hours a week",
+    "2 or more but less than 4 hours a week",
+    "4 or more but less than 6 hours a week",
+    "6 or more hours a week"),
+    c(
+      "No",
+      "Yes",
+      "Yes",
+      "Yes",
+      "Yes")
+  )
+  data
+}
+
+plotDrawingPercent<-function(country){
+  data<-sumBySex(country)
+  data<-changeNames(data)
+  data_male <- addGenderPercents(data, "Male")
+  data_female <- addGenderPercents(data, "Female")
+  ndata <- rbind(data_male, data_female)
+  ColorPalette<-c("#fbb4ae","#b3cde3")
+  ggplot(ndata, aes_string(x=ndata$hours, fill = ndata$ST04Q01, y = "percent")) +geom_bar(stat = "identity", position = "dodge") + theme_bw() +
+    guides(fill=guide_legend(title=NULL))+
+    theme( axis.text.x = element_text(angle=0, vjust=0.5),panel.grid.major = element_blank(),plot.title = element_text(hjust=0.5, vjust=1),axis.title.y = element_text(hjust=1, angle=0, vjust = 1)) +
+    ggtitle("Percent of students taking extra mathematics \n classes by hours")+ xlab("Hours")+ylab("")+scale_fill_manual(values=ColorPalette)+ scale_y_continuous(labels = percent, breaks=c(seq(0.2,1,0.2 )),limits=c(0,1))
+
+}
+
+extraClassesPlotPercent<-function(country){
+  
+  data<-sumBySex(country)
+  data<-changeNames(data)
+  data_male <- addGenderPercents(data, "Male")
+  data_female <- addGenderPercents(data, "Female")
+  plotDrawingPercent(data_male,data_female)
+  
+}
+
+plotDrawingResults<-function(country){
+  ColorPalette<-c("#fbb4ae","#b3cde3")
+  data<-meanBySex(country)
+  data<-changeNames(data)
+  ggplot(data, aes(x=hours, y=mean, colour=ST04Q01, group=ST04Q01))+    geom_point(aes(color=ST04Q01), shape=15, size=3)+
+    geom_line(aes(color=ST04Q01), size=1.5)+ theme_bw()+theme(legend.title=element_blank())+
+    scale_color_manual(values = ColorPalette)+ theme( plot.title = element_text(hjust=0.5)) +
+    labs(title="Average result depending on the number of extra \n mathematics classes by hours",x="Hours", y = "Average score of the mathematical part")
+}
+
+extraClassesPlotResults<-function(country){
+  
+  data<-meanBySex(country)
+  data<-changeNames(data)
+  plotDrawingResults(data)
+  
+}
+
+meanAttendNoSex<-function(country){
+  data<-filterCountry(country)
+  data<-changeNamesResults(data)
+  data%>%
+  filter(ST55Q02!="<NA>",PV1MATH!="<NA>") %>%
+  group_by(Extra_Classes) %>%
+  dplyr::summarise(mean=mean(PV1MATH))
+}
+
+meanAttendBySex<-function(country){
+  data<-filterCountry(country)
+  data<-changeNamesResults(data)
+  data%>%
+  filter(ST55Q02!="<NA>",PV1MATH!="<NA>") %>%
+  group_by(ST04Q01, Extra_Classes) %>%
+  dplyr::summarise(mean=mean(PV1MATH))
+}
+
+binded<-function(data1,data2){
+  data1<-cbind(data1,ST04Q01=rep("Summary", 2))
+  data<-rbind.data.frame(data2, data1)
+  data<-spread(data, ST04Q01,mean)
+  data
+}
+
+show_table<-function(country){
+  attNS<-meanAttendNoSex(country)
+  attS<-meanAttendBySex(country)
+  tableExtraClass<-binded(attNS,attS)
+}
+
+
+answer<-function(country){
+  tab<-show_table(country)
+  if(tab[1,4]>tab[2,4]){
+  ans<-paste("In the table above we can see test's average result and we can conclude that better results were achieved by students who don't attent extra maths classes.")
+    
+}else{
+  ans<-paste("In the table above we can see test's average result and we can conclude that better results were achieved by students who attend extra maths classes.")
+}
+}
+
+
+forEachCountry <- function(country){
+  cat("\\pagebreak\n")
+  cat("  \n#", country, "  \n")
+  percent<-plotDrawingPercent(country)
+  results<-plotDrawingResults(country)
+  st<-show_table(country)
+  tab<-ggtexttable(st, rows = NULL, theme=ttheme("mRed"))
+  ans<-answer(country)
+  text <- ggparagraph(text = ans, face = "plain", size = 14, color = "black")
+  p1<-ggarrange(percent, results, ncol = 2, nrow = 1)
+  p2<-ggarrange(tab,text, ncol=1, nrow=2)
+  print(ggarrange(p1, p2, ncol=1,nrow=2))
+
+  
+}
+
+x <- pisa %>%
+group_by(CNT) %>%
+summarise(n=n()) %>%
+select(CNT)
+t<-apply(x, 1, forEachCountry)
+forEachCountry("Summary")
+```
+
+The main aim of the presented analysis is to answer the question: "Do we really learn maths at school?". The authors presupposed that students learn mathematics at school if average result from test of students who don't take extra classes is greater than the average result of students that take some classes. For most of the countries the answer for the topic question is 'Yes', but there also exist few countries with the opposite answer, i.e. Greece. The answers happen to differ also between males and females of the same country, i.e. Albania.
+
+How do authors interpret the results? In most countries students take extra classes in mathematics because they don't do well enough at school and want to catch up. There are also countries, where there is a strong social pressure to have the best possible results and in these countries extra classes are taken not to catch up, but to outdo the other students.
+
+Moreover, from the presented graphs one can draw other conclusions - the result differ for males and females. Males usually do better, specially in Colombia, but there also are countries, where females achieve better results, i.e. Jordan.
+The country in which students deal with mathematics the best is China-Shanghai, where also the best average score for males and the best average score for females are achieved. At the very end of the ranking there is Peru and in this country females do worst of the females of all countries. Males do worst in mathematics in Jordan and this is the country where females' results surpass males' results the most.
+
