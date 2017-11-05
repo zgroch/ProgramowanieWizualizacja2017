@@ -1,7 +1,17 @@
 koty_ptaki <- read.table(file = "http://biecek.pl/MOOC/dane/koty_ptaki.csv", 
+                         sep=";", header = TRUE)
+koty_ptaki <- read.table(file = "http://biecek.pl/MOOC/dane/koty_ptaki.csv", 
                          sep=";", dec=",", header=TRUE)
 # Wypiszmy zawartość symbolu koty_ptaki
 koty_ptaki
+
+
+
+
+
+
+
+
 
 
 # -------------
@@ -15,6 +25,11 @@ head(w80dni)
 slowa <- unlist(strsplit(w80dni, split="[^A-Za-z0-9]+"))
 # liczba słów i charakterystyki
 length(slowa)
+
+head(sort(table(slowa), decreasing = TRUE), 1000)
+
+
+
 
 ## [1] 68460
 
@@ -43,10 +58,13 @@ host = "services.mini.pw.edu.pl"
 sterownik <- dbDriver("PostgreSQL")
 polaczenie <- dbConnect(sterownik, dbname = dbname, user = user, password = password, host = host)
 
-gadki <- dbGetQuery(polaczenie, "SELECT * FROM statements ORDER BY nr_term_of_office, id_statement limit 1")
+gadki <- dbGetQuery(polaczenie, 
+                    "SELECT * FROM statements ORDER BY nr_term_of_office, 
+                    id_statement limit 1")
 gadki
 
-glosy <- dbGetQuery(polaczenie, "SELECT club, vote, count(*) FROM votes GROUP BY club, vote limit 12")
+glosy <- dbGetQuery(polaczenie, "SELECT club, vote, 
+                    count(*) FROM votes GROUP BY club, vote limit 12")
 glosy
 
 dbDisconnect(polaczenie)
@@ -80,7 +98,7 @@ liczba_glosow$query
 
 explain(liczba_glosow)
 
-collect(liczba_glosow)
+collect(liczba_glosow) -> glosy
 
 
 
@@ -113,7 +131,7 @@ jsonlite::fromJSON(as.character(res))
 
 library(rvest)
 premiery <- read_html("http://www.filmweb.pl/premiere")
-filmy <- html_nodes(premiery, ".gwt-filmPage")
+filmy <- html_nodes(premiery, ".filmTitle")
 html_text(filmy)
 
 lego_movie <- read_html("http://www.imdb.com/title/tt1490017/")

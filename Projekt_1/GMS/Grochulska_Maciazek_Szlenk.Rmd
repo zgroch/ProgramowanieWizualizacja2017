@@ -1,0 +1,154 @@
+---
+title: "People who read manuals vs people who do not"
+author: "Zofia Grochulska, Aleksandra Maciążek, Maja Szlenk"
+abstract: "The report is based on PISA 2012 survey. In the report we analyse the behaviour of people who read manuals and people who do not. We divide respondents into groups based on their eagerness to read a manual when their mobile phone breaks. In the first diagram we compare solving problems strategies of readers and non-readers. The second graph shows time spent on doing homework per week, depending on an individual's attitude to manual-reading. It can be observed that readers are less willing to give up or put off difficult problems. Moreover, they tend to devote more time for homework activities."
+geometry: "left=3cm,right=3cm,top=2cm,bottom=1.5cm"
+output:
+  pdf_document:
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    fig_height: 4.5
+  html_notebook: default
+  html_document: default
+---
+
+```{r załadowanie danych i pakietów, echo=FALSE, message=FALSE, warning=FALSE}
+#http://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda"
+
+#setwd("C:/Users/Grzegorz/Downloads")
+#load("student2012.rda")
+
+library(dplyr)
+library(fmsb)
+library(knitr)
+library(ggplot2)
+```
+```{r dane, echo=FALSE, message=FALSE, warning=FALSE}
+data <- student2012 %>% 
+  select(CNT, ST93Q01:ST93Q07, ST96Q03, ST57Q01) %>% #wybieramy kolumny
+  na.omit
+
+#lista wszystkich krajów
+countries <- unique(data$CNT)
+```
+```{r pytanie ST93 (problemy), echo=FALSE, message=FALSE, warning=FALSE}
+#zdefiniowanie potrzebnych nazw do wykresów i tabel
+ST93ans <- c("Very much like me", "Mostly like me", "Somewhat like me")
+ST96ans.positive <- c("definitely do this", "probably do this")
+ST96ans.negative <- c("probably not do this", "definitely not do this")
+ST96ans.list <- list(ST96ans.negative, ST96ans.positive)
+ST96ans.all <- c(ST96ans.positive, ST96ans.negative)
+cnames <- c("\nGive up", "Put off\ ", "\nRemain \ninterested", "\nWork until \nit is \nperfect", "Do even \nmore")
+questions <- c("ST93Q01", "ST93Q03", "ST93Q04", "ST93Q06", "ST93Q07")
+
+#zwraca jedną kolumnę docelowej tabeli
+create.column <- function(data.country, answers) {
+  column <- vector(length = length(questions))
+  for (i in seq_along(questions)) {
+    column[i] <-
+      sum(data.country$ST96Q03 %in% answers & data.country[[questions[i]]] %in% ST93ans)
+  }
+  return(column)
+}
+
+#zwraca całą tabelę,
+#częstości odpowiedzi na pytanie ST93 w zależności od czytania instrukcji
+
+create.table <- function(country) {
+  tab <- NULL
+  data.country <- filter(data, data$CNT == country)
+  for ( i in seq_along(ST96ans.list)){                          
+    column <- create.column(data.country, ST96ans.list[[i]])
+    tab <- cbind(tab, column)
+  }
+  return(tab)
+}
+
+#zwraca sformatowaną tabelę, wartości wyrażone w %
+format.table <- function(tab) {
+  tab <- prop.table(tab, 1)*100
+  tab <- round(tab, digits = 2)
+  colnames(tab) <- c("Read", "Not read")
+  #rownames
+  return(tab)
+}
+
+#drukuje wykres spiderplot
+create.spider <- function(cnt) {
+  tab <- create.table(cnt)
+  tab <- format.table(tab)
+  tab <- as.data.frame(t(tab))
+  tab <- rbind(rep(min(tab),5),rep(max(tab),5),tab)
+  colnames(tab) <- cnames
+  radarchart(tab, pcol=c("gold", "grey40"), plwd = 2, plty=1, cglcol="grey", cglty=2, vlcex=0.8, paxislabels = cnames)
+  legend(x=1, y=1.15, legend = rownames(tab[-c(1,2),]), bty = "n", pch=20, col=c("gold", "grey40"), text.col = "grey", cex=1, pt.cex=2)
+  title("How do you react when faced with a problem?")
+}
+
+```
+
+```{r pytanie ST57 (prace domowe), echo=FALSE, message=FALSE, warning=FALSE}
+ST96ans.manual <- c("a) definitely read", "b) probably read", "c) probably not read", "d) definitely not read")
+#zwraca tabelę ze średnią liczbą godzin (poświęconych na odrabianie prac domowych)
+#w zależności od odpowiedzi na pytanie o czytanie instrukcji
+
+compute.mean <- function(data, answers) {
+  tab <- NULL
+  for (i in seq_along(answers)){
+    data %>% 
+      filter(ST96Q03 == answers[i]) %>% 
+      summarise(mean(ST57Q01)) -> tmp
+    tab <- rbind(tab, tmp[1,])
+  }
+  tab <- as.data.frame(round(tab, digits = 2))
+  return(tab)
+}
+
+#globalne maksimum liczby godzin odrabianych lekcji
+#potrzebne do sformatowania barplotu
+max.tab = 0
+for (i in seq_along(countries)){
+  data.country <- filter(data, data$CNT == countries[i])
+  tab <- compute.mean(data.country, ST96ans.all)
+  if (max(tab) > max.tab) {
+    max.tab = max(tab)
+  }
+}
+
+
+
+
+
+#funkcja tworząca wykres ze średnią liczbą godzin odrabiania prac domowych
+#w zależności od postawy wobec czytania instrukcji
+
+create.barplot <- function (my.data, values) {
+  plot(qplot(x = ST96ans.manual, y = values, data = my.data, ylim=c(0,max.tab), xlab = "", ylab = "Mean number of hours spent on homework", main = "Do people who read manuals spend more time on their homework?", col = I("yellow"))
+       + geom_bar(stat="identity", col = "yellow") 
+       +theme_light()
+       +geom_label(label=values))
+} 
+
+```
+
+
+```{r generowanie raportu, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+cat("\\newpage")
+for (cnt in countries) {
+  data.country <- filter(data, data$CNT == cnt)
+  tab <- compute.mean(data.country, ST96ans.all)
+  colnames(tab) <- c("srednia")
+  rownames(tab) <- ST96ans.manual
+  
+  
+  cat("\n#", toupper(cnt), "\n")
+  
+  create.spider(cnt)
+  create.barplot(tab, tab$srednia)
+  
+  cat("\n\\newpage\n") 
+}
+ 
+```
+
