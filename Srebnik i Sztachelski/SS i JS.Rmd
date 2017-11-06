@@ -1,0 +1,154 @@
+---
+title: "PISA2012 - data analysis"
+author: "S. Srebnik, J. Sztachelski"
+output: pdf_document
+geometry: margin = 2cm
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4,
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results='asis', message=FALSE}
+library(knitr)
+library(PISA2012lite)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+#funkcja pobrana z githuba tworząca wspólną legendę dla kilku wykresów
+grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + 
+                    theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x +
+                 theme(legend.position = "none"))
+  gl <- c(gl, ncol = ncol, nrow = nrow)
+  
+  combined <- switch(position,
+                     "bottom" = invisible(arrangeGrob(do.call(arrangeGrob, gl), 
+                                            legend,ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight))),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend, ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  
+  grid.newpage()
+  grid.draw(combined)
+  
+  # return gtable invisibly
+  invisible(combined)
+}
+#funkcja tworząca maly wykres, tj. wykres ilustrujący konkretną odpowiedź w rozbiciu na wiek
+maly <- function(pyt, x){
+  #przygotowujemy tabelę pod funkcję
+  cdane <- select(dane, c(1, 12, 280:283))
+  cdane <- filter(cdane, CNT==country)
+  cdane <- na.omit(cdane)
+  colnames(cdane) <- c("CNT", "sex", "a", "b", "c", "d")
+  cdane <- gather(cdane, pytanie, wart, 3:6)
+  cdane[,"wart"] <- as.character(cdane[,"wart"])
+  #chceby, by w tylko jednym wykresie pojawił się podpis osi i legenda; resztę odsiewamy przy pomocy if
+if(x == 1) {
+  cdane %>%
+  filter(pytanie == pyt) %>%
+  ggplot(aes(x = sex, fill = wart)) +
+  geom_bar(position = "fill", color = "white") +
+  ylab("Percentage") + xlab(NULL) +
+  labs(title = pyt) +
+  theme(plot.title = element_text(size = 20)) +
+  scale_fill_manual(labels = c("surely would", "probably would", "probably wouldn't", 
+                               "surely wouldn't"), values=rainbow(n = 4, s = 0.8, v = 0.7), name = "Answers:")
+  }
+else  {
+  cdane %>%
+    filter(pytanie == pyt) %>%
+    ggplot(aes(x = sex, fill = wart)) +
+    geom_bar(position = "fill", color = "white") +
+    labs(title = pyt) +   theme(legend.position = "none") +
+    theme(plot.title = element_text(size = 20)) +
+    xlab(NULL) + ylab(NULL) +
+    scale_fill_manual(labels = c("surely would", "probably would", "probably wouldn't", 
+                                 "surely wouldn't"), values=rainbow(n = 4, s = 0.8, v = 0.7), name = "Answers:")
+  }
+}  
+```
+
+# Table of Contents
+
+```{r, echo=FALSE, results='asis'}
+#load("/home/sztach/Desktop/Nauka/R/student2012.rda")
+dane <- PISA2012lite::student2012
+dane <- student2012
+countries <- unique(dane$CNT)
+i<-1
+for (country in countries){
+  cat(i, ". [",country,"](#", sapply(country, tolower), ") ", sep="", "\n")
+  i<-i+1
+}
+```
+
+\newpage
+
+#Abstract:
+
+The report analyzes the results of an excerpt of PISA study conducted in 2012 in 65 countries. 15-year-old school pupils were asked about their behaviour during using a new type of a ticket machine. The main goal of the tail is to present results by country in terms of the total outcome as well as a breakdown by gender.
+
+\newpage
+
+```{r, echo=FALSE, results='asis', message=FALSE}
+ countries <- unique(dane$CNT)     
+ i<- 1
+countries <- as.character(countries)
+#countries <- countries[seq(1:5)]
+for(country in countries){
+   cat("##", i, ". ", country, "\n", " \n")
+  #cdane jako dane w zale?no?ci od kraju; następnie dane czyścimy
+  cdane <- select(dane, c(1, 12, 280:283))
+  cdane <- filter(cdane, CNT==country)
+  cdane <- na.omit(cdane)
+  colnames(cdane) <- c("CNT", "sex", "a", "b", "c", "d")
+  cdane <- gather(cdane, pytanie, wart, 3:6)
+  cdane[,"wart"] <- as.character(cdane[,"wart"])
+  cat("a = I check how similar it is to other
+ticket machines I have used. "," \n", "b = I try out all the buttons to see
+what happens."," \n", "c = I ask someone for help. "," \n", "d = I try to find a ticket office at the
+station to buy a ticket. "," \n" )
+  cat(" \n", "\n")
+#to jest pierwszy (duży) wykres
+ggplot(cdane, aes(x = pytanie, fill = wart)) +
+  geom_bar(position = "fill", color = "white") +
+  xlab("Question") + ylab("Percentage") +
+  ggtitle("You have to buy ticket in a ticket machine that you have never used before. What would you do?") + theme(legend.title.align=0.5) +
+  theme(plot.title = element_text(size = 11)) +
+  scale_fill_manual(labels = c("surely would", "probably would", "probably wouldn't", "surely wouldn't"), values=rainbow(n = 4, s = 0.8, v = 0.7), name = "Answers:") ->wykres
+  
+ i<-i+1
+ print(wykres)
+ cat(" \n", "\n")
+ 
+#cat("\n", "\n")
+#gi to kolejne małe wykresy, które następnie przy pomocy kolejnej funkcji łączymy w jeden
+g1<- maly("a", 1)
+g2<- maly("b", 0)
+g3<- maly("c", 0)
+g4<- maly("d", 0)
+
+grid_arrange_shared_legend(g1, g2, g3, g4, ncol = 4, nrow = 1, position = "right") -> wykres
+print(wykres)
+ cat("\\newpage")
+ cat(" \n", "\n")
+}
+ 
+ 
+
+```
+
+
