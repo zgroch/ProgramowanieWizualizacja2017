@@ -1,0 +1,117 @@
+<<echo=FALSE>>=
+#### necessary libraries
+if (!require("pacman")){
+    install.packages("pacman")
+    library(pacman)
+}
+pacman::p_load(dplyr, ggplot2, png, grid, forcats, archivist)
+
+#### working dir, git parameters & archivist
+# mywd <- "/Users/michalfutrega/Downloads/project1-2"
+mywd <- "~/Dropbox/RiWizualizacja/project1"
+setwd(mywd)
+plotdir <- "plots/"
+GITusername <- "LRajkowski"
+GITpassword <- "temppass100"
+GITrepo <- "pisa"
+# createLocalRepo(GITrepo)
+setLocalRepo(GITrepo)
+load("pisa.RData")
+load("functions.RData")
+
+#### report parameters    
+question_colname <- "st29q04"
+results_colname <- "pv1math"
+country_colname <- "cnt"
+question_title <- "I do math because I like it"
+results_title <- NULL
+show_flag1 <- FALSE
+show_flag2 <- TRUE
+flags_dir <- paste0(mywd, "/flags/")
+alpha <- 3
+color_boxes <- TRUE
+print_weights <- TRUE
+legend_position <- "right"
+labels_order <- c("Strongly disagree", "Disagree", "Agree", "Strongly agree")
+sub_fontsize <- 5
+arepo_fontsize <- 5
+@
+
+<<results=tex, echo=FALSE>>=
+TeXpackages() 
+TeXtheme() 
+TeXbasicdata() 
+TeXbutton() 
+TeXtitlepage() 
+TeXTOC()
+@
+
+\SweaveOpts{concordance=TRUE}
+<<results=tex,echo=FALSE>>=
+#### pulling the GitHub repo
+pulltext <- paste0("cd ", GITrepo, "; git pull origin")
+system(pulltext)
+
+#### data preparation
+data <- pisa
+countries <- sort(as.character(unique(pisa[,country_colname])) ) # weź wszystkie kraje i posortuj
+data <- changeColnames(data,
+                 oldNames = c(country_colname, results_colname, question_colname),
+                 newNames = c("cnt", "results", "question"))
+data$question <- ordered(data$question, labels_order)
+
+dataCollapsed <- data %>% 
+    mutate(question = fct_collapse(question, 
+                           "(Strongly) Agree"=c("Agree", "Strongly agree"),
+                         "(Strongly) Disagree"=c("Disagree", "Strongly disagree")))
+
+#### initial calculation, computing the ranking list
+meansPerCountry <- data %>% 
+    group_by(cnt) %>% 
+    summarize(m = mean(results))
+meansPerCountry$place <- rank(-meansPerCountry$m) 
+max_rank <- max(meansPerCountry$place)
+
+for(country in countries){
+    #### computations for given country ####
+    
+    ## the first plot
+    thisCountryBoxplot <- compareBoxplot(
+            data, country, "cnt", "results", "question",
+            question_title, results_title, show_flag1, flags_dir, alpha, color_boxes, print_weights
+    )
+    thisCountryBoxplotMD5 <- asave(thisCountryBoxplot)
+    file1=paste(plotdir, "temp1_", gsub(" ", "", country), ".eps", sep="")
+    ggsaveInLatexLoop( thisCountryBoxplot,  file1, 7, 4)
+    
+    ## the second plot
+    thisCountryDensity <- compareDensity(
+            dataCollapsed, country, "cnt", "results", "question",
+            question_title, results_title, show_flag2, flags_dir, alpha, legend_position
+    )
+    thisCountryDensityMD5 <- asave(thisCountryDensity)
+    file2=paste(plotdir, "temp2_", gsub(" ", "", country), ".eps", sep="")
+    ggsaveInLatexLoop( thisCountryDensity,  file2, 6, 4)
+    
+    ## the third plot
+    thisCountryRankPlot <- compareRank(country, meansPerCountry) 
+    thisCountryRankPlotMD5 <- asave(thisCountryRankPlot)
+    file3=paste(plotdir, "temp3_", gsub(" ", "", country), ".eps", sep="")
+    ggsaveInLatexLoop( thisCountryRankPlot, file3, 7, 4)
+
+    ## computations of ranking
+    thisCountryRank <- meansPerCountry %>% filter(cnt==country) %>% select(place) %>% as.numeric
+    
+    ### TeXing ####
+    TeXcountrySummary(
+        country, file1, file2, file3,
+        GITusername, GITrepo, 
+        thisCountryBoxplotMD5, thisCountryDensityMD5, thisCountryRankPlotMD5,
+        arepo_fontsize
+    )
+}
+
+GITpushAndCommit(GITrepo, GITusername)
+@
+
+\end{document}
