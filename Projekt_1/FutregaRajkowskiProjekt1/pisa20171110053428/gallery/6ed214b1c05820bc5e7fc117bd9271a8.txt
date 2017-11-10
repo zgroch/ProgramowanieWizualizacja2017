@@ -1,0 +1,7 @@
+          cnt  results          question
+363911 Norway 490.9721             Agree
+363912 Norway 465.9682 Strongly disagree
+363914 Norway 476.8733             Agree
+363915 Norway 677.1382    Strongly agree
+363917 Norway 456.7768          Disagree
+363918 Norway 584.3667          Disagree

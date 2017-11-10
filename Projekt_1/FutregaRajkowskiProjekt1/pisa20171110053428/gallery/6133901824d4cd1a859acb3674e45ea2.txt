@@ -1,0 +1,7 @@
+          cnt  results            question
+41388 Belgium 649.9533 (Strongly) Disagree
+41389 Belgium 422.4256 (Strongly) Disagree
+41390 Belgium 663.0394 (Strongly) Disagree
+41391 Belgium 673.3214    (Strongly) Agree
+41393 Belgium 502.8899 (Strongly) Disagree
+41394 Belgium 572.8384 (Strongly) Disagree

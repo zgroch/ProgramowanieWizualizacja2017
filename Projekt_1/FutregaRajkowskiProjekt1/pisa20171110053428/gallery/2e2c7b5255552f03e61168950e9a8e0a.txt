@@ -1,0 +1,7 @@
+           cnt  results       question
+480532 Vietnam 604.7749 Strongly agree
+480533 Vietnam 565.1270          Agree
+480534 Vietnam 536.0726          Agree
+480535 Vietnam 622.8462 Strongly agree
+480536 Vietnam 544.6409          Agree
+480537 Vietnam 472.1997          Agree

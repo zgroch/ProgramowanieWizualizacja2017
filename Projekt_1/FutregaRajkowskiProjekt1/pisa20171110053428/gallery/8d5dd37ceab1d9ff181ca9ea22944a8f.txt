@@ -1,0 +1,7 @@
+          cnt  results            question
+438281 Sweden 279.0232 (Strongly) Disagree
+438282 Sweden 430.9160 (Strongly) Disagree
+438283 Sweden 324.3574    (Strongly) Agree
+438284 Sweden 480.9238 (Strongly) Disagree
+438285 Sweden 212.3462 (Strongly) Disagree
+438286 Sweden 340.5593 (Strongly) Disagree

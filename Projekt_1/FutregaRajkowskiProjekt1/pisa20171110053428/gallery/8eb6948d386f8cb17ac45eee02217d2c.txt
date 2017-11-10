@@ -1,0 +1,7 @@
+        cnt  results          question
+372888 Peru 360.1885          Disagree
+372891 Peru 302.4692 Strongly disagree
+372892 Peru 266.5602          Disagree
+372894 Peru 296.6272             Agree
+372896 Peru 353.4896             Agree
+372897 Peru 367.2768          Disagree

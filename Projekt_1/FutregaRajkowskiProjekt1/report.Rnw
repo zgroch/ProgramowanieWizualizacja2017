@@ -1,25 +1,10 @@
 <<echo=FALSE>>=
-#### necessary libraries
-if (!require("pacman")){
-    install.packages("pacman")
-    library(pacman)
-}
-pacman::p_load(dplyr, ggplot2, png, grid, forcats, archivist)
-
-#### working dir, git parameters & archivist
-# mywd <- "/Users/michalfutrega/Downloads/project1-2"
-mywd <- "~/Dropbox/RiWizualizacja/project1"
-setwd(mywd)
-plotdir <- "plots/"
+#### KEY REPORT PARAMETERS ####
+mywd <- "~/Dokumenty/FutregaRajkowskiProjekt1/"
 GITusername <- "LRajkowski"
-GITpassword <- "temppass100"
 GITrepo <- "pisa"
-# createLocalRepo(GITrepo)
-setLocalRepo(GITrepo)
-load("pisa.RData")
-load("functions.RData")
 
-#### report parameters    
+#### CUSTOMISATION ####
 question_colname <- "st29q04"
 results_colname <- "pv1math"
 country_colname <- "cnt"
@@ -27,7 +12,7 @@ question_title <- "I do math because I like it"
 results_title <- NULL
 show_flag1 <- FALSE
 show_flag2 <- TRUE
-flags_dir <- paste0(mywd, "/flags/")
+flags_dir <- paste0(mywd, "flags/")
 alpha <- 3
 color_boxes <- TRUE
 print_weights <- TRUE
@@ -38,6 +23,24 @@ arepo_fontsize <- 5
 @
 
 <<results=tex, echo=FALSE>>=
+#### necessary libraries
+if (!require("pacman")){
+    install.packages("pacman")
+    library(pacman)
+}
+pacman::p_load(dplyr, ggplot2, png, grid, forcats, archivist)
+
+#### association with archivist
+results_folder <- paste0(mywd, GITrepo, gsub(" |-|:","", Sys.time()))
+system( paste0("mkdir ", results_folder) )
+createLocalRepo( results_folder )
+setLocalRepo( results_folder )
+
+#### loading data and functions
+load("pisa.RData")
+load("functions.RData")
+
+#### initial TeXing
 TeXpackages() 
 TeXtheme() 
 TeXbasicdata() 
@@ -48,10 +51,6 @@ TeXTOC()
 
 \SweaveOpts{concordance=TRUE}
 <<results=tex,echo=FALSE>>=
-#### pulling the GitHub repo
-pulltext <- paste0("cd ", GITrepo, "; git pull origin")
-system(pulltext)
-
 #### data preparation
 data <- pisa
 countries <- sort(as.character(unique(pisa[,country_colname])) ) # weź wszystkie kraje i posortuj
@@ -81,8 +80,8 @@ for(country in countries){
             question_title, results_title, show_flag1, flags_dir, alpha, color_boxes, print_weights
     )
     thisCountryBoxplotMD5 <- asave(thisCountryBoxplot)
-    file1=paste(plotdir, "temp1_", gsub(" ", "", country), ".eps", sep="")
-    ggsaveInLatexLoop( thisCountryBoxplot,  file1, 7, 4)
+    file1=paste0("plots/temp1_", gsub(" ", "", country), ".eps")
+    ggsaveInLatexLoop( thisCountryBoxplot, paste0(mywd, file1), 7, 4)
     
     ## the second plot
     thisCountryDensity <- compareDensity(
@@ -90,14 +89,14 @@ for(country in countries){
             question_title, results_title, show_flag2, flags_dir, alpha, legend_position
     )
     thisCountryDensityMD5 <- asave(thisCountryDensity)
-    file2=paste(plotdir, "temp2_", gsub(" ", "", country), ".eps", sep="")
-    ggsaveInLatexLoop( thisCountryDensity,  file2, 6, 4)
+    file2=paste0("plots/temp2_", gsub(" ", "", country), ".eps")
+    ggsaveInLatexLoop( thisCountryDensity, paste0(mywd, file2), 6, 4)
     
     ## the third plot
     thisCountryRankPlot <- compareRank(country, meansPerCountry) 
     thisCountryRankPlotMD5 <- asave(thisCountryRankPlot)
-    file3=paste(plotdir, "temp3_", gsub(" ", "", country), ".eps", sep="")
-    ggsaveInLatexLoop( thisCountryRankPlot, file3, 7, 4)
+    file3=paste0("plots/temp3_", gsub(" ", "", country), ".eps")
+    ggsaveInLatexLoop( thisCountryRankPlot, paste0(mywd, file3), 7, 4)
 
     ## computations of ranking
     thisCountryRank <- meansPerCountry %>% filter(cnt==country) %>% select(place) %>% as.numeric
@@ -110,8 +109,6 @@ for(country in countries){
         arepo_fontsize
     )
 }
-
-GITpushAndCommit(GITrepo, GITusername)
 @
 
 \end{document}

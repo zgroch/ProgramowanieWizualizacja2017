@@ -1,0 +1,7 @@
+           cnt  results          question
+133103 Germany 414.6362             Agree
+133104 Germany 538.4094 Strongly disagree
+133105 Germany 410.3521          Disagree
+133107 Germany 381.2198 Strongly disagree
+133118 Germany 558.6618             Agree
+133119 Germany 475.3934    Strongly agree

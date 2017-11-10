@@ -1,0 +1,7 @@
+           cnt  results          question
+460984 Tunisia 300.8335 Strongly disagree
+460986 Tunisia 396.7986          Disagree
+460987 Tunisia 323.5784    Strongly agree
+460988 Tunisia 405.2111    Strongly agree
+460989 Tunisia 344.3761             Agree
+460990 Tunisia 392.8260             Agree

@@ -1,0 +1,7 @@
+         cnt  results            question
+278702 Japan 598.3876    (Strongly) Agree
+278703 Japan 639.4376    (Strongly) Agree
+278704 Japan 697.3127 (Strongly) Disagree
+278705 Japan 637.0229 (Strongly) Disagree
+278707 Japan 606.9559 (Strongly) Disagree
+278712 Japan 682.5129    (Strongly) Agree

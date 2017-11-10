@@ -1,0 +1,7 @@
+                   cnt  results       question
+433007 Slovak Republic 554.7671       Disagree
+433008 Slovak Republic 453.7389          Agree
+433011 Slovak Republic 524.4664       Disagree
+433012 Slovak Republic 345.2329 Strongly agree
+433014 Slovak Republic 578.9142       Disagree
+433016 Slovak Republic 480.9238       Disagree

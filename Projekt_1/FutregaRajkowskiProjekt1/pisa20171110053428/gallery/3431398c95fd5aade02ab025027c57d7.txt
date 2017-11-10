@@ -1,0 +1,7 @@
+           cnt  results            question
+138104 Denmark 406.0679 (Strongly) Disagree
+138105 Denmark 274.8169 (Strongly) Disagree
+138107 Denmark 506.2393    (Strongly) Agree
+138108 Denmark 499.5404    (Strongly) Agree
+138109 Denmark 486.5322 (Strongly) Disagree
+138111 Denmark 548.4577 (Strongly) Disagree

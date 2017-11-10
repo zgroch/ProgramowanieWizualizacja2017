@@ -1,0 +1,7 @@
+            cnt  results            question
+22154 Australia 507.3298 (Strongly) Disagree
+22155 Australia 601.7370 (Strongly) Disagree
+22157 Australia 586.7035    (Strongly) Agree
+22158 Australia 659.2226 (Strongly) Disagree
+22159 Australia 656.0290 (Strongly) Disagree
+22160 Australia 487.1553    (Strongly) Agree
