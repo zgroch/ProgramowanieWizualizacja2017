@@ -1,0 +1,7 @@
+              cnt  results            question
+96016 Switzerland 430.1371    (Strongly) Agree
+96018 Switzerland 497.9047    (Strongly) Agree
+96020 Switzerland 527.7380    (Strongly) Agree
+96021 Switzerland 445.7937 (Strongly) Disagree
+96023 Switzerland 544.3293    (Strongly) Agree
+96025 Switzerland 574.3184    (Strongly) Agree

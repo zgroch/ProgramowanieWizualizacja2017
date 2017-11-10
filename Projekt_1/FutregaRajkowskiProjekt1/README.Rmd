@@ -1,0 +1,27 @@
+---
+title: "README"
+author: "M. Futrega, L. Rajkowski"
+date: "10 listopada 2017"
+output: html_document
+---
+
+This is a README file that gives instructions for reproducing the authors' report on PISA2012.
+
++ download `FutregaRajkowskiProjekt1` folder from the repository where it is stored (or clone the repository)
++ open `report.Rnw` file
++ set `mywd` variable to the path of the local copy of `FutregaRajkowskiProjekt1` folder
++ create a GITHub repository in which you would like the partial results to be stored
++ set `GITusername` and `GITrepo` variables respectively to your GITHub username and 
+the name of the remote repository in which you would like the partial results to be stored. 
+The resulting report will have this repository printed on every slide so that the partial 
+results are easily available. 
+The results will be stored locally by `archivist` facility in `<mywd>/<GITrepo><TIMESTAMP>` folder.
+For the security reasons the script does not ask for the user's password in order to automatically
+push the local results folder into remote repository; the user must perform this operation manually, 
+after running the script.
++ customise some of the appearance parameters or use their default values
++ run the script (e.g. by pushing `Ctrl+Shift+K`). It will take a while (probably something around 15 minutes,
+which of course depends on your machine parameters)
++ remember to put the local reults in the remote repository, indicated in the preamble
+
+Thank you for your interest in our report! 

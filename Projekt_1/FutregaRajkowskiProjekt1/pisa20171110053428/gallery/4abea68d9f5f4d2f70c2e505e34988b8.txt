@@ -1,0 +1,7 @@
+             cnt  results       question
+422777 Singapore 530.5421          Agree
+422779 Singapore 694.1969          Agree
+422780 Singapore 712.1904 Strongly agree
+422781 Singapore 614.9790          Agree
+422783 Singapore 605.3980 Strongly agree
+422784 Singapore 469.9408 Strongly agree

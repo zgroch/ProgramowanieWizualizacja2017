@@ -1,0 +1,7 @@
+               cnt  results question
+310370 Macao-China 658.3658 Disagree
+310371 Macao-China 517.9234 Disagree
+310373 Macao-China 457.3999    Agree
+310375 Macao-China 525.7127    Agree
+310376 Macao-China 548.7693 Disagree
+310377 Macao-China 543.7841 Disagree

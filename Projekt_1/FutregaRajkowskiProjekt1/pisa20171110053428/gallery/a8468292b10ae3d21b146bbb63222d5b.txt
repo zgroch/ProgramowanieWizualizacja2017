@@ -1,0 +1,7 @@
+                      cnt  results            question
+412231 Russian Federation 440.2633    (Strongly) Agree
+412233 Russian Federation 489.3363 (Strongly) Disagree
+412234 Russian Federation 423.1267    (Strongly) Agree
+412235 Russian Federation 501.1762 (Strongly) Disagree
+412236 Russian Federation 457.4778    (Strongly) Agree
+412237 Russian Federation 398.6680 (Strongly) Disagree

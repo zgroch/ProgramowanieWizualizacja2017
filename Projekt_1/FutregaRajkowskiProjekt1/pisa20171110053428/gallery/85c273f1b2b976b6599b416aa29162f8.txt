@@ -1,0 +1,7 @@
+            cnt  results            question
+449063 Thailand 453.8168    (Strongly) Agree
+449065 Thailand 505.6940 (Strongly) Disagree
+449068 Thailand 562.6344    (Strongly) Agree
+449070 Thailand 338.7677 (Strongly) Disagree
+449072 Thailand 422.4256    (Strongly) Agree
+449073 Thailand 329.9657 (Strongly) Disagree

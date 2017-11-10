@@ -1,0 +1,7 @@
+                  cnt  results          question
+448332 Chinese Taipei 612.8758             Agree
+448333 Chinese Taipei 634.2966             Agree
+448334 Chinese Taipei 566.6069    Strongly agree
+448336 Chinese Taipei 686.7191             Agree
+448337 Chinese Taipei 688.5107             Agree
+448339 Chinese Taipei 657.5869 Strongly disagree

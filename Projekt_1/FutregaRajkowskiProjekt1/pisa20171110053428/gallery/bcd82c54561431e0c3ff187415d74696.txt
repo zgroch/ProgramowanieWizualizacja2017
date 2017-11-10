@@ -1,0 +1,7 @@
+                            cnt  results            question
+470238 United States of America 364.7063 (Strongly) Disagree
+470239 United States of America 416.0383 (Strongly) Disagree
+470240 United States of America 410.0405    (Strongly) Agree
+470242 United States of America 289.8504 (Strongly) Disagree
+470243 United States of America 383.4008 (Strongly) Disagree
+470246 United States of America 398.2785 (Strongly) Disagree

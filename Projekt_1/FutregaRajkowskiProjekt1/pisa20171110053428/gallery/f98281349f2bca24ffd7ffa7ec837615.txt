@@ -1,0 +1,7 @@
+         cnt  results            question
+145584 Spain 469.1619 (Strongly) Disagree
+145585 Spain 586.7035    (Strongly) Agree
+145588 Spain 466.4356 (Strongly) Disagree
+145590 Spain 463.0862 (Strongly) Disagree
+145591 Spain 585.2236 (Strongly) Disagree
+145592 Spain 463.7872 (Strongly) Disagree

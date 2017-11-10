@@ -1,0 +1,7 @@
+              cnt  results          question
+300805 Luxembourg 448.3642 Strongly disagree
+300806 Luxembourg 476.9512 Strongly disagree
+300807 Luxembourg 456.6989 Strongly disagree
+300811 Luxembourg 674.4119             Agree
+300812 Luxembourg 444.1580 Strongly disagree
+300815 Luxembourg 471.1092          Disagree

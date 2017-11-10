@@ -1,0 +1,7 @@
+                      cnt  results            question
+4744 United Arab Emirates 328.2521 (Strongly) Disagree
+4748 United Arab Emirates 310.1807    (Strongly) Agree
+4750 United Arab Emirates 413.8573    (Strongly) Agree
+4751 United Arab Emirates 340.2477    (Strongly) Agree
+4752 United Arab Emirates 300.2882 (Strongly) Disagree
+4753 United Arab Emirates 340.0919    (Strongly) Agree
