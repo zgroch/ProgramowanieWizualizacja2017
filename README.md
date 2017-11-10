@@ -17,7 +17,7 @@ Plan spotkań MIM UW:
 
 ### Programowanie w R
 
-* 2017-11-10 W: Tworzenie pakietów, L: 
+* 2017-11-10 W: [Tworzenie pakietów](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html), L: [Lab](https://raw.githubusercontent.com/pbiecek/ProgramowanieWizualizacja2017/master/materialy/Lab06.Rmd)
 * 2017-11-17 W: Polimorficzność i klasy S3/S4, L: 
 * 2017-11-24 W: Profilowanie i debugowanie kodu, L: Projekt 2/1
 * 2017-12-01 W: Shiny, L: 
