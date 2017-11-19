@@ -1,0 +1,7 @@
+          cnt  results       question
+315704 Mexico 526.4138          Agree
+315706 Mexico 458.8799 Strongly agree
+315707 Mexico 431.6950          Agree
+315708 Mexico 372.9631          Agree
+315709 Mexico 565.9059       Disagree
+315712 Mexico 396.9544 Strongly agree

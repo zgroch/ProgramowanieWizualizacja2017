@@ -1,0 +1,7 @@
+          cnt  results            question
+423010 Serbia 418.7646 (Strongly) Disagree
+423011 Serbia 438.7054 (Strongly) Disagree
+423012 Serbia 285.9558 (Strongly) Disagree
+423013 Serbia 385.8155    (Strongly) Agree
+423014 Serbia 285.4884    (Strongly) Agree
+423018 Serbia 392.7481 (Strongly) Disagree

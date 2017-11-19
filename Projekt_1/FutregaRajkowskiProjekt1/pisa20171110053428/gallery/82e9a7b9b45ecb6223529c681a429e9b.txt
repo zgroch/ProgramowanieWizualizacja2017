@@ -1,0 +1,7 @@
+                            cnt  results          question
+405395 Perm(Russian Federation) 580.1605          Disagree
+405397 Perm(Russian Federation) 670.1277             Agree
+405400 Perm(Russian Federation) 585.6909 Strongly disagree
+405401 Perm(Russian Federation) 441.1980          Disagree
+405405 Perm(Russian Federation) 430.4487             Agree
+405406 Perm(Russian Federation) 539.1883             Agree

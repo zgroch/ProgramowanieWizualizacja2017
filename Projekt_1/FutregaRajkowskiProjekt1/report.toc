@@ -1,0 +1,66 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{ Albania }{3}{0}{1}
+\beamer@sectionintoc {2}{ Argentina }{4}{0}{2}
+\beamer@sectionintoc {3}{ Australia }{5}{0}{3}
+\beamer@sectionintoc {4}{ Austria }{6}{0}{4}
+\beamer@sectionintoc {5}{ Belgium }{7}{0}{5}
+\beamer@sectionintoc {6}{ Brazil }{8}{0}{6}
+\beamer@sectionintoc {7}{ Bulgaria }{9}{0}{7}
+\beamer@sectionintoc {8}{ Canada }{10}{0}{8}
+\beamer@sectionintoc {9}{ Chile }{11}{0}{9}
+\beamer@sectionintoc {10}{ China-Shanghai }{12}{0}{10}
+\beamer@sectionintoc {11}{ Chinese Taipei }{13}{0}{11}
+\beamer@sectionintoc {12}{ Colombia }{14}{0}{12}
+\beamer@sectionintoc {13}{ Costa Rica }{15}{0}{13}
+\beamer@sectionintoc {14}{ Croatia }{16}{0}{14}
+\beamer@sectionintoc {15}{ Czech Republic }{17}{0}{15}
+\beamer@sectionintoc {16}{ Denmark }{18}{0}{16}
+\beamer@sectionintoc {17}{ Estonia }{19}{0}{17}
+\beamer@sectionintoc {18}{ Finland }{20}{0}{18}
+\beamer@sectionintoc {19}{ France }{21}{0}{19}
+\beamer@sectionintoc {20}{ Germany }{22}{0}{20}
+\beamer@sectionintoc {21}{ Greece }{23}{0}{21}
+\beamer@sectionintoc {22}{ Hong Kong-China }{24}{0}{22}
+\beamer@sectionintoc {23}{ Hungary }{25}{0}{23}
+\beamer@sectionintoc {24}{ Iceland }{26}{0}{24}
+\beamer@sectionintoc {25}{ Indonesia }{27}{0}{25}
+\beamer@sectionintoc {26}{ Ireland }{28}{0}{26}
+\beamer@sectionintoc {27}{ Israel }{29}{0}{27}
+\beamer@sectionintoc {28}{ Italy }{30}{0}{28}
+\beamer@sectionintoc {29}{ Japan }{31}{0}{29}
+\beamer@sectionintoc {30}{ Jordan }{32}{0}{30}
+\beamer@sectionintoc {31}{ Kazakhstan }{33}{0}{31}
+\beamer@sectionintoc {32}{ Korea }{34}{0}{32}
+\beamer@sectionintoc {33}{ Latvia }{35}{0}{33}
+\beamer@sectionintoc {34}{ Liechtenstein }{36}{0}{34}
+\beamer@sectionintoc {35}{ Lithuania }{37}{0}{35}
+\beamer@sectionintoc {36}{ Luxembourg }{38}{0}{36}
+\beamer@sectionintoc {37}{ Macao-China }{39}{0}{37}
+\beamer@sectionintoc {38}{ Malaysia }{40}{0}{38}
+\beamer@sectionintoc {39}{ Mexico }{41}{0}{39}
+\beamer@sectionintoc {40}{ Montenegro }{42}{0}{40}
+\beamer@sectionintoc {41}{ Netherlands }{43}{0}{41}
+\beamer@sectionintoc {42}{ New Zealand }{44}{0}{42}
+\beamer@sectionintoc {43}{ Norway }{45}{0}{43}
+\beamer@sectionintoc {44}{ Perm(Russian Federation) }{46}{0}{44}
+\beamer@sectionintoc {45}{ Peru }{47}{0}{45}
+\beamer@sectionintoc {46}{ Poland }{48}{0}{46}
+\beamer@sectionintoc {47}{ Portugal }{49}{0}{47}
+\beamer@sectionintoc {48}{ Qatar }{50}{0}{48}
+\beamer@sectionintoc {49}{ Romania }{51}{0}{49}
+\beamer@sectionintoc {50}{ Russian Federation }{52}{0}{50}
+\beamer@sectionintoc {51}{ Serbia }{53}{0}{51}
+\beamer@sectionintoc {52}{ Singapore }{54}{0}{52}
+\beamer@sectionintoc {53}{ Slovak Republic }{55}{0}{53}
+\beamer@sectionintoc {54}{ Slovenia }{56}{0}{54}
+\beamer@sectionintoc {55}{ Spain }{57}{0}{55}
+\beamer@sectionintoc {56}{ Sweden }{58}{0}{56}
+\beamer@sectionintoc {57}{ Switzerland }{59}{0}{57}
+\beamer@sectionintoc {58}{ Thailand }{60}{0}{58}
+\beamer@sectionintoc {59}{ Tunisia }{61}{0}{59}
+\beamer@sectionintoc {60}{ Turkey }{62}{0}{60}
+\beamer@sectionintoc {61}{ United Arab Emirates }{63}{0}{61}
+\beamer@sectionintoc {62}{ United Kingdom }{64}{0}{62}
+\beamer@sectionintoc {63}{ United States of America }{65}{0}{63}
+\beamer@sectionintoc {64}{ Uruguay }{66}{0}{64}
+\beamer@sectionintoc {65}{ Vietnam }{67}{0}{65}

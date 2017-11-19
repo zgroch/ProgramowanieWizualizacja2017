@@ -1,0 +1,7 @@
+             cnt  results            question
+296187 Lithuania 493.7763    (Strongly) Agree
+296188 Lithuania 500.3973 (Strongly) Disagree
+296189 Lithuania 426.2424 (Strongly) Disagree
+296191 Lithuania 544.0178    (Strongly) Agree
+296192 Lithuania 690.7696    (Strongly) Agree
+296195 Lithuania 649.0964    (Strongly) Agree

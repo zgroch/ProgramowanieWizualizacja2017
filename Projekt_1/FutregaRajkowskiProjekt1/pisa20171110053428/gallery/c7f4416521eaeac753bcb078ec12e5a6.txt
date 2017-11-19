@@ -1,0 +1,7 @@
+           cnt  results            question
+211572 Croatia 503.3572 (Strongly) Disagree
+211573 Croatia 616.3032    (Strongly) Agree
+211574 Croatia 561.6996 (Strongly) Disagree
+211577 Croatia 490.9721    (Strongly) Agree
+211579 Croatia 565.8280 (Strongly) Disagree
+211582 Croatia 641.2292    (Strongly) Agree

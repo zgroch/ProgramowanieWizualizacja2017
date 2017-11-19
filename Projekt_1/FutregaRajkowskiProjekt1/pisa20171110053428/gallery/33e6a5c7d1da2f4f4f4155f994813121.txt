@@ -1,0 +1,7 @@
+                      cnt  results       question
+417547 Russian Federation 440.2633          Agree
+417549 Russian Federation 489.3363       Disagree
+417550 Russian Federation 423.1267 Strongly agree
+417551 Russian Federation 501.1762       Disagree
+417552 Russian Federation 457.4778          Agree
+417553 Russian Federation 398.6680       Disagree

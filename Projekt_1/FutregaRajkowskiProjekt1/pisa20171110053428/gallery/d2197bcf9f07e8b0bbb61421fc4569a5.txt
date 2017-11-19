@@ -1,0 +1,7 @@
+           cnt  results         question
+475216 Vietnam 604.7749 (Strongly) Agree
+475217 Vietnam 565.1270 (Strongly) Agree
+475218 Vietnam 536.0726 (Strongly) Agree
+475219 Vietnam 622.8462 (Strongly) Agree
+475220 Vietnam 544.6409 (Strongly) Agree
+475221 Vietnam 472.1997 (Strongly) Agree

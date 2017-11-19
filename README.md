@@ -17,19 +17,20 @@ Plan spotkań MIM UW:
 
 ### Programowanie w R
 
-* 2017-11-10 W: Tworzenie pakietów, L: 
-* 2017-11-17 W: Polimorficzność i klasy S3/S4, L: 
-* 2017-11-24 W: Profilowanie i debugowanie kodu, L: Projekt 2/1
-* 2017-12-01 W: Shiny, L: 
-* 2017-12-08 W: Projekt 2/2, L: 
+* 2017-11-10 W: [Tworzenie pakietów](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html), L: [Lab](https://raw.githubusercontent.com/pbiecek/ProgramowanieWizualizacja2017/master/materialy/Lab06.Rmd)
+* 2017-11-17 *nie ma zajęć*
+* 2017-11-24 W: Polimorficzność i klasy S3/S4, L: 
+* 2017-12-01 W: Profilowanie i debugowanie kodu, L: Projekt 2/1
+* 2017-12-08 W: Shiny, L: 
+* 2017-12-15 *nie ma zajęć*
+* 2017-12-22 W: Projekt 2/2, L: 
 
 ### Wizualizacja
 
-* 2017-12-15 W: Gramatyka grafiki A, L: 
-* 2017-12-22 W: Gramatyka grafiki B, L: 
-* 2018-01-12 W: Grafika interaktywna - rCharts, L: Projekt 3/1
-* 2018-01-19 W: Coś ciekawego, L: 
-* 2018-01-26 W: Projekt 3/2, L: 
+* 2017-01-12 W: Gramatyka grafiki A, L: 
+* 2017-01-19 W: Gramatyka grafiki B, L: 
+* 2018-01-26 W: Grafika interaktywna - rCharts, L: Projekt 3/1
+* 2018-xx-xx W: Projekt 3/2, L: 
 
 
 Materiały

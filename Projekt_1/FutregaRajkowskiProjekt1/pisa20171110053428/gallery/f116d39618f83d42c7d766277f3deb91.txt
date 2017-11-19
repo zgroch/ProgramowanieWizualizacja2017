@@ -1,0 +1,7 @@
+           cnt  results            question
+464923 Uruguay 529.8411 (Strongly) Disagree
+464924 Uruguay 549.3145 (Strongly) Disagree
+464925 Uruguay 497.2815    (Strongly) Agree
+464926 Uruguay 447.7411 (Strongly) Disagree
+464928 Uruguay 532.6453    (Strongly) Agree
+464930 Uruguay 497.9826    (Strongly) Agree
