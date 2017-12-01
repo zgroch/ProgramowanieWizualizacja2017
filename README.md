@@ -57,6 +57,13 @@ Krótki opis badania: https://pl.wikipedia.org/wiki/PISA_(badanie)
 
 Kwestionariusz PISA: http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf
 
+### Wyniki projektu 1:
+
+Wszystkie zespoły wykonały ten projekt bardzo dobrze. 
+Odejmowałem punkty za drobiazgi aby wskazać co jeszcze można poprawić. 
+Jednak każdy z tych projektów był na naprawdę wysokim poziomie, stąd też punkty mieszczące się w przedziale 80-100
+
+[docs](https://docs.google.com/spreadsheets/d/1CDcmFL9pnx1AivbdNO1gF012vMvBopSuyTUS-R9cvL0/edit?usp=sharing)
 
 ### Kryteria oceny projektu 1:
 
