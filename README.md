@@ -20,7 +20,7 @@ Plan spotkań MIM UW:
 * 2017-11-10 W: [Tworzenie pakietów](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html), L: [Lab](https://raw.githubusercontent.com/pbiecek/ProgramowanieWizualizacja2017/master/materialy/Lab06.Rmd)
 * 2017-11-17 *nie ma zajęć*
 * 2017-11-24 W: Polimorficzność i klasy S3/S4 [rozdział 3.8](http://biecek.pl/R/), [adv-r](http://adv-r.had.co.nz/OO-essentials.html), [Wyk](https://raw.githubusercontent.com/pbiecek/ProgramowanieWizualizacja2017/master/materialy/Wyk07.Rmd) L:  [Lab](https://raw.githubusercontent.com/pbiecek/ProgramowanieWizualizacja2017/master/materialy/Lab07.Rmd)
-* 2017-12-01 W: Profilowanie i debugowanie kodu, L: Projekt 2/1
+* 2017-12-01 W: [Profilowanie](http://pbiecek.github.io/Przewodnik/Programowanie/pazury/profilowanie.html) i [debugowanie](http://pbiecek.github.io/Przewodnik/Programowanie/pazury/debugowanie.html) kodu, L: Projekt 2/1
 * 2017-12-08 W: Shiny, L: 
 * 2017-12-15 *nie ma zajęć*
 * 2017-12-22 W: Projekt 2/2, L: 
