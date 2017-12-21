@@ -142,4 +142,4 @@ Premiowane będą pakiety, których funkcje będą udokumentowane. Których zbio
 Projekt 3
 ---------
 
-
+https://github.com/pbiecek/ProgramowanieWizualizacja2017/blob/master/Projekt_3/README.md
