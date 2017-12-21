@@ -23,7 +23,7 @@ Plan spotkań MIM UW:
 * 2017-12-01 W: [Profilowanie](http://pbiecek.github.io/Przewodnik/Programowanie/pazury/profilowanie.html) i [debugowanie](http://pbiecek.github.io/Przewodnik/Programowanie/pazury/debugowanie.html) kodu, L: Projekt 2/1
 * 2017-12-08 W: [Shiny](http://pbiecek.github.io/Przewodnik/Programowanie/jak_tworzyc_aplikajce.html), L:  [Lab](materialy/Lab08.Rmd)
 * 2017-12-15 *nie ma zajęć*
-* 2017-12-22 W: Projekt 2/2, L: 
+* 2017-12-22 W: Projekt 2/2, L: https://www.youtube.com/watch?v=tgbJVmMQZfk
 
 ### Wizualizacja
 
