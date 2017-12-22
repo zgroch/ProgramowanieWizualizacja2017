@@ -1,0 +1,86 @@
+---
+title: "Usage"
+author: "Zuzanna Baran"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This package is designed to be easy way of generating fractals. We will go through
+couple simple steps to generate fractal for Koch's snowflake.
+
+
+## Creating functions
+
+First we need to create functions which will be used for fractal. In case of Koch's snowflake this are the functions.
+
+```{r, fig.show='hold', results='hide'}
+koch_f1 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/2 * x - sqrt(3)/6 * y, sqrt(3)/6 * x + 1/2 * y)
+}
+
+koch_f2 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x + 1/sqrt(3), 1/3 * y + 1/3)
+}
+
+koch_f3 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x, 1/3 * y + 2/3)
+}
+
+koch_f4 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x - 1/sqrt(3), 1/3 * y + 1/3)
+}
+
+koch_f5 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x - 1/sqrt(3), 1/3 * y - 1/3)
+}
+
+koch_f6 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x, 1/3 * y - 2/3)
+}
+
+koch_f7 <- function(point) {
+  x<- point[1]
+  y<- point[2]
+  c(1/3 * x + 1/sqrt(3), 1/3 * y - 1/3)
+}
+```
+
+## Creating IFS object
+
+When we have functions next step is to create IFS object we can do it calling `createIFS` function from `IFSZuzanna` package.
+
+```{r, fig.show='hold', results='hide', message = FALSE, warning = FALSE}
+library(IFSZuzanna)
+
+kochSnowflake <- createIFS(list(koch_f1, koch_f2, koch_f3, koch_f4, koch_f5, koch_f6, koch_f7))
+```
+
+
+## Ploting IFS object
+
+Once we have IFS object now last step is to plot it. We can choose depth of recursion and color in which we want to draw a fractal. Default color is black.
+
+```{r, fig.show='hold'}
+plot(kochSnowflake, 3, 'blue')
+plot(kochSnowflake, 4, 'red')
+plot(kochSnowflake, 5, 'black')
+plot(kochSnowflake,6, 'grey')
+
+```
+
