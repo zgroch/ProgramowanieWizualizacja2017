@@ -1,0 +1,7 @@
+          cnt  results question
+271664 Jordan 342.1172    Agree
+271665 Jordan 455.2189    Agree
+271666 Jordan 317.1912    Agree
+271667 Jordan 400.7711    Agree
+271668 Jordan 269.1307 Disagree
+271674 Jordan 224.7313    Agree

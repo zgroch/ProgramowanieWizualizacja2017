@@ -1,0 +1,7 @@
+           cnt  results            question
+232029 Iceland 525.4790 (Strongly) Disagree
+232031 Iceland 475.0818 (Strongly) Disagree
+232032 Iceland 371.0936 (Strongly) Disagree
+232034 Iceland 502.5783 (Strongly) Disagree
+232035 Iceland 376.8578    (Strongly) Agree
+232037 Iceland 607.0338    (Strongly) Agree

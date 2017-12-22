@@ -1,0 +1,7 @@
+                  cnt  results          question
+189118 United Kingdom 422.6593 Strongly disagree
+189119 United Kingdom 401.3164          Disagree
+189121 United Kingdom 623.4694             Agree
+189123 United Kingdom 490.1153          Disagree
+189124 United Kingdom 450.0779             Agree
+189127 United Kingdom 386.7503          Disagree

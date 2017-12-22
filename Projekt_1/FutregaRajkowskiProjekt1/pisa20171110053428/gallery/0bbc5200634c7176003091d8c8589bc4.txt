@@ -1,0 +1,7 @@
+         cnt  results question
+389253 Qatar 415.3373    Agree
+389256 Qatar 596.0508 Disagree
+389258 Qatar 441.0422 Disagree
+389259 Qatar 414.5583    Agree
+389260 Qatar 374.0536    Agree
+389261 Qatar 581.2510 Disagree

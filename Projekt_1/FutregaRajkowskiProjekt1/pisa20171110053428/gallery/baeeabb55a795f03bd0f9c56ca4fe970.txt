@@ -1,0 +1,7 @@
+           cnt  results          question
+227012 Ireland 481.0796          Disagree
+227014 Ireland 554.4555 Strongly disagree
+227015 Ireland 435.0444          Disagree
+227016 Ireland 683.8370             Agree
+227017 Ireland 407.2363 Strongly disagree
+227019 Ireland 700.5842             Agree

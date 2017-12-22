@@ -1,0 +1,7 @@
+           cnt  results          question
+170897 Estonia 525.8685          Disagree
+170898 Estonia 455.5305 Strongly disagree
+170899 Estonia 555.6239 Strongly disagree
+170900 Estonia 483.9617 Strongly disagree
+170901 Estonia 618.6400          Disagree
+170902 Estonia 649.0185          Disagree

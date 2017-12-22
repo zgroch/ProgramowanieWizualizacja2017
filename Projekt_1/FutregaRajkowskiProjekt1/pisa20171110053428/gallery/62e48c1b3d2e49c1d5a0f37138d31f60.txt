@@ -1,0 +1,7 @@
+              cnt  results          question
+349510 Montenegro 503.5130          Disagree
+349512 Montenegro 353.1781 Strongly disagree
+349513 Montenegro 426.5540             Agree
+349515 Montenegro 370.1589 Strongly disagree
+349516 Montenegro 360.5001 Strongly disagree
+349519 Montenegro 365.4853 Strongly disagree

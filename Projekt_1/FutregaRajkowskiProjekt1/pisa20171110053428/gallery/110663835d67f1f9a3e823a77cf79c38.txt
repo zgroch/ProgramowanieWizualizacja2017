@@ -1,0 +1,7 @@
+            cnt  results          question
+454379 Thailand 453.8168             Agree
+454381 Thailand 505.6940          Disagree
+454384 Thailand 562.6344    Strongly agree
+454386 Thailand 338.7677          Disagree
+454388 Thailand 422.4256             Agree
+454389 Thailand 329.9657 Strongly disagree

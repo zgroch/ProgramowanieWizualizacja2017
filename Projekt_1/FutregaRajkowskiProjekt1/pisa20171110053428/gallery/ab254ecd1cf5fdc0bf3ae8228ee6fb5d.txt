@@ -1,0 +1,7 @@
+          cnt  results          question
+428326 Serbia 418.7646          Disagree
+428327 Serbia 438.7054          Disagree
+428328 Serbia 285.9558 Strongly disagree
+428329 Serbia 385.8155    Strongly agree
+428330 Serbia 285.4884             Agree
+428334 Serbia 392.7481 Strongly disagree

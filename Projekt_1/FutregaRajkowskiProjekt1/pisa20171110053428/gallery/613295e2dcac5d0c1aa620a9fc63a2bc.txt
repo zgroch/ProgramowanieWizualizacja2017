@@ -1,0 +1,7 @@
+                  cnt  results          question
+127776 Czech Republic 460.4378             Agree
+127777 Czech Republic 571.3585          Disagree
+127780 Czech Republic 586.0025             Agree
+127781 Czech Republic 548.6135             Agree
+127782 Czech Republic 607.4233 Strongly disagree
+127785 Czech Republic 593.7140          Disagree
