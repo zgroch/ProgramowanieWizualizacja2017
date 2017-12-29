@@ -1,0 +1,7 @@
+                  cnt  results       question
+400218 China-Shanghai 661.4815 Strongly agree
+400219 China-Shanghai 676.4371 Strongly agree
+400222 China-Shanghai 735.1690 Strongly agree
+400223 China-Shanghai 683.2918       Disagree
+400225 China-Shanghai 751.8383 Strongly agree
+400226 China-Shanghai 794.7578          Agree

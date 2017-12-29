@@ -1,0 +1,7 @@
+          cnt  results       question
+306063 Latvia 525.2454       Disagree
+306066 Latvia 466.2019       Disagree
+306068 Latvia 438.2380 Strongly agree
+306070 Latvia 524.5443          Agree
+306071 Latvia 438.7833          Agree
+306073 Latvia 520.9612       Disagree

@@ -1,0 +1,20 @@
+---
+title: "Laboratorium 5"
+author: "Tutaj wpisz swoje dane"
+date: "3/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* Zainstaluj pakiet BetaBit [z CRAN](https://cran.rstudio.com/web/packages/BetaBit/index.html)
+
+* Wywołaj funkcję `proton()` i rozwiąż zbiór problemów opisanych w tej funkcji.
+
+* Rozwiązanie (wykorzystane kody) wgraj na GitHub do katalogu [Laboratorium](https://github.com/pbiecek/ProgramowanieWizualizacja2017/tree/master/Laboratoria). Plik z rozwiązaniem powinien się nazywać `proton___`, gdzie ___ To Twoje imię i nazwisko lub inicjały. Rozszerzenie R lub Rmd.
+
+* Jeżeli udało Ci się rozwiązać zagadke `proton()` szybko to gratulacje i zapraszam do rozwiązania zagadki `frequon()`.

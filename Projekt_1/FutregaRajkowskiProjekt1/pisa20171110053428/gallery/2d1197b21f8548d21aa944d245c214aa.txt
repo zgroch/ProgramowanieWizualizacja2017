@@ -1,0 +1,7 @@
+               cnt  results          question
+359451 Netherlands 616.3811          Disagree
+359452 Netherlands 608.5917          Disagree
+359454 Netherlands 590.0530 Strongly disagree
+359456 Netherlands 571.0469             Agree
+359458 Netherlands 616.4589    Strongly agree
+359459 Netherlands 567.5417             Agree

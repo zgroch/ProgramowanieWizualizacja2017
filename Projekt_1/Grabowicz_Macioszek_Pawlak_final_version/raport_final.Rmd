@@ -1,0 +1,239 @@
+---
+title: "raport PISA 1/1"
+author: Ilona Grabowicz, Anna Macioszek, Małgorzata Pawlak
+geometry: left=2cm,right=2cm,top=2cm,bottom=2.5cm
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \rfoot{\hyperlink{page.1}{HOME}}
+- \hypersetup{colorlinks=true, linkcolor=[rgb]{0, 0.45, 0.55}}
+- \setlength{\headsep}{1.5cm}
+- \renewcommand{\footrulewidth}{0.4pt}
+output:
+  pdf_document: default
+  word_document: default
+abstract: Influence of mother's working situation on daughters' views on career benefits of learning mathematics and on their own math abilities. Based on data from PISA2012, a survey which tested 15-year-olds in reading, mathematics and science focussing on mathematics in 2012.
+toc: yes
+---
+
+
+```{r setup, echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# CONTEXT
+
+[A new working paper](https://hbswk.hbs.edu/item/kids-benefit-from-having-a-working-mom) by Kathleen McGinn and her colleagues for Harvard Business School purports that working mothers are more likely to raise successful daughters.
+
+> *"THERE ARE VERY FEW THINGS...THAT HAVE SUCH A CLEAR EFFECT ON GENDER INEQUALITY AS BEING RAISED BY A WORKING MOTHER."*
+
+*Kathleen L. McGinn, the Cahners-Rabb Professor of Business Administration at Harvard Business School*
+
+# ANALYSIS
+
+We picked girls' responses to two specific questions and looked at it from a perspective of their mothers' working situation. Mother's working situation could be defined as one of the following: working full time (for pay), working part time (for pay), not working, but looking for a job or other (e.g. home duties).  
+The two chosen questions were statements to which the girls needed to state to what extent they apply to them. Response scale had 4 following levels: strongly agree, agree, disagree, strongly disagree. First statement concerned the feeling about the usefullness of mathematics in their future career and read: "Learning mathematics is worthwhile for me because it will improve my career". The second was about the level of confidence the girls have in their own math abilities: "If I wanted to, I could do well in mathematics".  
+An interesting result was that the group who tends to have the most differing results are girls whose mothers work part-time.
+
+
+```{r data, echo=FALSE, message=FALSE, warning=FALSE, results='asis', fig.align="center", fig.height=3.8}
+
+
+
+#install.packages(tidyr)
+#install.packages(ggplot2)
+#install.packages(stringr)
+#install.packages(dplyr)
+#install.packages(pander)
+#install.packages(PISA2012lite)
+
+library(tidyr)
+library(ggplot2)
+library(stringr)
+library(dplyr)
+library(pander)
+library(PISA2012lite)
+#load("student2012.rda")
+
+# function to process data
+# select desired columns and remove NAs
+prepare_data <- function(data, groups, values, filter_criteria = TRUE) {
+data %>%
+  filter(filter_criteria) %>%
+  select(CNT, groups = groups, values = values) %>%
+  na.omit %>%
+  group_by(groups, values, CNT) %>%
+  summarise(n = n()) %>%
+  return()
+}
+
+# functions to calculate plot's parameters
+calculate_bar_widths <- function(data) {
+  data %>%
+    ungroup() %>%
+    select(-values) %>%
+    group_by(groups, CNT) %>%
+    summarise(total = sum(n, na.rm = T)) %>%
+    spread(CNT, total) %>%
+    return()
+}
+
+calculate_breaks_positions <- function(widths, spacing_fraction = 40) {
+  tmp <- c()
+  last_position = 0
+  for (i in 1:length(widths)) {
+    current = widths[i]
+    previous = widths[i-1]
+    if (i==1)
+      previous = 0
+    position = previous/2 + current/2 + last_position
+    last_position = position
+    tmp = c(tmp, position)
+  }
+  spacing <- sum(widths) / spacing_fraction
+  breaks <- tmp + cumsum(rep(spacing, length(widths)))
+  return(breaks)
+}
+
+prepare_labels <- function(data,
+                           width_thresholds = c(0.09, 0.2),
+                           wrap_widths = c(40,18,12)) {
+  labels = unique(data$groups)
+  bars_positions = data$bars_positions[seq(1, nrow(data),
+                                           length(labels))]
+  bars_positions = bars_positions / max(bars_positions)
+  wrapped_labels = c()
+  diffs = diff(bars_positions)
+  diffs = c(diffs, max(bars_positions))
+  for (i in 1:length(labels)) {
+    if (diffs[i] <= width_thresholds[1])
+      wrapped_labels[i] = str_wrap(labels[i],
+                                   width = wrap_widths[1])
+    if (diffs[i] > width_thresholds[1])
+      wrapped_labels[i] = str_wrap(labels[i],
+                                   width = wrap_widths[2])
+    if (diffs[i] > width_thresholds[2])
+      wrapped_labels[i] = str_wrap(labels[i], 
+                                   width = wrap_widths[3])
+  }
+  return(wrapped_labels)
+}
+
+# plotting functions
+make_plot <- function(data, country,
+                      ...) {
+  data_to_plot <- spread(data, CNT, n)
+  widths <- calculate_bar_widths(data)
+  widths <- unlist(widths[country])
+  breaks_positions = calculate_breaks_positions(widths)
+  data_to_plot$bars_positions = rep(breaks_positions, each = 4)
+  labels <- prepare_labels(data_to_plot)
+  draw_barplot(data_to_plot, country,
+               widths, labels, breaks_positions,
+               ...)
+}
+
+draw_barplot <- function(data_to_plot, country,
+                         widths, labels, breaks_positions,
+                         title, subtitle,
+                         xlab, ylab,
+                         color_values) {
+  print(
+    ggplot(data_to_plot,
+           aes(x = bars_positions,
+               y = data_to_plot[country],
+               fill = values)) +
+    geom_bar(width = rep(widths, each = 4),
+             stat = "identity",
+             position = "fill") + 
+    ggtitle(title, subtitle = subtitle) +
+    theme(plot.title = element_text(hjust = 0.5,
+                                    size = 20,
+                                    colour = "grey90",
+                                    face = "bold"),
+          plot.subtitle = element_text(hjust = 0.5,
+                                       size = 11,
+                                       face = "italic",
+                                       family = "Times")) +
+    scale_x_continuous(breaks = breaks_positions,
+                       labels = labels) +
+    theme(axis.text.x = element_text(hjust = 1,
+                                     angle = 45,
+                                     size = 7,
+                                     colour = "grey30")) +
+    theme(axis.text.y = element_text(size = 7,
+                                     colour = "grey30")) +
+    theme(axis.title.x = element_text(face = "bold.italic",
+                                      size = 9,
+                                      colour = "grey90")) +
+    theme(axis.title.y = element_text(face = "bold.italic",
+                                      size = 9,
+                                      colour = "grey90")) +
+    xlab(xlab) +
+    ylab(ylab) +
+    #theme(legend.title = element_text(face = "bold", size=9, colour = "grey30")) +
+    theme(legend.text = element_text(size = 9,
+                                     face = "italic",
+                                     family = "Times",
+                                     colour = "grey30")) +
+    theme(legend.background = element_rect(fill = "grey95")) +
+    scale_fill_manual(values = color_values) +
+    theme(legend.title = element_blank())
+  )
+}
+
+# making a page in with two barplots in a pdf output
+draw_a_page <- function(data, country, ...) {
+
+  arguments = list(...)
+  
+  cat("\\newpage")
+  cat("\\vspace{40pt}")
+  cat("\\begin{center}")
+  cat("\\subsection{", country, "}")
+  cat("\\end{center}")
+  cat("\\vspace{20pt}")
+
+  for (i in 1:2) {
+    make_plot(data[[i]], country,
+      title = arguments$titles[i],
+      subtitle = arguments$subtitles[i],
+      xlab = arguments$xlabs[i], ylab = arguments$ylabs[i],
+      color_values = arguments$color_values[[i]])
+
+      if(i == 1)
+        cat("\\vspace{30pt}")
+  }
+}
+
+make_two_plots_per_country <- function(data, groups, values, filter_criteria, ...) {
+  data1 <- prepare_data(data, groups[1], values[1], filter_criteria[[1]])
+  data2 <- prepare_data(data, groups[2], values[2], filter_criteria[[2]])
+  countries = unique(data$CNT)
+  for (country in countries) {
+    draw_a_page(list("1" = data1, "2" = data2), country, ...)
+  }
+}
+
+# finally, generating actual output
+
+filter_criteria = (student2012$ST04Q01 == "Female")
+color_values = c("#3F9C9F", "#55B9BC", "#EA7382", "#E4465B")
+
+make_two_plots_per_country(data = student2012,
+                           groups = rep("ST15Q01", 2),
+                           values = c("ST29Q05", "ST43Q05"),
+                           filter_criteria = list("1" = filter_criteria,
+                                                  "2" = filter_criteria),
+                           titles = c("MATH AND CAREER","MATH CONFIDENCE"),
+                           subtitles = c(
+                             "\n Learning mathematics is worthwhile for me \n because it will improve my career\n",
+                             "\n If I wanted to, I could do well in mathematics\n"),
+                           xlabs = rep("MOTHER'S OCCUPATION", 2),
+                           ylabs = rep("FRACTION OF ANSWERS", 2),
+                           color_values = list("1" = color_values,
+                                               "2" = color_values))
+
+
+```

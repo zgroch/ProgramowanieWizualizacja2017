@@ -1,0 +1,7 @@
+           cnt  results          question
+49985 Bulgaria 377.0914          Disagree
+49989 Bulgaria 390.0997             Agree
+49990 Bulgaria 359.1759             Agree
+49991 Bulgaria 322.7216    Strongly agree
+49994 Bulgaria 356.2159 Strongly disagree
+49995 Bulgaria 388.0745             Agree

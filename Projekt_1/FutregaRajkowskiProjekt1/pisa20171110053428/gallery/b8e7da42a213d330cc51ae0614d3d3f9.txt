@@ -1,0 +1,7 @@
+          cnt  results          question
+465391 Turkey 489.4921          Disagree
+465392 Turkey 493.1531    Strongly agree
+465393 Turkey 459.4251             Agree
+465395 Turkey 541.5252 Strongly disagree
+465396 Turkey 518.3128          Disagree
+465398 Turkey 522.0517          Disagree

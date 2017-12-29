@@ -1,0 +1,80 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(BetaBit)
+library(dplyr)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+proton()
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+```{r}
+df<-employees
+df
+```
+```{r}
+john<-filter(df, surname=="Insecure")
+john
+
+```
+
+```{r}
+proton(action = "login", login="johnins")
+```
+
+```{r}
+a<-top1000passwords
+
+solve_all_my_problems<-function(vec){
+  for (el in vec){
+    proton(action = "login", login="johnins", password=el)
+
+  }
+}
+
+solve_all_my_problems(a)
+```
+
+```{r}
+log<-logs
+
+piet<-filter(df, surname=="Pietraszko")
+piet
+p<-filter(log, login=='slap')
+
+freq<-p%>%
+  select(host)
+freq
+
+r<-freq%>%
+  summary(n=n())
+r
+```
+```{r}
+proton(action = "server", host="194.29.178.16")
+```
+
+```{r}
+
+cleared<-strsplit(bash_history,  split=" ", fixed = FALSE)
+
+sp = do.call("rbind", lapply(cleared, "[[", 1))
+solve_all_my_problems2<-function(vec){
+  for (el in vec){
+    proton(action = "login", login="slap", password=el)
+
+  }
+}
+solve_all_my_problems2(sp)
+```
+

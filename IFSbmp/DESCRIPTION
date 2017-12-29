@@ -1,0 +1,13 @@
+Package: IFSbmp
+Title: Plotting IFS type fractals
+Version: 0.0.0.9000
+Authors@R: c(person("Lukasz", "Bozyk", email = "lukaszbozyk@gmail.com", role = c("aut", "cre")), person("Mateusz", "Macias", email = "m.macias@student.uw.edu.pl", role = c("aut")), person("Gosia", "Pawlak", email = "mt.pawlak@student.uw.edu.pl", role = c("aut")))
+Description: The package allows plotting fractals with the IFS method. It contains a function that converts a series of functions into IFS class list object and a plot function for objects with this class attribute. More functionalities and examples can be found in the documentation.
+Depends: R (>= 3.3.3)
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat, knitr, rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Imports: dplyr

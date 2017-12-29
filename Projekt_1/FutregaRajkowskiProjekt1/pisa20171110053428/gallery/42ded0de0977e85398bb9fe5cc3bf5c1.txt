@@ -1,0 +1,7 @@
+         cnt  results            question
+74473 Canada 389.7102 (Strongly) Disagree
+74474 Canada 504.2141 (Strongly) Disagree
+74475 Canada 466.2798    (Strongly) Agree
+74476 Canada 398.2007 (Strongly) Disagree
+74478 Canada 406.1458    (Strongly) Agree
+74479 Canada 608.6696    (Strongly) Agree

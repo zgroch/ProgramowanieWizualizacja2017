@@ -1,0 +1,7 @@
+                 cnt  results            question
+295896 Liechtenstein 485.3638 (Strongly) Disagree
+295897 Liechtenstein 403.6532 (Strongly) Disagree
+295898 Liechtenstein 483.9617 (Strongly) Disagree
+295899 Liechtenstein 392.5144    (Strongly) Agree
+295902 Liechtenstein 433.2528    (Strongly) Agree
+295903 Liechtenstein 484.7406    (Strongly) Agree

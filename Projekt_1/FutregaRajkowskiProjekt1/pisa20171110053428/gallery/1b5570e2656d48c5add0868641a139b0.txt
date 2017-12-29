@@ -1,0 +1,7 @@
+               cnt  results          question
+368597 New Zealand 359.3317 Strongly disagree
+368599 New Zealand 523.9212          Disagree
+368600 New Zealand 437.1475          Disagree
+368602 New Zealand 576.8110          Disagree
+368603 New Zealand 423.1267 Strongly disagree
+368604 New Zealand 490.6605             Agree

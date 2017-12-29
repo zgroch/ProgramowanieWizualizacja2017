@@ -1,0 +1,7 @@
+          cnt  results          question
+201777 Greece 385.6598 Strongly disagree
+201780 Greece 505.7719    Strongly agree
+201781 Greece 539.4999             Agree
+201782 Greece 524.9338             Agree
+201783 Greece 543.0830             Agree
+201786 Greece 486.6880             Agree

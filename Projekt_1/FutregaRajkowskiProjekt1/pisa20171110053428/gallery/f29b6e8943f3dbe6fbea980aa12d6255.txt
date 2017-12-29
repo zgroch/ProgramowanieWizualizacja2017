@@ -1,0 +1,7 @@
+           cnt  results            question
+455668 Tunisia 300.8335 (Strongly) Disagree
+455670 Tunisia 396.7986 (Strongly) Disagree
+455671 Tunisia 323.5784    (Strongly) Agree
+455672 Tunisia 405.2111    (Strongly) Agree
+455673 Tunisia 344.3761    (Strongly) Agree
+455674 Tunisia 392.8260    (Strongly) Agree
