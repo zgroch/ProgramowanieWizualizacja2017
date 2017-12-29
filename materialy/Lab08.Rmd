@@ -1,0 +1,23 @@
+---
+title: "Laboratorium 8"
+author: "Tutaj wpisz swoje dane"
+date: "8/12/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+Wykorzystaj zbiór danych auta2012 z pakietu SmarterPoland
+by zrobić aplikację Shiny w której
+
+* użytkownik może wskazać markę samochodu
+* użytkownik może wskazać rok produkcji
+
+Aplikacja prezentuje wykres z rozkładem cen okreslonej grupy aut.
+Oraz wypisuje medianę ceny wraz z kwartylami.
+
+
