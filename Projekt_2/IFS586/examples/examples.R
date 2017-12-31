@@ -240,3 +240,4 @@ save(ch1, ch2, ch3, ch4, ch5, ch6, ch7, p_ch,
      christmas_tree,pentagon1, pentagon2, pentagon3, pentagon4, pentagon5,pentagonp,pentagon, file='./data/examples3.rda')
 
 
+
