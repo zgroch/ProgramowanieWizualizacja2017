@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Zuzanna Baran" />
+
+<meta name="date" content="2017-12-22" />
+
+<title>Usage</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Usage</h1>
+<h4 class="author"><em>Zuzanna Baran</em></h4>
+<h4 class="date"><em>2017-12-22</em></h4>
+
+
+
+<p>This package is designed to be easy way of generating fractals. We will go through couple simple steps to generate fractal for Koch’s snowflake.</p>
+<div id="creating-functions" class="section level2">
+<h2>Creating functions</h2>
+<p>First we need to create functions which will be used for fractal. In case of Koch’s snowflake this are the functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">koch_f1 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">2</span> *<span class="st"> </span>x -<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">3</span>)/<span class="dv">6</span> *<span class="st"> </span>y, <span class="kw">sqrt</span>(<span class="dv">3</span>)/<span class="dv">6</span> *<span class="st"> </span>x +<span class="st"> </span><span class="dv">1</span>/<span class="dv">2</span> *<span class="st"> </span>y)
+}
+
+koch_f2 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x +<span class="st"> </span><span class="dv">1</span>/<span class="kw">sqrt</span>(<span class="dv">3</span>), <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y +<span class="st"> </span><span class="dv">1</span>/<span class="dv">3</span>)
+}
+
+koch_f3 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x, <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y +<span class="st"> </span><span class="dv">2</span>/<span class="dv">3</span>)
+}
+
+koch_f4 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x -<span class="st"> </span><span class="dv">1</span>/<span class="kw">sqrt</span>(<span class="dv">3</span>), <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y +<span class="st"> </span><span class="dv">1</span>/<span class="dv">3</span>)
+}
+
+koch_f5 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x -<span class="st"> </span><span class="dv">1</span>/<span class="kw">sqrt</span>(<span class="dv">3</span>), <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y -<span class="st"> </span><span class="dv">1</span>/<span class="dv">3</span>)
+}
+
+koch_f6 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x, <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y -<span class="st"> </span><span class="dv">2</span>/<span class="dv">3</span>)
+}
+
+koch_f7 &lt;-<span class="st"> </span>function(point) {
+  x&lt;-<span class="st"> </span>point[<span class="dv">1</span>]
+  y&lt;-<span class="st"> </span>point[<span class="dv">2</span>]
+  <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>x +<span class="st"> </span><span class="dv">1</span>/<span class="kw">sqrt</span>(<span class="dv">3</span>), <span class="dv">1</span>/<span class="dv">3</span> *<span class="st"> </span>y -<span class="st"> </span><span class="dv">1</span>/<span class="dv">3</span>)
+}</code></pre></div>
+</div>
+<div id="creating-ifs-object" class="section level2">
+<h2>Creating IFS object</h2>
+<p>When we have functions next step is to create IFS object we can do it calling <code>createIFS</code> function from <code>IFSZuzanna</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(IFSZuzanna)
+
+kochSnowflake &lt;-<span class="st"> </span><span class="kw">createIFS</span>(<span class="kw">list</span>(koch_f1, koch_f2, koch_f3, koch_f4, koch_f5, koch_f6, koch_f7))</code></pre></div>
+</div>
+<div id="ploting-ifs-object" class="section level2">
+<h2>Ploting IFS object</h2>
+<p>Once we have IFS object now last step is to plot it. We can choose depth of recursion and color in which we want to draw a fractal. Default color is black.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kochSnowflake, <span class="dv">3</span>, <span class="st">'blue'</span>)
+<span class="kw">plot</span>(kochSnowflake, <span class="dv">4</span>, <span class="st">'red'</span>)
+<span class="kw">plot</span>(kochSnowflake, <span class="dv">5</span>, <span class="st">'black'</span>)
+<span class="kw">plot</span>(kochSnowflake,<span class="dv">6</span>, <span class="st">'grey'</span>)</code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAACVBMVEUAAAAAAP////9d2MkjAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADjElEQVR4nO3YwU7jMBRAUeD/P3oWYVFUwk1aR7U75y5QiiynHPSSph9f+rOPV7+B2QMUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYAiQBGgCFAEKAIUAYoARYCiwUAfy/QqoLHbXReg6J2APj8v2BRQ9B5AtzSDmQBF7wG0ZcQiQD/aG6vB4wYoWhHoLM1TTICiFYG2jFgEaLcjBP/1iAE61JE/+z8dsS1Ah7rw8rwFKJoTaNT4DFgDaDGgUbfwYR8FAP29ZjqgrbOj8cylerER2wJ0u92Pd/jMVxlXHAOK49cCTU3zfQxoZqAf7+T+xQzHgOJ40hH72vn9C9YAijWzjdheAz7yPbYGUKyZAOi7GS7Jv/ABmh9o2IgdacURA7S73bDb/JFWvM0DOrSdR43YDtDudk/RnO1BJkAzA/14J/cvRtHcttaIbQE6v92ocRuwD6DFgK4Yq70OnQtQnGs2oK2raU6cC9CSQFtnL6tnH3cP/RsARXMCGTFAj27nNh/bATq0nUcNQCe283VHbAdodztfucZ2gA5t9xTT1ceA4njSEfva+f0VIxZrAMWa2UZsrytu84fWAIo1EwB9N8Ml+Rc+QPMDDRuxS9YAijXvcZu/cA2gWDPbiM1weZ5nxLYA7W43Nc0MIwbo0HZTMwGK4xmAfunsx7kTjw5nzwVoMaAXfyy8D9Dfa6YD2howGqPWAFoS6HjPXJ4PBShaF2jUiEWAohWBht3CjwQoWhFoa9SjRgQoWhHoqa8vzgYoWhFoy4hF9xC3P+/XPNi6QPcNe7y47T2ALnkK2wIUvQfQlhGLAL0iQBGgCFD0MqBlehHQ+wUoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUAQoAhQBigBFgCJAEaAIUPQPk4l+X2iRXJkAAAAASUVORK5CYII=" /><img src="data:image/png;base64,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" /><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAElklEQVR4nO3ajW6cOhQA4eX9X7pS/jC72GPjYwx0RqoUJeZc+2uWbch9LVbsNXsDV08gSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggKBjodZtmAcWOG5dA0JOA6l8OLUPDF04Z93dTix77DKD0lhqN9ACgjneemunhC08fJxCNEmh/wq9DHiiC6q5AiUQOKOa76Y5AP29Whd6XnLHRywCVabJkwzcqUNTC0eMEoisFgisFgisFgisFgitP9bkh0M/1Owbff+Js2jZ6JlDF0UKAagyfA7TP8zSgigPuIXA8pW2jHQu7xgkE4wTaH5c+4spsvLSkHqgw5WMvexutPlF3ybh0g5mjwZJKoPKUj700nnsMULrBV/NzsEaj8pTlfckFgA6f9ZwEggSCBIIEggSCBIIEguYDfRk1PLk4bUny88ZsoKXl2ddpS46cW6D6E0XU84PnSV0AaDYBJBD0MKCKW07zRIFg4qOAonkeCBSdQNB8oNZn0kO74jPpDVL6ccVxklvyx8efn66a+LaXxnOPA/re1vrRTKAl+d5pPPdIoOTT9aWLfy3eng40zus79+WA3rF2gBpn9J37wkDL5tfFR4l6z30O0JJ9L8vgrd8764DCvSf/V9B97rOAvr6YdSjy/L0T5R/z7Osf3uihhQHjBDrwEisUcg/qPrc36WMnOppv88fGNaIA0GP+objur4nnf/lRI93gbKAtVtO5hwBV735GFwCaTQAJBD0MqPGWUzVRIJj4KKBongcCRScQNB/oskSX/LVPuj++345dcuTcAtWfKCJ4iVW8+EYuucpLDLc/N4EggSCBIIEggSCBIIGg+UBL8og9fdy+3SYvqTnsK/3/67L/fE+XNJ572m81KpbUAOGUj700nnsc0ObTmY2Xl1QClae0bbRjYdc4gWCcQDSO9x3ic1+g7y8Wt5wu2RwQn+3khhze6KGFAeN42zFAVf+h4lePLDxn3P7raP+z52z0MkB7CNz4jQoUtXD0OIHoSoHgSoHgSoHgSoHgSoHwWnxs9r7kjI1eCOjr+vXkue+XfpymjV4MaFmfiuZfUN06y52B1lGBd5yd6eELTx8nEI0SiKdtfzMUOjp84ZRxUe9ZO3PDF04ZNy6BIIEggaBpQLdpEtDzEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBII+gcd6Rj13On4FgAAAABJRU5ErkJggg==" /><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAACVBMVEUAAAC+vr7////xRzILAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAD+UlEQVR4nO3c227bMBAAUUv//9FFEsBSbYnDy1KkhJmnAGW3ywOnQOXUr9WSvUYvMHsCQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQcFAr9s0Cih2XL8Egh4EtCxL/NDnAC1/RY99BtCyFf46egDQ8l3ccIEogaDbAm0Op0AhVDcF2kucAAW9mu4IdCACXbHoNEDlPE1EAkUtKlDUwd7jBIIEggSCBIIEyukKmsJFrwTiq8UA5RjOB/T30Ot375PVtxNZQDzl7Eh60dqDTeMyXgEFNudTMo6kF2042DROIBgn0PG493bne6eOZAPtv6AjpffuB7Rf8GRvOJIJBEM+jpTeuw9Q3W279d8bSBMADYPISyBIIEggSCBIIEggSCBoPNBa+ujiqnbPP0YDrVO+jmruLVD+jSJ6zWqzNQHQaAJIIEggSCBIIEggSCBoPNDcQoX3HvauxqUguy9L793zfbFtp4E+y8cqpfce9s7qtUD19xao7ka1CVQ7rumG4TwTAv1UzVP9WwPuLVDLjcrr8S3WVPO9/Uu67ka1CVQ3TqCjcbv9RgPtVim9t/9Yzb9RRDd43DHB86DRApBAkECQQJBAkECQQNB4oKmJSu/tD1Dl3ygigfLGjZZINAPQaANIIEggSCBIIEggSCBIIGg80Pr1ESNHa378b+36+/KEg49VGQ20+sECOeOu+miK95TzI59vIM4B9O78aqkj+UCpIUWLNhxsGicQjeO1I3yOphQuWn8wYFx65d2JKpvvKdWLVh0MGHcV0MHPKpQtWnWw/7gCnWVJfoJb5KLTAJXx5LyOYhYVKOpg73ECQQJBAkECQQJBAmEX8twTaC1+yHbFonMBrenPZd1+ofmPuS/Qu9hvqc8EggSCHgC07t88+n7q3tgzgNach2x1PQaoVwJBAkECQcOAbtMgoOclECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBD0DwhmWRwz+3wHAAAAAElFTkSuQmCC" /></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
