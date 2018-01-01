@@ -1,0 +1,18 @@
+Package: IFSZuzanna
+Title: IFS Fractals
+Version: 1.0
+Authors@R: person("Zuzanna", "Baran", email = "zuzanna.baran1994@gmail.com", role = c("aut", "cre"))
+Description: 
+  Package for drawings fractals. Create your own fractal with createIFS function and plot it with color you want with plot function for returned object.
+Depends: R (>= 3.4.2)
+Imports: graphics
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat, knitr, rmarkdown
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2018-01-01 17:54:04 UTC; Zuzia
+Author: Zuzanna Baran [aut, cre]
+Maintainer: Zuzanna Baran <zuzanna.baran1994@gmail.com>
