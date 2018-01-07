@@ -6,5 +6,6 @@
 \title{tree fractal}
 \description{
 Specification of tree fractal which can be plotted using plot function.
+\href{https://en.wikipedia.org/wiki/Koch_snowflake}{Wikipedia}
 }
 \keyword{datasets}
