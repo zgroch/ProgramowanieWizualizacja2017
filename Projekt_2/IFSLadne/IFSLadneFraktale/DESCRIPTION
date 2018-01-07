@@ -1,0 +1,16 @@
+Package: IFSLadneFraktale
+Type: Package
+Title: Package for drawing different types of fractals
+Version: 0.1.0
+Author: Ilona Grabowicz [aut], Ewelina Bednarz [aut]
+Maintainer: Ilona Grabowicz <ilona.grabowicz@gmail.com>
+Imports: stats, graphics, plotly
+Description: This package creates an oject of class IFS and then a plot() function is using that object to draw a fractal.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: rmarkdown
