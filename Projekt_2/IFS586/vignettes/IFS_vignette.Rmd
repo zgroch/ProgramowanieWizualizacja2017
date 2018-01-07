@@ -54,7 +54,7 @@ trianp <- c(0.3333, 0.3333, 0.3334)
 sierpinski_triangle <- createIFS(trian1, trian2, trian3, prob_vec=trianp)
 ```
 The you can use overloaded function plot:
-```{r sierpisnki}
+```{r sierpisnki, fig.height=4.75, fig.width=5.75}
 plot(sierpinski_triangle, n=15)
 
 ```
@@ -62,33 +62,33 @@ plot(sierpinski_triangle, n=15)
 ### Non-linear sierpinski triangle
 On our examples we save contraction fucntions (see `trian1_nl`) for non-linear sierpinski triangle. 
 
-```{r sierpinski_nl}
+```{r sierpinski_nl, fig.height=4.75, fig.width=5.75}
 plot(sierpinski_triangle_nonlinear, n=15)
 ```
 
 ### More Examples
 
 Dragon curve with two contraction fucntions:
-```{r dragon}
-plot(dragon, n=20)
+```{r dragon, fig.height=4.75, fig.width=5.75}
+plot(dragon, n=18)
 
 ```
 
 
 Fem fractal:
-```{r fem}
-plot(fem, n=20)
+```{r fem, fig.height=4.75, fig.width=5.75}
+plot(fem, n=18)
 
 ```
 
 Pentagon fractal:
-```{r pentagon}
+```{r pentagon, fig.height=4.75, fig.width=5.75}
 plot(pentagon, n = 15)
 ```
 
 
 Last example:
-```{r christmas_tree}
+```{r christmas_tree, fig.height=4.75, fig.width=5.75}
 plot(christmas_tree, n = 15)
 ```
 
