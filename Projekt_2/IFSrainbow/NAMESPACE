@@ -1,0 +1,5 @@
+export(createIFS, createIFSgif)
+S3method(plot, IFS)
+S3method(`+`, IFS)
+importFrom(magrittr, "%>%")
+

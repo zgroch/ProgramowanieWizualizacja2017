@@ -1,0 +1,21 @@
+Package: IFSrainbow
+Type: Package
+Title: Plotting an GIFfing of Iterated Functions System Fractals
+Version: 0.1.0
+Authors@R: as.person(c(
+    "Jacek Maksymiuk <jm332326@students.mimuw.edu.pl> [cre]",
+    "Jacek Maksymiuk <jm332326@students.mimuw.edu.pl> [aut]",
+    "Lukasz Rajkowski <l.m.rajkowski@gmail.com> [aut]"
+    ))
+Description: This packages allows to plot nice, colorful pictures of IFS fractals
+    and generate GIFs presenting consecutive approximations of the given fractal.
+License: GPL-3
+Imports:
+    dplyr, 
+    magrittr,
+    ggplot2, 
+    caTools
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: testthat
