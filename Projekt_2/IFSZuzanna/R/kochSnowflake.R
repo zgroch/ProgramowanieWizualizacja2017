@@ -1,4 +1,3 @@
-## ---- fig.show='hold', results='hide'------------------------------------
 koch_f1 <- function(point) {
   x<- point[1]
   y<- point[2]
@@ -41,23 +40,17 @@ koch_f7 <- function(point) {
   c(1/3 * x + 1/sqrt(3), 1/3 * y - 1/3)
 }
 
-## ---- fig.show='hold', results='hide', message = FALSE, warning = FALSE----
-library(IFSZuzanna)
+#' kochSnowflake fractal
+#'
+#' Specification of koch snow flake fractal which can be plotted using plot function.
+#' \href{https://en.wikipedia.org/wiki/Koch_snowflake}{Wikipedia}
+#'
+#' @docType data
+#' @keywords datasets
+#' @name kochSnowflake
+#'
+NULL
 
 kochSnowflake <- createIFS(list(koch_f1, koch_f2, koch_f3, koch_f4, koch_f5, koch_f6, koch_f7))
-
-## ---- fig.show='hold'----------------------------------------------------
-plot(kochSnowflake, 2, 'blue')
-plot(kochSnowflake, 3, 'red')
-plot(kochSnowflake, 4)
-plot(kochSnowflake, 5, 'grey')
-
-
-## ---- fig.show='hold'----------------------------------------------------
-library(IFSZuzanna)
-plot(sierpinskiTriangle, 7, 'pink')
-plot(sierpinskiCarpet, 4, 'green')
-plot(tree, 5, 'green')
-plot(kochSnowflake, 6, 'grey')
 
 

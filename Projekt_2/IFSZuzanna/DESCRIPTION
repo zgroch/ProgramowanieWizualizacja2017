@@ -13,6 +13,6 @@ Suggests: testthat, knitr, rmarkdown
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2017-12-22 07:32:49 UTC; Zuzia
+Packaged: 2018-01-01 17:54:04 UTC; Zuzia
 Author: Zuzanna Baran [aut, cre]
 Maintainer: Zuzanna Baran <zuzanna.baran1994@gmail.com>
