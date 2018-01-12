@@ -27,7 +27,7 @@ Plan spotkań MIM UW:
 
 ### Wizualizacja
 
-* 2017-01-12 W: [Gramatyka grafiki A](http://biecek.pl/Eseje/indexGramatyka.html), L: 
+* 2017-01-12 W: [Gramatyka grafiki A](http://biecek.pl/Eseje/indexGramatyka.html), L: [Zadania ggplot2](https://github.com/pbiecek/ProgramowanieWizualizacja2017/blob/master/materialy/Lab09.Rmd)
 * 2017-01-19 W: [Gramatyka grafiki B](https://pbiecek.gitbooks.io/przewodnik/content/Wizualizacja/jak_tworzyc_wykresy_ggplot2.html), L: 
 * 2018-01-26 W: Grafika interaktywna - rCharts, L: Projekt 3/1
 * 2018-xx-xx W: Projekt 3/2, L: 
