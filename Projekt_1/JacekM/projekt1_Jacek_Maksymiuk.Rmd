@@ -1,0 +1,167 @@
+---
+title: "The dependence of ease of solving tasks on the number of them at school - selected fields."
+author: "Jacek Maksymiuk"
+output:
+  pdf_document: 
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+  
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(knitr)
+library(fmsb)
+library(ggplot2)
+
+##musimy posiadaæ powy¿sze pakunki i mieæ w tym samym miejscu plik z danymi
+load("./student2012.rda")
+
+##deklaracja slowników
+dict_confident = function(){
+  slownik <- matrix(0:7,4,2)
+  slownik[1,2] <- "Not at all confident"
+  slownik[2,2] <- "Not very confident"
+  slownik[3,2] <- "Confident"
+  slownik[4,2] <- "Very confident"
+  colnames(slownik)[c(1:2)] <- cbind("wartosc","nazwa")
+  return(slownik)
+}
+
+dict_frequency = function(){
+  slownik <- matrix(0:7,4,2)
+  slownik[1,2] <- "Never"
+  slownik[2,2] <- "Rarely"
+  slownik[3,2] <- "Sometimes"
+  slownik[4,2] <- "Frequently"
+  colnames(slownik)[c(1:2)] <- cbind("wartosc","nazwa")
+  return(slownik)
+}
+ 
+##wybór wybranych kolumn z interesuj¹cymi nas pytaniami
+data_PISA = function(dane,pytania,kraj,pytanie1,pytanie2,pytanie3,pytanie4,pytanie5,pytanie6){
+  tmp <- dane %>%
+    select(CNT,pytanie1,pytanie2,pytanie3,pytanie4,pytanie5,pytanie6,ST04Q01) %>%
+    filter(CNT == kraj,!is.na(pytanie1),!is.na(pytanie2),!is.na(pytanie3),!is.na(pytanie4),!is.na(pytanie5),!is.na(pytanie6))
+  colnames(tmp)[c(1:8)] <- pytania
+  return(tmp)
+}
+
+##zamiana odpowiedzi na wartoœci wed³ug s³owników
+exchange_on_value = function(dane,slownik){
+  tmp <- dane
+  for(i in 1:6){
+    tmp <- tmp %>%
+      merge(slownik, by.x = pytania[i+1], by.y = "nazwa", all = FALSE) %>%
+      select(pytania[1:i],pytania[(i+2):8],wartosc)
+    colnames(tmp)[8] <- pytania[i+1]
+  }
+  return(tmp)
+}
+
+##wynikowe dane
+final_table = function(dane){
+  wynik <- dane %>%
+  select(-plec) %>%
+  mutate(
+    Percentages_in_practice = as.numeric(percentages_in_practice)-1,
+    Surface_calculation = as.numeric(surface_calculation)-1,
+    Meaning_of_tables = as.numeric(meaning_of_tables)-1,
+    Scale_on_a_map = as.numeric(scale_on_a_map)-1,
+    Linear_equations = as.numeric(linear_equations)-1,
+    Square_equations = as.numeric(square_equations)-1) %>%
+  select(country,
+         Percentages_in_practice,
+         Surface_calculation,
+         Meaning_of_tables,
+         Scale_on_a_map,
+         Linear_equations,
+         Square_equations) %>% 
+  group_by(country) %>%
+  summarise(
+    percentages_in_practice = mean(Percentages_in_practice),
+    surface_calculation = mean(Surface_calculation),
+    meaning_of_tables = mean(Meaning_of_tables),
+    scale_on_a_map = mean(Scale_on_a_map),
+    linear_equations = mean(Linear_equations),
+    square_equations = mean(Square_equations)
+  )
+}
+
+##rysowanie wykresu dla danego kraju
+plot = function(dane1,dane2,kraj){
+  tmp1 <- cbind("ease_in_solving_tasks",pytania[2:7],t(as.vector(dane1))[2:7])
+  tmp1 <- as.data.frame(tmp1)
+  colnames(tmp1)[1:3] <- c("Legend","category","mean")
+  
+  tmp2 <- cbind("amount_of_schooling",pytania[2:7],t(as.vector(dane2))[2:7])
+  tmp2 <- as.data.frame(tmp2)
+  colnames(tmp2)[1:3] <- c("Legend","category","mean")
+  
+  tmp <- rbind(tmp1,tmp2)
+  tmp$mean = as.numeric(levels(tmp$mean))[tmp$mean]
+  
+  plot <- ggplot(tmp, aes(category, mean, fill = Legend)) + 
+    geom_bar(stat="identity", position = "dodge") + 
+    scale_fill_brewer(palette = "Set1") +
+    ggtitle(kraj) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_y_continuous(limits=c(0, 3), breaks=seq(0,3,by=0.5))
+}
+```
+
+```{r echo=FALSE, message=FALSE, warning = FALSE, results= 'asis'}
+cat("\\newpage")
+
+cat("\n#",toupper("Introduction"),"\n")
+cat("Following report (submission) presents how long it takes for 15- years old students to study specified sections of math science in school and how students feel about these sections. The whole raport (submission) is divided into 65 parts, depends on the country. Data were collected for PISA report in year 2012.
+
+Metodology:
+Following report (submission) gives an answer for two questions:
+1)How confident do you feel about having to do the following mathematics tasks?
+2)How often have you encountered the following types of mathematics tasks during your time at school?
+
+For the first one, students could choose from:
+'Very confident', 'Confident', 'Not very confident', 'Not at all confident'.
+
+For the second one, students could choose from:
+'Freqently', 'Sometimes', 'Rarely', 'Never'.
+
+Next, for answer students schould put a note, from 3 to 0.
+The result is the mean value for each country and for each questions")
+cat("\n\\newpage\n")
+
+
+kraje <- unique(student2012$CNT)
+
+for(kraj in kraje){
+  
+pytania <- c("country","percentages_in_practice","surface_calculation","meaning_of_tables","scale_on_a_map","linear_equations","square_equations","plec")
+slownik_c <- dict_confident()
+slownik_f <- dict_frequency()
+
+pytania_ST37 <- data_PISA(student2012,pytania,kraj,"ST37Q02","ST37Q03","ST37Q04","ST37Q06","ST37Q05","ST37Q07")
+pytania_ST37 <- exchange_on_value(pytania_ST37,slownik_c)
+pytania_ST37 <- final_table(pytania_ST37)
+
+pytania_ST61 <- data_PISA(student2012,pytania,kraj,"ST61Q02","ST61Q03","ST61Q04","ST61Q06","ST61Q09","ST61Q07")
+pytania_ST61 <- exchange_on_value(pytania_ST61,slownik_f)
+pytania_ST61 <- final_table(pytania_ST61)
+
+cat("\n#",toupper(kraj),"\n")
+
+w <- plot(pytania_ST37,pytania_ST61,kraj)
+print(w)
+
+cat("The bar chart presents how long it takes for 15- years old students to study specified sections of math science in school (blue bars) and how students feel about these sections (red bars).")
+
+cat("\n\\newpage\n")
+
+}
+```
