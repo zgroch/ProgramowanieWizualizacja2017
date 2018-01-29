@@ -1,0 +1,20 @@
+Package: IFSpakietJKM
+Title: Plotting fractals
+Version: 0.0.0.9000
+Authors@R: c(person("Katarzyna", "Piskala", email = "katarzynapiskala1@gmail.com", role = c("aut", "cre")),
+ person("Maja", "Szlenk", email = "szlenk.maja@gmail.com", role = "aut"),
+ person("Jakub", "Sztachelski", email = "sztachelskijakub@gmail.com", role = "aut"))
+Description: The IFSpakietJKM package allows to create an object of class IFS (iterated function system)
+ and then plot it with a generic function plot. It has also graphic options for more colorful fractals.
+Depends: R (>= 3.4.2)
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
+Suggests: testthat,
+    knitr,
+    rmarkdown
+Imports: grDevices,
+    graphics,
+    stats
+VignetteBuilder: knitr

@@ -36,6 +36,7 @@ tree_f7<- function(point) {
 #' tree fractal
 #'
 #' Specification of tree fractal which can be plotted using plot function.
+#' \href{https://en.wikipedia.org/wiki/Koch_snowflake}{Wikipedia}
 #'
 #' @docType data
 #' @keywords datasets
