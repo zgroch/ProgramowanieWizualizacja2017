@@ -1,0 +1,7 @@
+            cnt  results       question
+114102 Colombia 485.6753          Agree
+114103 Colombia 328.8752       Disagree
+114104 Colombia 238.5964          Agree
+114105 Colombia 385.1145          Agree
+114106 Colombia 317.3469 Strongly agree
+114108 Colombia 309.4797       Disagree

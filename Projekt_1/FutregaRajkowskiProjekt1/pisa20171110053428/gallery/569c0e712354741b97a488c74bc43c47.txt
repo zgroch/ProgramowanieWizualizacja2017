@@ -1,0 +1,7 @@
+           cnt  results question
+412473 Romania 445.7158 Disagree
+412474 Romania 385.0366    Agree
+412476 Romania 428.1119 Disagree
+412477 Romania 432.7076 Disagree
+412478 Romania 361.5127 Disagree
+412479 Romania 438.7054    Agree

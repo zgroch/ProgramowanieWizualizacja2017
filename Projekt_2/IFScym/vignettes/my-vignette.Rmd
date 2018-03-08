@@ -1,0 +1,51 @@
+---
+title: "Projekt zaliczeniowy"
+author: "Radosław Cymer"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Projekt zaliczeniowy}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Co paczka zawiera
+
+1. Konstruktor S3 `createIFS`
+1. Metodę klasy, która rozszerza wbudowaną funkcję `plot()`
+1. Kilka przykładowych zestawów funkcji do rysowania (e.g. Sierpinski)
+1. Kilka przykładowych obrazków, które reprezentują to co zostanie wyplotowane (kolory i wow wow)
+
+## Co robi
+
+Po stworzeniu obiektu typu `IFS` z argumentem konstruktora będącym wektorem/listą funkcji, można plocić.
+Plocimy podając:  
+
+1. liczbę iteracji, która ma zostać wykonana  
+1. ew. rozdzielczość do której wyliczone punkty mają zostać dopasowane  
+1. ew. kolor, w którym chcemy mieć narysowane kropki (domyślnie jest czarny)  
+
+Plot jest rastrowym obrazkiem punktów.  
+Kwadrat dookoła jest integralnym elementem końcowego obrazka oraz istnym dziełem sztuki, a nie po prostu obrazem mojego zrezygnowania w grzebaniu pośród opcji funkcji "plot".  
+
+<!-- ## Przykładowy Sierpinski -->
+
+<!-- ```{r, message=F, warning=F} -->
+<!-- library(IFSkoolnamr) -->
+<!-- discard <- plot(IFSkoolnamr::createIFS(IFSkoolnamr::sierpinski), k = 11, KOL="black") -->
+<!-- discard <- plot(IFSkoolnamr::createIFS(IFSkoolnamr::koch), k = 7, KOL="blue") -->
+<!-- ``` -->
+
+## Na co uważać?
+
+Zamieściłem w przykładowych funkcjach przetestowane granice na wartości k. Przy zbyt dużym k komputery maja tendencję do umierania.
+
+> "R sucks."
+([via](https://www.google.pl/search?q=r+sucks&oq=r+sucks))

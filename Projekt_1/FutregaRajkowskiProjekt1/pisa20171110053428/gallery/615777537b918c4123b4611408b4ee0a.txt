@@ -1,0 +1,7 @@
+                  cnt  results            question
+443016 Chinese Taipei 612.8758    (Strongly) Agree
+443017 Chinese Taipei 634.2966    (Strongly) Agree
+443018 Chinese Taipei 566.6069    (Strongly) Agree
+443020 Chinese Taipei 686.7191    (Strongly) Agree
+443021 Chinese Taipei 688.5107    (Strongly) Agree
+443023 Chinese Taipei 657.5869 (Strongly) Disagree

@@ -1,0 +1,7 @@
+         cnt  results          question
+290861 Korea 657.6647             Agree
+290863 Korea 610.8506 Strongly disagree
+290864 Korea 502.7341          Disagree
+290865 Korea 538.5652 Strongly disagree
+290866 Korea 619.3410 Strongly disagree
+290869 Korea 371.7947 Strongly disagree

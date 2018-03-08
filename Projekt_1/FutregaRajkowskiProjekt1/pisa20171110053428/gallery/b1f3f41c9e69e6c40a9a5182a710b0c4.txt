@@ -1,0 +1,7 @@
+                            cnt  results          question
+475554 United States of America 364.7063          Disagree
+475555 United States of America 416.0383          Disagree
+475556 United States of America 410.0405             Agree
+475558 United States of America 289.8504          Disagree
+475559 United States of America 383.4008          Disagree
+475562 United States of America 398.2785 Strongly disagree

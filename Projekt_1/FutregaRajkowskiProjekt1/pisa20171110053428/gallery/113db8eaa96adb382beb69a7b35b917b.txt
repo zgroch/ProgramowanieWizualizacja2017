@@ -1,0 +1,7 @@
+          cnt  results            question
+184505 France 578.9921    (Strongly) Agree
+184506 France 479.2881 (Strongly) Disagree
+184507 France 600.4128    (Strongly) Agree
+184508 France 494.0100 (Strongly) Disagree
+184510 France 633.5956    (Strongly) Agree
+184511 France 492.4521 (Strongly) Disagree

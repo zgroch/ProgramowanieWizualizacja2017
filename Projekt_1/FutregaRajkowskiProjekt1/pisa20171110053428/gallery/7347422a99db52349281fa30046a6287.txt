@@ -1,0 +1,7 @@
+              cnt  results            question
+123173 Costa Rica 450.5453 (Strongly) Disagree
+123177 Costa Rica 389.8660 (Strongly) Disagree
+123178 Costa Rica 429.5918    (Strongly) Agree
+123179 Costa Rica 358.5527 (Strongly) Disagree
+123181 Costa Rica 484.9743 (Strongly) Disagree
+123185 Costa Rica 392.7481 (Strongly) Disagree

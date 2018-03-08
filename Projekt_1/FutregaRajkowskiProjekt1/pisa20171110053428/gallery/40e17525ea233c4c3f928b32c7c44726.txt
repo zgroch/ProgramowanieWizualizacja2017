@@ -1,0 +1,7 @@
+           cnt  results          question
+216580 Hungary 607.8906          Disagree
+216581 Hungary 685.0055          Disagree
+216582 Hungary 610.9285    Strongly agree
+216584 Hungary 587.7162 Strongly disagree
+216585 Hungary 666.9341             Agree
+216587 Hungary 670.9067 Strongly disagree

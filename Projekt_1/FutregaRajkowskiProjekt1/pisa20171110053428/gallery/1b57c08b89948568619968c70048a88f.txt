@@ -1,0 +1,7 @@
+                   cnt  results            question
+206902 Hong Kong-China 513.4834    (Strongly) Agree
+206903 Hong Kong-China 496.6584    (Strongly) Agree
+206904 Hong Kong-China 288.6041    (Strongly) Agree
+206905 Hong Kong-China 484.3511    (Strongly) Agree
+206906 Hong Kong-China 536.2284    (Strongly) Agree
+206908 Hong Kong-China 360.5780 (Strongly) Disagree

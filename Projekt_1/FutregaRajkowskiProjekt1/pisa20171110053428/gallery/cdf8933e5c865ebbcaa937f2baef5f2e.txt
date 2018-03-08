@@ -1,0 +1,7 @@
+          cnt  results            question
+36633 Austria 543.2388 (Strongly) Disagree
+36634 Austria 634.6861    (Strongly) Agree
+36636 Austria 506.0056 (Strongly) Disagree
+36637 Austria 409.1058 (Strongly) Disagree
+36640 Austria 537.5526 (Strongly) Disagree
+36641 Austria 487.3111 (Strongly) Disagree

@@ -1,0 +1,7 @@
+         cnt  results          question
+240592 Italy 484.8185             Agree
+240593 Italy 588.3393             Agree
+240594 Italy 431.4613 Strongly disagree
+240596 Italy 525.4012             Agree
+240599 Italy 538.8768 Strongly disagree
+240600 Italy 539.1105          Disagree

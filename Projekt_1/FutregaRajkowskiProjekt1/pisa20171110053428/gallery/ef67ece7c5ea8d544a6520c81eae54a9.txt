@@ -1,0 +1,7 @@
+            cnt  results            question
+354254 Malaysia 440.3412 (Strongly) Disagree
+354255 Malaysia 366.5758    (Strongly) Agree
+354256 Malaysia 390.4113    (Strongly) Agree
+354260 Malaysia 391.9692 (Strongly) Disagree
+354261 Malaysia 357.1506    (Strongly) Agree
+354262 Malaysia 396.7207    (Strongly) Agree

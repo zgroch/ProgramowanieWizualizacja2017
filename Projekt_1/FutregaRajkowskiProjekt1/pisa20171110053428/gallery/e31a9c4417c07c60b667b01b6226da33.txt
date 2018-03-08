@@ -1,0 +1,7 @@
+         cnt  results            question
+107244 Chile 399.9143 (Strongly) Disagree
+107246 Chile 434.3434    (Strongly) Agree
+107247 Chile 444.4695    (Strongly) Agree
+107248 Chile 589.0403    (Strongly) Agree
+107250 Chile 379.6619 (Strongly) Disagree
+107251 Chile 307.5323 (Strongly) Disagree

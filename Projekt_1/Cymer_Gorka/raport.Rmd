@@ -1,0 +1,132 @@
+---
+title: "Raport"
+author: "Szymon Górka, Radosław Cymer"
+abstract: "The analysis is based on PISA 2012 survey. In this report, we study how teenagers deal with broken technology (mobile phones). We observe differences between countries and check if there are any differences between gender within countries. We presented answers for a given problem to show how teenagers faces problems and which solutions are chosen most often."
+
+output:
+  pdf_document:
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+
+library(PISA2012lite)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+#library(gridExtra)
+library(scales)
+library(grid)
+library(ggpubr)
+
+
+```
+
+
+
+
+```{r, echo=FALSE,message=FALSE, warning=FALSE, results='asis'}
+# functions
+
+
+extract_data_by_country_Q38 <- function(pisa_data, country) {
+  pisa_data %>% 
+    select(CNT, ST04Q01,ST96Q01:ST96Q05) %>% 
+    filter(CNT == country) %>% 
+    rename(gender = ST04Q01)
+}
+
+get_frequencies_Q38 <- function(data) {
+  data %>% 
+    filter(!is.na(ST96Q01),!is.na(ST96Q02), !is.na(ST96Q03), !is.na(ST96Q05)) %>% 
+    gather("question", "level", ST96Q01:ST96Q05) %>% 
+    group_by(gender, question, level ) %>% 
+    summarise (n = n()) %>% 
+    mutate(freq = n / sum(n)) %>% 
+    select(-n) 
+}
+  
+plot_bar_gender__Q38 <- function(data, q, title = NULL) {  
+  a <- data %>% 
+    filter(question==q)
+  
+ if(is.null(title)) {
+    title = q
+ }
+    plot <- ggplot(a, aes(x=gender,y= freq,fill=factor(level, levels=c("definitely do this","probably do this",
+                                                                     "probably not do this" ,"definitely not do this")))) + 
+    geom_bar(stat = "identity") + 
+    scale_fill_manual(name = "Would you...",values=c("olivedrab", "olivedrab3", "firebrick2","red4")) + ggtitle(unique(data$question)) +
+    geom_text(aes(label=paste0(sprintf("%.0f", freq*100),"%")),position=position_stack(vjust=0.5)) + 
+    scale_y_continuous(labels = percent_format(),expand = c(0, 0))  + theme(legend.title=element_text(size=9)) + 
+    ggtitle(title) + theme_bw() + 
+      theme(legend.position="none",panel.border = element_blank(), panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+  return(plot)
+}
+
+plot_bar_Q38 <- function(data) {
+  
+  data_tmp <- data %>% 
+    filter(!is.na(ST96Q01),!is.na(ST96Q02), !is.na(ST96Q03), !is.na(ST96Q05)) %>% 
+    gather("question", "level", ST96Q01:ST96Q05) %>% 
+    group_by(question, level ) %>% 
+    summarise (n = n()) %>% 
+    mutate(freq = n / sum(n)) %>% 
+    select(-n)
+  
+  p <- ggplot(data_tmp, aes(x=question,y=freq, fill=factor(level))) +
+    geom_bar(stat = "identity", position="stack") + ggtitle("Responses to question 38") +
+    scale_fill_manual(name = "Would you... ",values=c("olivedrab", "olivedrab3", "firebrick2","red4")) +
+    geom_text(aes(label=paste0(sprintf("%.0f", freq*100),"%")),position=position_stack(vjust=0.5))  +
+    scale_y_continuous(labels = percent_format(),expand = c(0, 0)) +
+    theme_bw() + 
+    theme(legend.position="none",panel.border = element_blank(), panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) + 
+    scale_x_discrete(labels = c('A','B','C','D'))
+  return(p)
+}
+
+#===========================
+
+
+pisa <- PISA2012lite::student2012
+countries <- unique(pisa$CNT)
+plots <- list()
+i <-  1
+for (country in countries) {
+  cat("\n#", country, "\n", sep="") 
+  
+  data <- extract_data_by_country_Q38(pisa,country) 
+  freq <- get_frequencies_Q38(data)
+ 
+  plot <- plot_bar_Q38(data)
+  
+  a <- plot_bar_gender__Q38(freq,"ST96Q01",'A')
+  b <- plot_bar_gender__Q38(freq,"ST96Q02",'B')
+  c <- plot_bar_gender__Q38(freq,"ST96Q03",'C')
+  d <- plot_bar_gender__Q38(freq,"ST96Q05",'D')
+
+  text <- paste("","Suppose that you have been sending text messages from your mobile phone for several weeks. Today, however, you can’t send text messages. You want to try to solve the problem.",
+  "What would you do?",
+  "A = I press every button possible to find out what is wrong.",
+  "B = I think about what might have caused the problem and what I can do to solve it.",
+  "C = I read the manual.",
+  "D = I ask a friend for help.", sep="\n")
+  
+  text.p <- ggparagraph(text = text, size = 9, color = "black")
+  p1 <- ggarrange(plot, text.p,
+                ncol = 2, nrow = 1)
+  p2 <- ggarrange(a,b,c,d,
+                ncol = 4, nrow = 1, common.legend = TRUE) 
+  p2 <- annotate_figure(p2, top = text_grob("Responses to question 38 by gender"))
+  #print(ggarrange(p1,p2, ncol = 1, nrow = 1))
+  print(p1)
+  print(p2)
+  i <<- i + 1
+  cat("  \n")
+}
+
+```

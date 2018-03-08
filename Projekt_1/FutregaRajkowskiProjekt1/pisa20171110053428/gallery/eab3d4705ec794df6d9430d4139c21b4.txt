@@ -1,0 +1,7 @@
+              cnt  results            question
+285056 Kazakhstan 470.6418    (Strongly) Agree
+285057 Kazakhstan 300.2103    (Strongly) Agree
+285059 Kazakhstan 369.5358    (Strongly) Agree
+285062 Kazakhstan 323.5784    (Strongly) Agree
+285063 Kazakhstan 421.6467    (Strongly) Agree
+285064 Kazakhstan 409.1837 (Strongly) Disagree

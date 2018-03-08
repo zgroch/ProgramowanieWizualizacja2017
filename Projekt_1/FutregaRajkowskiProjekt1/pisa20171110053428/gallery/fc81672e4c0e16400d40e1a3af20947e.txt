@@ -1,0 +1,7 @@
+            cnt  results            question
+16244 Argentina 441.8212    (Strongly) Agree
+16246 Argentina 525.3233 (Strongly) Disagree
+16250 Argentina 580.4720 (Strongly) Disagree
+16253 Argentina 435.0444 (Strongly) Disagree
+16255 Argentina 532.1779 (Strongly) Disagree
+16256 Argentina 498.1383    (Strongly) Agree

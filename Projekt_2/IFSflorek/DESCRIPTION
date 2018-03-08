@@ -1,0 +1,19 @@
+Package: IFSflorek
+Title: Create IFS Fractals
+Version: 1.0
+Authors@R: c(person("Magda", "Lipiec", role = c("cre", "aut"),
+                     email = "magdalena.anna.lipiec@gmail.com"),
+              person("Ania", "Macioszek", role = "aut",
+                     email = "a.macioszek@mimuw.edu.pl"))
+Description: Create and plot fractals using Iterated Function Systems.
+Depends: R (>= 3.4.2)
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown,
+    testthat,
+    RColorBrewer
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1.9000
+Imports: ggplot2

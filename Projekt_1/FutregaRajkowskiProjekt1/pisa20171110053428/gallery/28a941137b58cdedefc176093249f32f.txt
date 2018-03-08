@@ -1,0 +1,7 @@
+      cnt  results question
+1 Albania 406.8469    Agree
+2 Albania 486.1427 Disagree
+3 Albania 533.2684    Agree
+5 Albania 381.9209 Disagree
+8 Albania 576.5773    Agree
+9 Albania 434.1097    Agree

@@ -1,0 +1,7 @@
+             cnt  results         question
+221390 Indonesia 407.5479 (Strongly) Agree
+221392 Indonesia 385.1924 (Strongly) Agree
+221394 Indonesia 528.9843 (Strongly) Agree
+221395 Indonesia 388.2303 (Strongly) Agree
+221396 Indonesia 482.3259 (Strongly) Agree
+221397 Indonesia 263.6781 (Strongly) Agree

@@ -1,0 +1,43 @@
+knitr::opts_chunk$set(echo = TRUE)
+
+Do zrobienia
+
+    Zainstaluj pakiet BetaBit z CRAN
+    ```{r}
+#install.packages("BetaBit")
+library(BetaBit)
+    ```
+    Wywołaj funkcję proton() i rozwiąż zbiór problemów opisanych w tej funkcji.
+
+    Rozwiązanie (wykorzystane kody) wgraj na GitHub do katalogu Laboratorium. Plik z rozwiązaniem powinien się nazywać proton___, gdzie ___ To Twoje imię i nazwisko lub inicjały. Rozszerzenie R lub Rmd.
+
+    Jeżeli udało Ci się rozwiązać zagadke proton() szybko to gratulacje i zapraszam do rozwiązania zagadki frequon().
+```{r}
+employees %>% filter (surname=='Insecure')
+employees %>% filter (surname=='Pietraszko')
+```
+```{r}
+proton(action = "login", login="johnins")
+```
+
+
+```{r}
+for (i in top1000passwords) {proton(action = "login", login="johnins", password=i)}
+for (i in top1000passwords) {proton(action = "login", login="slap", password=i)} #nie dziala
+
+```
+
+```{r}
+logs %>% filter(login=='slap') %>% group_by(host) %>% summarise(n=n())
+# Z tego: 194.29.178.16 logowal sie najczesciej
+proton(action = "server", host="194.29.178.16")
+```
+
+```{r}
+(!grepl(' ', bash_history)) -> a
+which(a)
+bash_history[a]
+unique(bash_history[a])
+proton(action = "login", login="slap", password='DHbb7QXppuHnaXGN')
+
+```

@@ -1,0 +1,7 @@
+         cnt  results         question
+55269 Brazil 289.3831 (Strongly) Agree
+55270 Brazil 319.6059 (Strongly) Agree
+55271 Brazil 309.3239 (Strongly) Agree
+55272 Brazil 351.6981 (Strongly) Agree
+55273 Brazil 304.8060 (Strongly) Agree
+55274 Brazil 313.2965 (Strongly) Agree

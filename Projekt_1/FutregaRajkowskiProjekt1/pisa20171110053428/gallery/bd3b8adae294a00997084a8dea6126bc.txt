@@ -1,0 +1,7 @@
+           cnt  results          question
+470239 Uruguay 529.8411 Strongly disagree
+470240 Uruguay 549.3145          Disagree
+470241 Uruguay 497.2815             Agree
+470242 Uruguay 447.7411          Disagree
+470244 Uruguay 532.6453             Agree
+470246 Uruguay 497.9826             Agree
