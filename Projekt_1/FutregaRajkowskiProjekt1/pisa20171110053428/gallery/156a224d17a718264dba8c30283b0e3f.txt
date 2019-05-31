@@ -1,0 +1,7 @@
+            cnt  results            question
+432369 Slovenia 348.6602    (Strongly) Agree
+432370 Slovenia 487.4669 (Strongly) Disagree
+432372 Slovenia 353.8791 (Strongly) Disagree
+432373 Slovenia 435.5897 (Strongly) Disagree
+432375 Slovenia 366.4200 (Strongly) Disagree
+432376 Slovenia 521.3507    (Strongly) Agree

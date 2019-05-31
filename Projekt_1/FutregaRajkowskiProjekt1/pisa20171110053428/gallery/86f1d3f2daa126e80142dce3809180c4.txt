@@ -1,0 +1,7 @@
+          cnt  results          question
+36633 Austria 543.2388          Disagree
+36634 Austria 634.6861             Agree
+36636 Austria 506.0056 Strongly disagree
+36637 Austria 409.1058          Disagree
+36640 Austria 537.5526          Disagree
+36641 Austria 487.3111 Strongly disagree

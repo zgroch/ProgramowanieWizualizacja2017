@@ -1,0 +1,7 @@
+          cnt  results            question
+460075 Turkey 489.4921 (Strongly) Disagree
+460076 Turkey 493.1531    (Strongly) Agree
+460077 Turkey 459.4251    (Strongly) Agree
+460079 Turkey 541.5252 (Strongly) Disagree
+460080 Turkey 518.3128 (Strongly) Disagree
+460082 Turkey 522.0517 (Strongly) Disagree

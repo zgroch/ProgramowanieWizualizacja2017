@@ -1,0 +1,24 @@
+---
+title: "Laboratorium 7"
+author: "Tutaj wpisz swoje dane"
+date: "24/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+Poniższe zadania wykonaj najpierw w systemie klas S3 a później S4. 
+
+Celem jest opracowanie kilku funkcji dla klasy `oferty`.
+Klasa oferty w strukturze przypomina ramkę danych (data.frame) z dwoma kolumnami: przedmiot i cena.
+
+* Wykorzystaj zbiór danych `auta2012` z pakietu `PogromcyDanych` aby zbudować przykładowy obiekt klasy oferty. Wybierz wszystkie samochody Marki Kia, wybierz tylko dwie kolumny (Model i Cena) i ustaw klasę na `oferty`.
+* Przygotuj generyczną funkcję `print()` dla klasy oferty, która wyświetli pierwsze 20 wierszy dla ofert.
+* Przygotuj generyczną funkcję `summary()` dla klasy oferty, która wyświetli średnią cenę dla każdego przedmiotu.
+* Przygotuj generyczną funkcję `plot()` dla klasy oferty, która narysuje wykresem słupkowym średnią cenę dla każdego przedmiotu.
+
+

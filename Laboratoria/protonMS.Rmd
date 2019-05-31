@@ -1,0 +1,68 @@
+---
+title: "Laboratorium 5"
+author: "Tutaj wpisz swoje dane"
+date: "3/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* Zainstaluj pakiet BetaBit [z CRAN](https://cran.rstudio.com/web/packages/BetaBit/index.html)
+
+* Wywo³aj funkcjê `proton()` i rozwi¹¿ zbiór problemów opisanych w tej funkcji.
+
+* Rozwi¹zanie (wykorzystane kody) wgraj na GitHub do katalogu [Laboratorium](https://github.com/pbiecek/ProgramowanieWizualizacja2017/tree/master/Laboratoria). Plik z rozwi¹zaniem powinien siê nazywaæ `proton___`, gdzie ___ To Twoje imiê i nazwisko lub inicja³y. Rozszerzenie R lub Rmd.
+
+* Je¿eli uda³o Ci siê rozwi¹zaæ zagadke `proton()` szybko to gratulacje i zapraszam do rozwi¹zania zagadki `frequon()`.
+
+```{r}
+library(BetaBit)
+proton()
+```
+
+```{r}
+library(dplyr)
+employees %>%
+  filter(surname=="Insecure") -> JohnIns
+proton(action = "login", login = JohnIns["login"])
+```
+
+```{r}
+i <- 1
+repeat({
+  p <- top1000passwords[i]
+  if (proton(action = "login", login=JohnIns["login"], password=p)=="Success! User is logged in!"){
+    break()
+  }
+  i <- i+1
+})
+```
+```{r}
+pietraszko <- filter(employees, surname=="Pietraszko")
+login_p <- as.character(pietraszko["login"])
+logs %>%
+  filter(login == login_p) %>%
+  group_by(host) %>%
+  summarise(n=n()) %>%
+  arrange(desc(n)) -> hosts_p
+hosts_p <- as.character(hosts_p$host)
+proton(action = "server", host=hosts_p[1])
+```
+
+```{r}
+words <- unlist(strsplit(bash_history, split="[^A-Za-z0-9]+"))
+words <- unique(words)
+i <- 1
+repeat({
+  p <- words[i]
+  if (proton(action = "login", login=login_p, password=p)=="Success! User is logged in!"){
+    break()
+  }
+  i<- i+1
+})
+```
+

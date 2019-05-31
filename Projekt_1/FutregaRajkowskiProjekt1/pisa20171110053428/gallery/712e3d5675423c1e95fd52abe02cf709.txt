@@ -1,0 +1,7 @@
+            cnt  results          question
+437685 Slovenia 348.6602    Strongly agree
+437686 Slovenia 487.4669 Strongly disagree
+437688 Slovenia 353.8791          Disagree
+437689 Slovenia 435.5897 Strongly disagree
+437691 Slovenia 366.4200          Disagree
+437692 Slovenia 521.3507             Agree

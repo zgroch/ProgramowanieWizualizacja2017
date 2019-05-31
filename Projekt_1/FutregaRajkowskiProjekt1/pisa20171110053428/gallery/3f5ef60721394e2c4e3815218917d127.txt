@@ -1,0 +1,7 @@
+           cnt  results            question
+407157 Romania 445.7158 (Strongly) Disagree
+407158 Romania 385.0366    (Strongly) Agree
+407160 Romania 428.1119 (Strongly) Disagree
+407161 Romania 432.7076 (Strongly) Disagree
+407162 Romania 361.5127 (Strongly) Disagree
+407163 Romania 438.7054    (Strongly) Agree

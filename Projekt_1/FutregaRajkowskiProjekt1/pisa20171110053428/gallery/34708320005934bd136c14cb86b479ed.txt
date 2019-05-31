@@ -1,0 +1,7 @@
+          cnt  results          question
+443597 Sweden 279.0232          Disagree
+443598 Sweden 430.9160          Disagree
+443599 Sweden 324.3574    Strongly agree
+443600 Sweden 480.9238          Disagree
+443601 Sweden 212.3462          Disagree
+443602 Sweden 340.5593 Strongly disagree

@@ -1,0 +1,7 @@
+            cnt  results          question
+16244 Argentina 441.8212    Strongly agree
+16246 Argentina 525.3233 Strongly disagree
+16250 Argentina 580.4720 Strongly disagree
+16253 Argentina 435.0444          Disagree
+16255 Argentina 532.1779 Strongly disagree
+16256 Argentina 498.1383             Agree

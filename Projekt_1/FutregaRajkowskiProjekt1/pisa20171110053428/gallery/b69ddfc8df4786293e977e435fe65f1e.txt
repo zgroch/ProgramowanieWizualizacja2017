@@ -1,0 +1,7 @@
+          cnt  results            question
+363911 Norway 490.9721    (Strongly) Agree
+363912 Norway 465.9682 (Strongly) Disagree
+363914 Norway 476.8733    (Strongly) Agree
+363915 Norway 677.1382    (Strongly) Agree
+363917 Norway 456.7768 (Strongly) Disagree
+363918 Norway 584.3667 (Strongly) Disagree

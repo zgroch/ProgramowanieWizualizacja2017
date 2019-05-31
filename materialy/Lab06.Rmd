@@ -1,0 +1,20 @@
+---
+title: "Laboratorium 6"
+author: "Tutaj wpisz swoje dane"
+date: "10/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* W oparciu o zbiór danych `auta2012` z pakietu PogromcyDanych, przygotuj funkcję `szacuj`, która jako wynik zwraca średnią cenę samochodu o nazwie X i roczniku Y (X i Y to argumenty funkcji).
+* Użyj funkcji `create()` z pakietu `devtools` aby zbudować pakiet `JakaCena`
+* Dodaj do pakietu funkcję `szacuj`
+* Przygotuj dla niej dokumentację w formacie Roxygen
+* Jeżeli jest taka potrzeba, dodaj do pakietu zbiór danych ze średnimi cenami
+* Dodaj testy (przynajmniej dwa) oparte o testthat 
+* Zbuduj pakiet funkcją `build()`, zainstaluj funkcją `install()` i sprawdź czy nie ma w nim błędów funkcją `check()`

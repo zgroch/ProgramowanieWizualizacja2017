@@ -1,0 +1,29 @@
+---
+  title: "Laboratorium 1"
+author: "Katarzyna Piskała"
+date: "06/10/2017"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+1. Pobierz plik https://github.com/pbiecek/PISA2012lite/blob/master/data/student2012.rda
+2. Wybierz ciekawą zmienną (patrz opis http://www.oecd.org/pisa/pisaproducts/PISA12_StQ_FORM_A_ENG.pdf)
+3. Przygotuj raport w knitrze przedstawiający rozkład wybranej zmiennej dla różnych krajów
+4. Umieść w raporcie wykres, tabelę, kod R, krótki opis z formatowaniem.
+
+## ROBIĘ
+
+```{r}
+p <- table(student2012$ST04Q01)
+barplot(p)
+table(student2012[,1], student2012$ST04Q01)
+```
+
+Ściągawka knitra i markdowna
+
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf

@@ -1,0 +1,113 @@
+---
+title: "IFSpakietJKM"
+author: "Katarzyna Piskala, Maja Szlenk, Jakub Sztachelski"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IFSpakietJKM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+---
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      collapse = TRUE,
+                      comment = "#>")
+```
+
+```{r loading package, echo=FALSE, warning=FALSE, message=FALSE}
+library(IFSpakietJKM)
+```
+
+#Introduction 
+
+The package creates an objects of class IFS (class defined in the package) and generates plots of these objects. Class IFS is defined as a list of functions (contractions) which is used to generate fractals.
+    
+Functionality of the package will be shown in this vignette.
+
+#Our package contains some useful functions.
+
+###check_if_f(f)
+The function checks if its argument is a list of functions from $\mathbb{R}^2$ to $\mathbb{R}^2$. Otherwise it returns error. This function can be used by a user in his code but also it is used in the function createIFS described below.
+
+###createIFS(f)
+The function creates the IFS (Iterated Function System) object from its argument. An object of class IFS is the representation of a fractal. Our package allows to generate an image of this fractal using generic function plot.
+
+###cool_colours(n,d,...)
+Returns a palette of colours which allows to plot the fractal in gradually changing colours.
+The function cool_colours creates a vector of colours to put as a col parameter in plot.IFS. The length of this vector is equal $n^d$, where $n$ is a number of functions making a fractal and $d$ denotes density of a fractal. The other arguments in cool_colors are parameters of the rainbow function (see ? rainbow).
+
+###plot.IFS
+The overweighted generic function that draws fractal from an IFS object to given density $d$ ($d = 8$ by default).
+
+# A simple example is presented below.
+### Creating a list of contractions.
+To make a fractal, the user needs to create a list of functions from $\mathbb{R}^2$ to $\mathbb{R}^2$. An example below shows functions creating Sierpi?ski triangle. 
+
+
+``` {r list of contractions}
+sierpinski_1 <- function(x){
+  c(x[1]/2,x[2]/2)
+}
+
+sierpinski_2 <- function(x){
+  c(x[1]/2+0.5, x[2]/2)
+}
+
+sierpinski_3 <- function(x){
+  c(x[1]/2+0.25, x[2]/2+0.4330127)
+}
+
+sierpinski_list <- list(sierpinski_1,sierpinski_2,sierpinski_3)
+```
+
+Our package contains four list creating fractals: Sierpinski triangle, Heighway dragon, Koch snowflake and Barnsley's fern.
+
+
+### Creating an IFS object.
+Having the list of functions, the user needs to create an IFS object by using IFSpakietJKM package.
+
+``` {r IFS}
+library(IFSpakietJKM)
+sierpinski_triangle <- createIFS(sierpinski_list)
+
+```
+
+### Drawing an IFS object.
+Now all the user has to do is draw an object.
+``` {r draw}
+plot(sierpinski_triangle)
+```
+
+
+
+#Additional examples:
+
+### Density change ("d" parameter).
+```{r smok}
+plot(createIFS(dragon), d=13)
+```
+
+### Changing parameters in a plot.
+```{r}
+barnsley <- createIFS(fern)
+plot(barnsley, d=6, col="green", pch=20)
+```
+
+### Rainbow colours as a "col" parameter.
+```{r trojkat}
+plot(createIFS(triangle), col=cool_colours(3,8))
+```
+
+### Parameters of a cool_colours function.
+```{r blue}
+blue <- cool_colours(3,8, start=1/2, end=5/7)
+plot(createIFS(triangle), col=blue)
+```
+
+### Have fun!

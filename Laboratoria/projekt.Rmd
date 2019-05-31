@@ -1,0 +1,89 @@
+---
+title: "raport PISA 1/1"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Context
+
+[A new working paper](https://hbswk.hbs.edu/item/kids-benefit-from-having-a-working-mom) by Kathleen McGinn and her colleagues for Harvard Business School purports that working mothers are more likely to raise successful daughters.
+
+# Preparing data
+
+```{r data, message=FALSE, warning=FALSE, results='asis', fig.width=6, fig.height=4}
+
+#setwd("C:\\Users/maciosz/Desktop/wizualizacja_R/projekt1/")
+# Loading data frame and libraries
+load("student2012.rda")
+
+library(tidyr)
+library(ggplot2)
+library(stringr)
+library(dplyr)
+
+# Function to prepare data
+
+prepare_data <- function(data, groups, values, filter_criteria=TRUE) {
+  data %>%
+    filter(filter_criteria) %>%
+    select(CNT, groups=groups, values=values) %>%
+    na.omit %>%
+    group_by(groups, values, CNT) %>%
+    summarise(n=n()) %>%
+    spread(CNT, n) %>%
+    return()
+}
+
+# Function to draw a desired barplot
+
+draw_plot <- function(data, country, subtitle, legend_name, xlab, ylab="Percent of answers") {
+  print(
+    ggplot(data, aes(data$groups, data[country], fill=data$values)) +
+      geom_bar(stat = "identity", position = "fill") + 
+      ggtitle(country, subtitle=subtitle) +
+      theme(plot.title = element_text(hjust=0.5),
+            plot.subtitle = element_text(hjust=0.5)) +
+      scale_x_discrete(labels = function(label) str_wrap(label, width = 15)) +
+      theme(axis.text.x = element_text(hjust = 0.5, vjust=0.5)) +
+      xlab(xlab) +
+      ylab(ylab) +
+      scale_fill_manual(values=c("#057000", "#0AC900", "#F71E07", "#9E1304"), name=legend_name)
+  )
+}
+
+# Creating data frames with desired subsets of data and removing N/As
+
+countries = unique(student2012$CNT)
+
+girls_career <- prepare_data(student2012, "ST15Q01", "ST29Q05", student2012$ST04Q01 == "Female")
+girls_confidence <- prepare_data(student2012, "ST15Q01", "ST43Q05", student2012$ST04Q01 == "Female")
+languages <- prepare_data(student2012, "ST25Q01", "ST49Q03")
+
+for (country in countries[1:5]) {
+  draw_plot(girls_career, country, 
+            "Learning mathematics is worthwhile for me because it will improve my career",
+            "Attitude",
+            "Mother's occupation")
+  
+  draw_plot(girls_confidence, country, 
+            "If I wanted to, I could do well in mathematics",
+            "Attitude",
+            "Mother's occupation")
+  
+  
+  draw_plot(languages, country,
+            "I do mathematics a an extracurricular activity",
+            "How often",
+            "The most spoken language")
+  
+  cat("\n\n\\newpage\n")
+}
+
+```

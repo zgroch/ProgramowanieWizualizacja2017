@@ -1,0 +1,7 @@
+          cnt  results          question
+378923 Poland 491.4395 Strongly disagree
+378924 Poland 572.6048          Disagree
+378930 Poland 635.7766          Disagree
+378931 Poland 497.2815 Strongly disagree
+378933 Poland 500.4752          Disagree
+378934 Poland 673.1656    Strongly agree

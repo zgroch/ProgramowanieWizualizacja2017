@@ -1,0 +1,7 @@
+          cnt  results            question
+235536 Israel 522.0517 (Strongly) Disagree
+235539 Israel 538.0978 (Strongly) Disagree
+235541 Israel 429.5139    (Strongly) Agree
+235544 Israel 657.1195    (Strongly) Agree
+235545 Israel 425.5414 (Strongly) Disagree
+235546 Israel 420.7898    (Strongly) Agree

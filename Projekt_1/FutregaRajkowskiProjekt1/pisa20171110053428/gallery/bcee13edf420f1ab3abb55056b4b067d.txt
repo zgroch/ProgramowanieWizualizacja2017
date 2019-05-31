@@ -1,0 +1,7 @@
+            cnt  results          question
+383530 Portugal 416.1941 Strongly disagree
+383531 Portugal 381.8430             Agree
+383532 Portugal 379.5062          Disagree
+383533 Portugal 338.3004          Disagree
+383535 Portugal 417.2067          Disagree
+383537 Portugal 425.6193          Disagree

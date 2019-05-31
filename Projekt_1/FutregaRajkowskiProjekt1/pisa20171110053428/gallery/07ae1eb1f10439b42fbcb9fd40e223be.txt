@@ -1,0 +1,7 @@
+           cnt  results            question
+175676 Finland 520.5717 (Strongly) Disagree
+175677 Finland 427.8003    (Strongly) Agree
+175681 Finland 284.4758 (Strongly) Disagree
+175682 Finland 335.0288 (Strongly) Disagree
+175684 Finland 556.2471 (Strongly) Disagree
+175685 Finland 314.8543 (Strongly) Disagree

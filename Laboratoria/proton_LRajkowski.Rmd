@@ -1,0 +1,71 @@
+---
+title: "Laboratorium 5"
+author: "Tutaj wpisz swoje dane"
+date: "3/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Do zrobienia
+
+* Zainstaluj pakiet BetaBit [z CRAN](https://cran.rstudio.com/web/packages/BetaBit/index.html)
+
+* Wywołaj funkcję `proton()` i rozwiąż zbiór problemów opisanych w tej funkcji.
+
+(1) Find John's login
+```{r}
+employees %>% 
+    filter(name=="John", surname=="Insecure") %>% 
+    select(login) -> johnslogin
+
+proton(action="login", login=johnslogin)
+```
+(2) Find John's password
+```{r}
+johnpass <- ""
+for(pass in top1000passwords){
+    if( grepl("incorrect", proton(action="login", login=johnslogin, password=pass)) ){
+        johnpass <- pass        
+    }
+}
+johnpass
+```
+(3) Z jakiego serwera najczęściej się loguje?
+```{r}
+    # na poczatku znajdzmy login 
+employees %>% 
+    filter(surname=="Pietraszko") %>% 
+    select(login) -> pietraszkologin
+pietraszkologin
+
+    # teraz gdzie sie loguje
+pietraszkologins <- logs %>% 
+    group_by(login, host) %>% 
+    summarise( n=n() ) %>% 
+    filter( login=="slap" ) %>% 
+    arrange(desc(n)) %>% 
+    select(host) %>% 
+    head(1)
+    
+bestserver <- as.character(pietraszkologins$host)
+
+```
+
+(4) Now we are looking for the password
+```{r}
+head(bash_history)
+str(bash_history)
+
+    # jakie sa komendy?
+podejrzane <- table(bash_history[!grepl(" ", bash_history)])
+haslopietraszka <- names(sort(podejrzane)[1])
+
+proton(action="login", login="slap", password=haslopietraszka)
+```
+
+* Rozwiązanie (wykorzystane kody) wgraj na GitHub do katalogu [Laboratorium](https://github.com/pbiecek/ProgramowanieWizualizacja2017/tree/master/Laboratoria). Plik z rozwiązaniem powinien się nazywać `proton___`, gdzie ___ To Twoje imię i nazwisko lub inicjały. Rozszerzenie R lub Rmd.
+
+* Jeżeli udało Ci się rozwiązać zagadke `proton()` szybko to gratulacje i zapraszam do rozwiązania zagadki `frequon()`.
